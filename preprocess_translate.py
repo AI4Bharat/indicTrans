@@ -7,6 +7,8 @@ from sacremoses import MosesTokenizer
 from sacremoses import MosesDetokenizer
 from collections import defaultdict
 
+from tqdm import tqdm
+
 import indicnlp
 from indicnlp.tokenize import indic_tokenize
 from indicnlp.tokenize import indic_detokenize
@@ -21,7 +23,7 @@ def preprocess(infname,outfname,lang,common_lang='hi'):
     """
     
     n=0
-    
+    num_lines = sum(1 for line in open(infname,'r'))
     ### reading 
     with open(infname,'r',encoding='utf-8') as infile, \
          open(outfname,'w',encoding='utf-8') as outfile:
@@ -30,7 +32,7 @@ def preprocess(infname,outfname,lang,common_lang='hi'):
         if lang=='en':
             en_tok=MosesTokenizer(lang='en')
             en_normalizer = MosesPunctNormalizer()
-            for line in infile: 
+            for line in tqdm(infile, total=num_lines): 
                 outline=' '.join(
                         en_tok.tokenize( 
                                 en_normalizer.normalize(line.strip()), 
@@ -41,7 +43,7 @@ def preprocess(infname,outfname,lang,common_lang='hi'):
         else:
             normfactory=indic_normalize.IndicNormalizerFactory()
             normalizer=normfactory.get_normalizer(lang)
-            for line in infile: 
+            for line in tqdm(infile, total=num_lines): 
 
                 line=indic_detokenize.trivial_detokenize(line.strip(),lang)
 
