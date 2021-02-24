@@ -1,5 +1,5 @@
 import sys
-from indicnlp import common   
+from indicnlp import common
 from indicnlp import loader
 
 from sacremoses import MosesPunctNormalizer
@@ -7,66 +7,136 @@ from sacremoses import MosesTokenizer
 from sacremoses import MosesDetokenizer
 from collections import defaultdict
 
-import indicnlp
+from tqdm import tqdm
+from joblib import Parallel, delayed
+
 from indicnlp.tokenize import indic_tokenize
 from indicnlp.tokenize import indic_detokenize
 from indicnlp.normalize import indic_normalize
 from indicnlp.transliterate import unicode_transliterate
 
-def postprocess(infname,outfname,input_size,lang,common_lang='hi'):
-    """
-    parse fairseq interactive output, convert script back to native Indic script (in case of Indic languages) and detokenize.
-    
-    infname: fairseq log file
-    outfname: output file of translation (sentences not translated contain the dummy string 'DUMMY_OUTPUT'
-    input_size: expected number of output sentences
-    lang: language
-    """
-    
-#     consolidated_testoutput=[]
-#     with open(infname,'r',encoding='utf-8') as infile:
-#         consolidated_testoutput= list(map(lambda x: x.strip(), filter(lambda x: x.startswith('H-'),infile) ))
-#         consolidated_testoutput.sort(key=lambda x: int(x.split('\t')[0].split('-')[1]))
-#         consolidated_testoutput=[ x.split('\t')[2] for x in consolidated_testoutput ]
 
-    consolidated_testoutput=[ (x,0.0,'') for x in range(input_size) ]
-    temp_testoutput=[]
-    with open(infname,'r',encoding='utf-8') as infile:
-        temp_testoutput = list(map(lambda x: x.strip().split('\t'), filter(lambda x: x.startswith('H-'),infile) ))
-        temp_testoutput = list(map(lambda x: ( int(x[0].split('-')[1]) , float(x[1]), x[2] ) , temp_testoutput ))
-        for sid,score,hyp in temp_testoutput:
-            consolidated_testoutput[sid]=(sid,score,hyp)
-        consolidated_testoutput=[ x[2] for x in consolidated_testoutput ]
-    
-    if lang=='en':
-        en_detok=MosesDetokenizer(lang='en')
-        with open(outfname,'w',encoding='utf-8') as outfile:
-            for sent in consolidated_testoutput:
-                outfile.write( en_detok.detokenize(sent.split(' ')) + '\n' )    
+en_tok = MosesTokenizer(lang="en")
+en_normalizer = MosesPunctNormalizer()
+
+
+def preprocess_line(line, normalizer, lang):
+    if lang == "en":
+        return " ".join(
+            en_tok.tokenize(en_normalizer.normalize(
+                line.strip()), escape=False)
+        )
     else:
-        xliterator=unicode_transliterate.UnicodeIndicTransliterator()
-        with open(outfname,'w',encoding='utf-8') as outfile:
-            for sent in consolidated_testoutput:
-                outstr=indic_detokenize.trivial_detokenize(
-                    xliterator.transliterate(sent,common_lang,lang),
-                        lang)  
-                outfile.write( outstr + '\n' )        
-    
-if __name__ == '__main__':
-#     # The path to the local git repo for Indic NLP library
-#     INDIC_NLP_LIB_HOME=r"/data/t-ankunc/installs/indic_nlp_library_py3"
+        # line = indic_detokenize.trivial_detokenize(line.strip(), lang)
+        return (
+            unicode_transliterate.UnicodeIndicTransliterator.transliterate(
+                " ".join(
+                    indic_tokenize.trivial_tokenize(
+                        normalizer.normalize(line.strip()), lang
+                    )
+                ),
+                lang,
+                "hi",
+            ).replace(" ् ", "्")
+        )
 
-#     # The path to the local git repo for Indic NLP Resources
-#     INDIC_NLP_RESOURCES=r"/data/t-ankunc/installs/indic_nlp_resources"
 
-#     sys.path.append(r'{}'.format(INDIC_NLP_LIB_HOME))
-#     common.set_resources_path(INDIC_NLP_RESOURCES)
+def preprocess(infname, outfname, lang):
+    """
+    Normalize, tokenize and script convert(for Indic)
+    return number of sentences input file
 
-    loader.load()    
-    
-    infname=sys.argv[1]
-    outfname=sys.argv[2]
-    input_size=int(sys.argv[3])
-    lang=sys.argv[4]
-    
-    postprocess(infname,outfname,input_size,lang)    
+    """
+
+    n = 0
+    num_lines = sum(1 for line in open(infname, "r"))
+    if lang == "en":
+        with open(infname, "r", encoding="utf-8") as infile, open(
+            outfname, "w", encoding="utf-8"
+        ) as outfile:
+
+            out_lines = Parallel(n_jobs=-1, backend="multiprocessing")(
+                delayed(preprocess_line)(line, None, lang) for line in tqdm(infile, total=num_lines)
+            )
+
+            for line in out_lines:
+                outfile.write(line + "\n")
+                n += 1
+
+    else:
+        normfactory = indic_normalize.IndicNormalizerFactory()
+        normalizer = normfactory.get_normalizer(lang)
+        # reading
+        with open(infname, "r", encoding="utf-8") as infile, open(
+            outfname, "w", encoding="utf-8"
+        ) as outfile:
+
+            out_lines = Parallel(n_jobs=-1, backend="multiprocessing")(
+                delayed(preprocess_line)(line, normalizer, lang) for line in tqdm(infile, total=num_lines)
+            )
+
+            for line in out_lines:
+                outfile.write(line + "\n")
+                n += 1
+    return n
+
+
+def old_preprocess(infname, outfname, lang):
+    """
+    Preparing each corpus file:
+      - Normalization
+      - Tokenization
+      - Script coversion to Devanagari for Indic scripts
+    """
+    n = 0
+    num_lines = sum(1 for line in open(infname, "r"))
+    # reading
+    with open(infname, "r", encoding="utf-8") as infile, open(
+        outfname, "w", encoding="utf-8"
+    ) as outfile:
+
+        if lang == "en":
+            en_tok = MosesTokenizer(lang="en")
+            en_normalizer = MosesPunctNormalizer()
+            for line in tqdm(infile, total=num_lines):
+                outline = " ".join(
+                    en_tok.tokenize(en_normalizer.normalize(
+                        line.strip()), escape=False)
+                )
+                outfile.write(outline + "\n")
+                n += 1
+
+        else:
+            normfactory = indic_normalize.IndicNormalizerFactory()
+            normalizer = normfactory.get_normalizer(lang)
+            for line in tqdm(infile, total=num_lines):
+                outline = (
+                    unicode_transliterate.UnicodeIndicTransliterator.transliterate(
+                        " ".join(
+                            indic_tokenize.trivial_tokenize(
+                                normalizer.normalize(line.strip()), lang
+                            )
+                        ),
+                        lang,
+                        "hi",
+                    ).replace(" ् ", "्")
+                )
+
+                outfile.write(outline + "\n")
+                n += 1
+    return n
+
+
+if __name__ == "__main__":
+
+    # INDIC_NLP_LIB_HOME = ""
+    # INDIC_NLP_RESOURCES = ""
+    # sys.path.append(r'{}'.format(INDIC_NLP_LIB_HOME))
+    # common.set_resources_path(INDIC_NLP_RESOURCES)
+    loader.load()
+
+    infname = sys.argv[1]
+    outfname = sys.argv[2]
+    lang = sys.argv[3]
+
+    print(preprocess(infname, outfname, lang))
