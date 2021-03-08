@@ -4,8 +4,8 @@ expdir=$1  # EXPDIR
 org_data_dir=$2
 langs=$3
 
-`dirname $0`/env.sh
-
+#`dirname $0`/env.sh
+SUBWORD_NMT_DIR="subword-nmt"
 echo "Apply to each language"
 
 for dset in `echo test dev`

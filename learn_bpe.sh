@@ -2,8 +2,8 @@
 
 expdir=$1  # EXPDIR
 
-`dirname $0`/env.sh
-
+#`dirname $0`/env.sh
+SUBWORD_NMT_DIR="subword-nmt"
 data_dir="$expdir/data"
 train_file=$data_dir/train
 num_operations=32000
