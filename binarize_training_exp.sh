@@ -1,6 +1,6 @@
 #/bin/bash 
 
-source $PYTHON_ENV/bin/activate
+#source $PYTHON_ENV/bin/activate
 
 exp_dir=$1
 src_lang=$2
