@@ -39,5 +39,6 @@ if __name__ == "__main__":
     new_tgt_path = sys.argv[4]
 
     count, new_src_lines, new_tgt_lines = remove_large_sentences(src_path, tgt_path)
+    print(f'{count} lines removed due to seq_len > 200')
     create_txt(new_src_path, new_src_lines)
     create_txt(new_tgt_path, new_tgt_lines)
