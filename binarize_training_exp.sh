@@ -1,6 +1,4 @@
-#/bin/bash 
-
-source $PYTHON_ENV/bin/activate
+#/bin/bash
 
 exp_dir=$1
 src_lang=$2
@@ -19,4 +17,4 @@ fairseq-preprocess \
     --validpref $data_dir/dev \
     --testpref $data_dir/test \
     --destdir $out_data_dir \
-    --workers 16   
+    --workers 16

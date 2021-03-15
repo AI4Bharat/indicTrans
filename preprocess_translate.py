@@ -1,10 +1,13 @@
 INDIC_NLP_LIB_HOME = "indic_nlp_library"
 INDIC_NLP_RESOURCES = "indic_nlp_resources"
 import sys
-sys.path.append(r'{}'.format(INDIC_NLP_LIB_HOME))
+
+sys.path.append(r"{}".format(INDIC_NLP_LIB_HOME))
 from indicnlp import common
+
 common.set_resources_path(INDIC_NLP_RESOURCES)
 from indicnlp import loader
+
 loader.load()
 from sacremoses import MosesPunctNormalizer
 from sacremoses import MosesTokenizer
@@ -24,24 +27,26 @@ en_tok = MosesTokenizer(lang="en")
 en_normalizer = MosesPunctNormalizer()
 
 
-def preprocess_line(line, normalizer, lang):
+def preprocess_line(line, normalizer, lang, transliterate=False):
     if lang == "en":
         return " ".join(
-            en_tok.tokenize(en_normalizer.normalize(
-                line.strip()), escape=False)
+            en_tok.tokenize(en_normalizer.normalize(line.strip()), escape=False)
         )
-    else:
+    elif transliterate:
         # line = indic_detokenize.trivial_detokenize(line.strip(), lang)
-        return (
-            unicode_transliterate.UnicodeIndicTransliterator.transliterate(
-                " ".join(
-                    indic_tokenize.trivial_tokenize(
-                        normalizer.normalize(line.strip()), lang
-                    )
-                ),
-                lang,
-                "hi",
-            ).replace(" ् ", "्")
+        return unicode_transliterate.UnicodeIndicTransliterator.transliterate(
+            " ".join(
+                indic_tokenize.trivial_tokenize(
+                    normalizer.normalize(line.strip()), lang
+                )
+            ),
+            lang,
+            "hi",
+        ).replace(" ् ", "्")
+    else:
+        # we only need to transliterate for joint training
+        return " ".join(
+            indic_tokenize.trivial_tokenize(normalizer.normalize(line.strip()), lang)
         )
 
 
@@ -60,7 +65,8 @@ def preprocess(infname, outfname, lang):
         ) as outfile:
 
             out_lines = Parallel(n_jobs=-1, backend="multiprocessing")(
-                delayed(preprocess_line)(line, None, lang) for line in tqdm(infile, total=num_lines)
+                delayed(preprocess_line)(line, None, lang)
+                for line in tqdm(infile, total=num_lines)
             )
 
             for line in out_lines:
@@ -76,7 +82,8 @@ def preprocess(infname, outfname, lang):
         ) as outfile:
 
             out_lines = Parallel(n_jobs=-1, backend="multiprocessing")(
-                delayed(preprocess_line)(line, normalizer, lang) for line in tqdm(infile, total=num_lines)
+                delayed(preprocess_line)(line, normalizer, lang)
+                for line in tqdm(infile, total=num_lines)
             )
 
             for line in out_lines:
@@ -104,8 +111,7 @@ def old_preprocess(infname, outfname, lang):
             en_normalizer = MosesPunctNormalizer()
             for line in tqdm(infile, total=num_lines):
                 outline = " ".join(
-                    en_tok.tokenize(en_normalizer.normalize(
-                        line.strip()), escape=False)
+                    en_tok.tokenize(en_normalizer.normalize(line.strip()), escape=False)
                 )
                 outfile.write(outline + "\n")
                 n += 1
@@ -133,10 +139,10 @@ def old_preprocess(infname, outfname, lang):
 
 if __name__ == "__main__":
 
-    #INDIC_NLP_LIB_HOME = "indic_nlp_library"
-    #INDIC_NLP_RESOURCES = "indic_nlp_resources"
-    #sys.path.append(r'{}'.format(INDIC_NLP_LIB_HOME))
-    #common.set_resources_path(INDIC_NLP_RESOURCES)
+    # INDIC_NLP_LIB_HOME = "indic_nlp_library"
+    # INDIC_NLP_RESOURCES = "indic_nlp_resources"
+    # sys.path.append(r'{}'.format(INDIC_NLP_LIB_HOME))
+    # common.set_resources_path(INDIC_NLP_RESOURCES)
 
     # data_dir = '../joint_training/v1'
     # new_dir = data_dir + '.norm'
@@ -146,11 +152,10 @@ if __name__ == "__main__":
     #         lang = infile.split('.')[-1]
     #         outfile = os.path.join(path.replace(data_dir, new_dir), name)
     #         preprocess(infile, outfile, lang)
-    #loader.load()
+    # loader.load()
 
     infname = sys.argv[1]
     outfname = sys.argv[2]
     lang = sys.argv[3]
 
     print(preprocess(infname, outfname, lang))
-
