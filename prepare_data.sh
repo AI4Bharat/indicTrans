@@ -51,6 +51,8 @@ bash learn_bpe.sh $exp_dir
 echo "Applying bpe"
 bash apply_bpe_traindevtest_notag.sh $exp_dir
 
+mkdir -p $exp_dir/final
+
 # this is only required for joint training
 # echo "Adding language tags"
 # python add_tags_translate.py $outfname._bpe $outfname.bpe $src_lang $tgt_lang

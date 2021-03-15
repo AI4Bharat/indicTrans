@@ -11,8 +11,8 @@ for dset in `echo train dev test`
 do
     echo $dset
     in_dset_dir="$data_dir/$dset"
-    # out_dset_dir="$expdir/bpe/$dset"
-    out_dset_dir="$expdir/final/$dset"
+    out_dset_dir="$expdir/bpe/$dset"
+    # out_dset_dir="$expdir/final/$dset"
     echo "Apply to SRC corpus"
     python $SUBWORD_NMT_DIR/subword_nmt/apply_bpe.py \
         -c $expdir/vocab/bpe_codes.32k.SRC_TGT \
