@@ -19,7 +19,7 @@ do
         --vocabulary $expdir/vocab/vocab.SRC \
         --vocabulary-threshold 5 \
         --num-workers "-1" \
-        < in_dset_dir.SRC \
+        < $in_dset_dir.SRC \
         > $out_dset_dir.SRC
     echo "Apply to TGT corpus"
     python $SUBWORD_NMT_DIR/subword_nmt/apply_bpe.py \
@@ -27,6 +27,6 @@ do
         --vocabulary $expdir/vocab/vocab.TGT \
         --vocabulary-threshold 5 \
         --num-workers "-1" \
-        < in_dset_dir.TGT \
+        < $in_dset_dir.TGT \
         > $out_dset_dir.TGT
 done
