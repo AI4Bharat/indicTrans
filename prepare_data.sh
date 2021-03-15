@@ -55,5 +55,12 @@ bash apply_bpe_traindevtest_notag.sh $exp_dir
 # echo "Adding language tags"
 # python add_tags_translate.py $outfname._bpe $outfname.bpe $src_lang $tgt_lang
 
+# this is imporatnt step if you are training with tpu and using num_batch_buckets
+# the currnet implementation does not remove outliers before bucketing and hence
+# removing these large sentences ourselves helps with getting better buckets
+python remove_large_sentences.py $exp_dir/bpe/train.SRC $exp_dir/bpe/train.TGT $exp_dir/final/train.SRC $exp_dir/final/train.TGT
+python remove_large_sentences.py $exp_dir/bpe/dev.SRC $exp_dir/bpe/dev.TGT $exp_dir/final/dev.SRC $exp_dir/final/dev.TGT
+python remove_large_sentences.py $exp_dir/bpe/test.SRC $exp_dir/bpe/test.TGT $exp_dir/final/test.SRC $exp_dir/final/test.TGT
+
 echo "Binarizing data"
 bash binarize_training_exp.sh $exp_dir SRC TGT

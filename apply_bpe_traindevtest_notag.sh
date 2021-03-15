@@ -5,7 +5,7 @@ expdir=$1  # EXPDIR
 SUBWORD_NMT_DIR="subword-nmt"
 
 data_dir="$expdir/data"
-mkdir -p $expdir/final
+mkdir -p $expdir/bpe
 
 for dset in `echo train dev test`
 do
