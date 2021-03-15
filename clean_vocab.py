@@ -1,8 +1,8 @@
 import sys
-
+import codecs
 
 def clean_vocab(in_vocab_fname, out_vocab_fname):
-    with open(in_vocab_fname, "r", encoding="utf-8") as infile, open(
+    with codecs.open(in_vocab_fname, "r", encoding="utf-8") as infile, codecs.open(
         out_vocab_fname, "w", encoding="utf-8"
     ) as outfile:
         for i, line in enumerate(infile):
