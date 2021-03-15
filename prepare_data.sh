@@ -2,11 +2,11 @@ exp_dir=$1
 src_lang=$2
 tgt_lang=$3
 
-train_data_dir=$exp_dir/raw_data/train/$src_lang-$tgt_lang/
-devtest_data_dir=$exp_dir/raw_data/devtest/$src_lang-$tgt_lang/
+train_data_dir=$exp_dir/raw_data/train/$src_lang-$tgt_lang
+devtest_data_dir=$exp_dir/raw_data/devtest/$src_lang-$tgt_lang
 
-train_processed_dir=$exp_dir/data/
-devtest_processed_dir=$exp_dir/data/
+train_processed_dir=$exp_dir/data
+devtest_processed_dir=$exp_dir/data
 
 out_data_dir=$exp_dir/final_bin
 
