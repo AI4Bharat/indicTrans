@@ -14,8 +14,13 @@ fi
 
 for tset in ${TEST_SETS[@]};do
 	echo $tset $src_lang $tgt_lang
-	SRC_FILE=../experiments/devtest/$tset/${tgt_lang}-${src_lang}/test.$src_lang
-	REF_FILE=../experiments/devtest/$tset/${tgt_lang}-${src_lang}/test.$tgt_lang
+	if [ $tset == 'wat2021' ]; then
+		SRC_FILE=../experiments/devtest/$tset/test.$src_lang
+		REF_FILE=../experiments/devtest/$tset/test.$tgt_lang
+	else
+		SRC_FILE=../experiments/devtest/$tset/${tgt_lang}-${src_lang}/test.$src_lang
+		REF_FILE=../experiments/devtest/$tset/${tgt_lang}-${src_lang}/test.$tgt_lang
+	fi
 	RESULTS_DIR=$expdir/results/$tset
 
 	mkdir -p $RESULTS_DIR
