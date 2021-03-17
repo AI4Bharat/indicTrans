@@ -18,7 +18,7 @@ for tset in ${TEST_SETS[@]};do
 	REF_FILE=../experiments/devtest/$tset/${tgt_lang}-${src_lang}/test.$tgt_lang
 	RESULTS_DIR=$expdir/results/$tset
 
-	mkdir -p RESULTS_DIR
+	mkdir -p $RESULTS_DIR
 
 	bash translate.sh $SRC_FILE $RESULTS_DIR/${src_lang}-${tgt_lang} $src_lang $tgt_lang $expdir $REF_FILE
 done
