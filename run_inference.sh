@@ -1,11 +1,26 @@
 expdir=${1:-../experiments/all-v1_WAT}
-lang=${2:-hi}
+src_lang=${2:-hi}
+tgt_lang=${3:-en}
 
-bash translate.sh ../experiments/devtest/anuvaad-legal/en-$lang/test.$lang $expdir/results/anuvaad-legal/en-$lang $lang "en" $expdir ../experiments/devtest/anuvaad-legal/en-$lang/test.en
-bash translate.sh ../experiments/devtest/wmt-news/en-$lang/test.$lang $expdir/results/wmt-news/en-$lang $lang "en" $expdir ../experiments/devtest/wmt-news/en-$lang/test.en
-bash translate.sh ../experiments/devtest/wat2021/test.$lang $expdir/results/wat2021/en-$lang $lang "en" $expdir ../experiments/devtest/wat2021/test.en
-bash translate.sh ../experiments/devtest/wat2020/en-$lang/test.$lang $expdir/results/wat2020/en-$lang $lang "en" $expdir ../experiments/devtest/wat2020/en-$lang/test.en
-bash translate.sh ../experiments/devtest/tico19/en-$lang/test.$lang $expdir/results/tico19/en-$lang $lang "en" $expdir ../experiments/devtest/tico19/en-$lang/test.en
-bash translate.sh ../experiments/devtest/sap-documentation-benchmark/en-$lang/test.$lang $expdir/results/sap-documentation-benchmark/en-$lang $lang "en" $expdir ../experiments/devtest/sap-documentation-benchmark/en-$lang/test.en
-bash translate.sh ../experiments/devtest/all/en-$lang/test.$lang $expdir/results/all/en-$lang $lang "en" $expdir ../experiments/devtest/all/en-$lang/test.en
+
+if [ $src_lang == 'hi' ] || [ $tgt_lang == 'hi' ]; then
+	TEST_SETS=( anuvaad-legal wmt-news wat2021 wat2020 tico19 sap-documentation-benchmark all)
+elif [ $src_lang == 'ta' ] || [ $tgt_lang == 'ta' ];; then
+	TEST_SETS=( anuvaad-legal wmt-news wat2021 wat2020 tico19 all)
+elif [ $src_lang == 'bn' ] || [ $tgt_lang == 'bn' ];; then
+	TEST_SETS=( anuvaad-legal wat2021 wat2020 tico19 all)
+fi
+
+
+for tset in ${TEST_SETS[@]};do
+	echo $tset $src_lang $tgt_lang
+	SRC_FILE=../experiments/devtest/$tset/${tgt_lang}-${src_lang}/test.$src_lang
+	REF_FILE=../experiments/devtest/$tset/${tgt_lang}-${src_lang}/test.$tgt_lang
+	RESULTS_DIR=$expdir/results/$tset
+
+	mkdir -p RESULTS_DIR
+
+	bash translate.sh SRC_FILE RESULTS_DIR/${src_lang}-${tgt_lang} $src_lang $tgt_lang $expdir REF_FILE
+done
+
 
