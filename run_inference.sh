@@ -1,39 +1,11 @@
-bash translate.sh ../experiments/devtest/anuvaad-legal/en-hi/test.hi ../experiments/all-v1_WAT/results/anuvaad-legal/en-hi "hi" "en" ../experiments/all-v1_WAT ../experiments/devtest/anuvaad-legal/en-hi/test.en
-bash translate.sh ../experiments/devtest/anuvaad-legal/en-hi/test.hi ../experiments/ccaligned_v1_WAT/results/anuvaad-legal/en-hi "hi" "en" ../experiments/ccaligned_v1_WAT ../experiments/devtest/anuvaad-legal/en-hi/test.en
-bash translate.sh ../experiments/devtest/anuvaad-legal/en-bn/test.bn ../experiments/all-v1_WAT/results/anuvaad-legal/en-bn "bn" "en" ../experiments/all-v1_WAT ../experiments/devtest/anuvaad-legal/en-bn/test.en
-bash translate.sh ../experiments/devtest/anuvaad-legal/en-bn/test.bn ../experiments/ccaligned_v1_WAT/results/anuvaad-legal/en-bn "bn" "en" ../experiments/ccaligned_v1_WAT ../experiments/devtest/anuvaad-legal/en-bn/test.en
-bash translate.sh ../experiments/devtest/anuvaad-legal/en-ta/test.ta ../experiments/all-v1_WAT/results/anuvaad-legal/en-ta "ta" "en" ../experiments/all-v1_WAT ../experiments/devtest/anuvaad-legal/en-ta/test.en
-bash translate.sh ../experiments/devtest/anuvaad-legal/en-ta/test.ta ../experiments/ccaligned_v1_WAT/results/anuvaad-legal/en-ta "ta" "en" ../experiments/ccaligned_v1_WAT ../experiments/devtest/anuvaad-legal/en-ta/test.en
+expdir=${1:-../experiments/all-v1_WAT}
+lang=${2:-hi}
 
-bash translate.sh ../experiments/devtest/wmt-news/en-hi/test.hi ../experiments/all-v1_WAT/results/wmt-news/en-hi "hi" "en" ../experiments/all-v1_WAT ../experiments/devtest/wmt-news/en-hi/test.en
-bash translate.sh ../experiments/devtest/wmt-news/en-hi/test.hi ../experiments/ccaligned_v1_WAT/results/wmt-news/en-hi "hi" "en" ../experiments/ccaligned_v1_WAT ../experiments/devtest/wmt-news/en-hi/test.en
-bash translate.sh ../experiments/devtest/wat2021/test.hi ../experiments/all-v1_WAT/results/wat2021/en-hi "hi" "en" ../experiments/all-v1_WAT ../experiments/devtest/wat2021/test.en
-bash translate.sh ../experiments/devtest/wat2021/test.hi ../experiments/ccaligned_v1_WAT/results/wat2021/en-hi "hi" "en" ../experiments/ccaligned_v1_WAT ../experiments/devtest/wat2021/test.en
-bash translate.sh ../experiments/devtest/wat2020/en-hi/test.hi ../experiments/all-v1_WAT/results/wat2020/en-hi "hi" "en" ../experiments/all-v1_WAT ../experiments/devtest/wat2020/en-hi/test.en
-bash translate.sh ../experiments/devtest/wat2020/en-hi/test.hi ../experiments/ccaligned_v1_WAT/results/wat2020/en-hi "hi" "en" ../experiments/ccaligned_v1_WAT ../experiments/devtest/wat2020/en-hi/test.en
-bash translate.sh ../experiments/devtest/tico19/en-hi/test.hi ../experiments/all-v1_WAT/results/tico19/en-hi "hi" "en" ../experiments/all-v1_WAT ../experiments/devtest/tico19/en-hi/test.en
-bash translate.sh ../experiments/devtest/tico19/en-hi/test.hi ../experiments/ccaligned_v1_WAT/results/tico19/en-hi "hi" "en" ../experiments/ccaligned_v1_WAT ../experiments/devtest/tico19/en-hi/test.en
-bash translate.sh ../experiments/devtest/sap-documentation-benchmark/en-hi/test.hi ../experiments/all-v1_WAT/results/sap-documentation-benchmark/en-hi "hi" "en" ../experiments/all-v1_WAT ../experiments/devtest/sap-documentation-benchmark/en-hi/test.en
-bash translate.sh ../experiments/devtest/sap-documentation-benchmark/en-hi/test.hi ../experiments/ccaligned_v1_WAT/results/sap-documentation-benchmark/en-hi "hi" "en" ../experiments/ccaligned_v1_WAT ../experiments/devtest/sap-documentation-benchmark/en-hi/test.en
-bash translate.sh ../experiments/devtest/all/en-hi/test.hi ../experiments/all-v1_WAT/results/all/en-hi "hi" "en" ../experiments/all-v1_WAT ../experiments/devtest/all/en-hi/test.en
-bash translate.sh ../experiments/devtest/all/en-hi/test.hi ../experiments/ccaligned_v1_WAT/results/all/en-hi "hi" "en" ../experiments/ccaligned_v1_WAT ../experiments/devtest/all/en-hi/test.en
+bash translate.sh ../experiments/devtest/anuvaad-legal/en-$lang/test.$lang $expdir/results/anuvaad-legal/en-$lang $lang "en" $expdir ../experiments/devtest/anuvaad-legal/en-$lang/test.en
+bash translate.sh ../experiments/devtest/wmt-news/en-$lang/test.$lang $expdir/results/wmt-news/en-$lang $lang "en" $expdir ../experiments/devtest/wmt-news/en-$lang/test.en
+bash translate.sh ../experiments/devtest/wat2021/test.$lang $expdir/results/wat2021/en-$lang $lang "en" $expdir ../experiments/devtest/wat2021/test.en
+bash translate.sh ../experiments/devtest/wat2020/en-$lang/test.$lang $expdir/results/wat2020/en-$lang $lang "en" $expdir ../experiments/devtest/wat2020/en-$lang/test.en
+bash translate.sh ../experiments/devtest/tico19/en-$lang/test.$lang $expdir/results/tico19/en-$lang $lang "en" $expdir ../experiments/devtest/tico19/en-$lang/test.en
+bash translate.sh ../experiments/devtest/sap-documentation-benchmark/en-$lang/test.$lang $expdir/results/sap-documentation-benchmark/en-$lang $lang "en" $expdir ../experiments/devtest/sap-documentation-benchmark/en-$lang/test.en
+bash translate.sh ../experiments/devtest/all/en-$lang/test.$lang $expdir/results/all/en-$lang $lang "en" $expdir ../experiments/devtest/all/en-$lang/test.en
 
-bash translate.sh ../experiments/devtest/wat2021/test.bn ../experiments/all-v1_WAT/results/wat2021/en-bn "bn" "en" ../experiments/all-v1_WAT ../experiments/devtest/wat2021/test.en
-bash translate.sh ../experiments/devtest/wat2021/test.bn ../experiments/ccaligned_v1_WAT/results/wat2021/en-bn "bn" "en" ../experiments/ccaligned_v1_WAT ../experiments/devtest/wat2021/test.en
-bash translate.sh ../experiments/devtest/wat2020/en-bn/test.bn ../experiments/all-v1_WAT/results/wat2020/en-bn "bn" "en" ../experiments/all-v1_WAT ../experiments/devtest/wat2020/en-bn/test.en
-bash translate.sh ../experiments/devtest/wat2020/en-bn/test.bn ../experiments/ccaligned_v1_WAT/results/wat2020/en-bn "bn" "en" ../experiments/ccaligned_v1_WAT ../experiments/devtest/wat2020/en-bn/test.en
-bash translate.sh ../experiments/devtest/tico19/en-bn/test.bn ../experiments/all-v1_WAT/results/tico19/en-bn "bn" "en" ../experiments/all-v1_WAT ../experiments/devtest/tico19/en-bn/test.en
-bash translate.sh ../experiments/devtest/tico19/en-bn/test.bn ../experiments/ccaligned_v1_WAT/results/tico19/en-bn "bn" "en" ../experiments/ccaligned_v1_WAT ../experiments/devtest/tico19/en-bn/test.en
-bash translate.sh ../experiments/devtest/all/en-bn/test.bn ../experiments/all-v1_WAT/results/all/en-bn "bn" "en" ../experiments/all-v1_WAT ../experiments/devtest/all/en-bn/test.en
-bash translate.sh ../experiments/devtest/all/en-bn/test.bn ../experiments/ccaligned_v1_WAT/results/all/en-bn "bn" "en" ../experiments/ccaligned_v1_WAT ../experiments/devtest/all/en-bn/test.en
-
-bash translate.sh ../experiments/devtest/wmt-news/en-ta/test.ta ../experiments/all-v1_WAT/results/wmt-news/en-ta "ta" "en" ../experiments/all-v1_WAT ../experiments/devtest/wmt-news/en-ta/test.en
-bash translate.sh ../experiments/devtest/wmt-news/en-ta/test.ta ../experiments/ccaligned_v1_WAT/results/wmt-news/en-ta "ta" "en" ../experiments/ccaligned_v1_WAT ../experiments/devtest/wmt-news/en-ta/test.en
-bash translate.sh ../experiments/devtest/wat2021/test.ta ../experiments/all-v1_WAT/results/wat2021/en-ta "ta" "en" ../experiments/all-v1_WAT ../experiments/devtest/wat2021/test.en
-bash translate.sh ../experiments/devtest/wat2021/test.ta ../experiments/ccaligned_v1_WAT/results/wat2021/en-ta "ta" "en" ../experiments/ccaligned_v1_WAT ../experiments/devtest/wat2021/test.en
-bash translate.sh ../experiments/devtest/wat2020/en-ta/test.ta ../experiments/all-v1_WAT/results/wat2020/en-ta "ta" "en" ../experiments/all-v1_WAT ../experiments/devtest/wat2020/en-ta/test.en
-bash translate.sh ../experiments/devtest/wat2020/en-ta/test.ta ../experiments/ccaligned_v1_WAT/results/wat2020/en-ta "ta" "en" ../experiments/ccaligned_v1_WAT ../experiments/devtest/wat2020/en-ta/test.en
-bash translate.sh ../experiments/devtest/tico19/en-ta/test.ta ../experiments/all-v1_WAT/results/tico19/en-ta "ta" "en" ../experiments/all-v1_WAT ../experiments/devtest/tico19/en-ta/test.en
-bash translate.sh ../experiments/devtest/tico19/en-ta/test.ta ../experiments/ccaligned_v1_WAT/results/tico19/en-ta "ta" "en" ../experiments/ccaligned_v1_WAT ../experiments/devtest/tico19/en-ta/test.en
-bash translate.sh ../experiments/devtest/all/en-ta/test.ta ../experiments/all-v1_WAT/results/all/en-ta "ta" "en" ../experiments/all-v1_WAT ../experiments/devtest/all/en-ta/test.en
-bash translate.sh ../experiments/devtest/all/en-ta/test.ta ../experiments/ccaligned_v1_WAT/results/all/en-ta "ta" "en" ../experiments/ccaligned_v1_WAT ../experiments/devtest/all/en-ta/test.en
