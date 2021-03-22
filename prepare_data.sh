@@ -1,9 +1,10 @@
 exp_dir=$1
 src_lang=$2
 tgt_lang=$3
+train_data_dir=${4:-"$exp_dir/raw_data/train/$src_lang-$tgt_lang"}
+devtest_data_dir=${5:-"$exp_dir/raw_data/devtest/$src_lang-$tgt_lang"}
 
-train_data_dir=$exp_dir/raw_data/train/$src_lang-$tgt_lang
-devtest_data_dir=$exp_dir/raw_data/devtest/$src_lang-$tgt_lang
+echo "Running experiment ${exp_dir} on ${src_lang} to ${tgt_lang}"
 
 train_processed_dir=$exp_dir/data
 devtest_processed_dir=$exp_dir/data
@@ -21,7 +22,7 @@ train_outfname_src=$train_processed_dir/train.SRC
 train_outfname_tgt=$train_processed_dir/train.TGT
 echo "Applying normalization and script conversion for train"
 input_size=`python preprocess_translate.py $train_infname_src $train_outfname_src $src_lang`
-input_size=`python preprocess_translate.py $train_outfname_src $train_outfname_tgt $tgt_lang`
+input_size=`python preprocess_translate.py $train_infname_tgt $train_outfname_tgt $tgt_lang`
 echo "Number of sentences in train: $input_size"
 
 # dev preprocessing
@@ -31,7 +32,7 @@ dev_outfname_src=$devtest_processed_dir/dev.SRC
 dev_outfname_tgt=$devtest_processed_dir/dev.TGT
 echo "Applying normalization and script conversion for dev"
 input_size=`python preprocess_translate.py $dev_infname_src $dev_outfname_src $src_lang`
-input_size=`python preprocess_translate.py $dev_outfname_src $dev_outfname_tgt $tgt_lang`
+input_size=`python preprocess_translate.py $dev_infname_tgt $dev_outfname_tgt $tgt_lang`
 echo "Number of sentences in dev: $input_size"
 
 # test preprocessing
@@ -41,10 +42,10 @@ test_outfname_src=$devtest_processed_dir/test.SRC
 test_outfname_tgt=$devtest_processed_dir/test.TGT
 echo "Applying normalization and script conversion for test"
 input_size=`python preprocess_translate.py $test_infname_src $test_outfname_src $src_lang`
-input_size=`python preprocess_translate.py $test_outfname_src $test_outfname_tgt $tgt_lang`
+input_size=`python preprocess_translate.py $test_infname_tgt $test_outfname_tgt $tgt_lang`
 echo "Number of sentences in test: $input_size"
 
-echo "Learning bpe. This will take a very long time"
+echo "Learning bpe. This will take a very long time depending on the size of the dataset"
 # learn bpe for preprocessed_train files
 bash learn_bpe.sh $exp_dir
 

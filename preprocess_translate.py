@@ -50,7 +50,7 @@ def preprocess_line(line, normalizer, lang, transliterate=False):
         )
 
 
-def preprocess(infname, outfname, lang):
+def preprocess(infname, outfname, lang, transliterate=False):
     """
     Normalize, tokenize and script convert(for Indic)
     return number of sentences input file
@@ -82,7 +82,7 @@ def preprocess(infname, outfname, lang):
         ) as outfile:
 
             out_lines = Parallel(n_jobs=-1, backend="multiprocessing")(
-                delayed(preprocess_line)(line, normalizer, lang)
+                delayed(preprocess_line)(line, normalizer, lang, transliterate)
                 for line in tqdm(infile, total=num_lines)
             )
 
@@ -158,4 +158,15 @@ if __name__ == "__main__":
     outfname = sys.argv[2]
     lang = sys.argv[3]
 
-    print(preprocess(infname, outfname, lang))
+    if len(sys.argv) == 4:
+        transliterate = False
+    elif len(sys.argv) == 5:
+        transliterate = sys.argv[4]
+        if transliterate.lower() == "true":
+            transliterate = True
+        else:
+            transliterate = False
+    else:
+        print(f"Invalid arguments: {sys.argv}")
+        exit()
+    print(preprocess(infname, outfname, lang, transliterate))
