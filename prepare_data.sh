@@ -46,10 +46,10 @@ input_size=`python preprocess_translate.py $test_infname_tgt $test_outfname_tgt 
 echo "Number of sentences in test: $input_size"
 
 echo "Learning bpe. This will take a very long time depending on the size of the dataset"
-echo date
+echo `date`
 # learn bpe for preprocessed_train files
 bash learn_bpe.sh $exp_dir
-echo date
+echo `date`
 
 echo "Applying bpe"
 bash apply_bpe_traindevtest_notag.sh $exp_dir
