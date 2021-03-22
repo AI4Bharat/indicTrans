@@ -1,8 +1,8 @@
 exp_dir=$1
 src_lang=$2
 tgt_lang=$3
-train_data_dir=${4:-"$exp_dir/raw_data/train/$src_lang-$tgt_lang"}
-devtest_data_dir=${5:-"$exp_dir/raw_data/devtest/$src_lang-$tgt_lang"}
+train_data_dir=${4:-"$exp_dir/$src_lang-$tgt_lang"}
+devtest_data_dir=${5:-"$exp_dir/devtest/all/$src_lang-$tgt_lang"}
 
 echo "Running experiment ${exp_dir} on ${src_lang} to ${tgt_lang}"
 
@@ -46,8 +46,10 @@ input_size=`python preprocess_translate.py $test_infname_tgt $test_outfname_tgt 
 echo "Number of sentences in test: $input_size"
 
 echo "Learning bpe. This will take a very long time depending on the size of the dataset"
+echo date
 # learn bpe for preprocessed_train files
 bash learn_bpe.sh $exp_dir
+echo date
 
 echo "Applying bpe"
 bash apply_bpe_traindevtest_notag.sh $exp_dir
