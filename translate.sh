@@ -34,8 +34,7 @@ python $SUBWORD_NMT_DIR/subword_nmt/apply_bpe.py \
     --vocabulary $exp_dir/vocab/vocab.$SRC_PREFIX \
     --vocabulary-threshold 5 \
     < $outfname.norm \
-    # > $outfname._bpe
-    > $outfname._bpe
+    > $outfname.bpe
 
 # not needed for joint training
 # echo "Adding language tags"
