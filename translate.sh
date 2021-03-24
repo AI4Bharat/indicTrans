@@ -7,7 +7,7 @@ tgt_lang=$4
 exp_dir=$5
 ref_fname=$6
 
-if [ $src_lang == 'en' ] then
+if [ $src_lang == 'en' ]; then
 	SRC_PREFIX='TGT'
 	TGT_PREFIX='SRC'
 else
