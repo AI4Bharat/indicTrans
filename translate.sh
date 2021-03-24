@@ -58,7 +58,10 @@ fairseq-interactive  $data_bin_dir \
 echo "Extracting translations, script conversion and detokenization"
 python postprocess_translate.py $tgt_output_fname.log $tgt_output_fname $input_size $tgt_lang
 if [ $src_lang == 'en' ]; then
-    sacrebleu --tokenize none $ref_fname < $tgt_output_fname
+    # indicnlp tokenize the output files before evaluation
+    input_size=`python preprocess_translate.py $ref_fname $ref_fname.tok $tgt_lang`
+    input_size=`python preprocess_translate.py $tgt_output_fname $tgt_output_fname.tok $tgt_lang`
+    sacrebleu --tokenize none $ref_fname.tok < $tgt_output_fname.tok
 else
     # indic to en models
     sacrebleu $ref_fname < $tgt_output_fname
