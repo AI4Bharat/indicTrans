@@ -1,14 +1,16 @@
 src_lang=${1:-hi}
 tgt_lang=${2:-en}
-expdir=../baselines-${src_lang}-${tgt_lang}
+
+mkdir -p ../baselines
+expdir=../baselines/baselines-${src_lang}-${tgt_lang}
 
 if [[ -d $expdir ]]
 then
     echo "$expdir exists on your filesystem."
 else
-    cd ..
+    cd ../baselines
 	gsutil -m cp -r gs://mt-datasets/baseline_experiments/baselines-${src_lang}-${tgt_lang} .
-	cd indicTrans
+	cd ../indicTrans
 fi
 
 
@@ -60,4 +62,6 @@ for tset in ${TEST_SETS[@]};do
 	mkdir -p $RESULTS_DIR
 
 	bash translate.sh $SRC_FILE $RESULTS_DIR/${src_lang}-${tgt_lang} $src_lang $tgt_lang $expdir $REF_FILE
+	# for newline between different outputs
+	echo
 done

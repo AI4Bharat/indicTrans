@@ -34,6 +34,7 @@ python $SUBWORD_NMT_DIR/subword_nmt/apply_bpe.py \
     --vocabulary $exp_dir/vocab/vocab.$SRC_PREFIX \
     --vocabulary-threshold 5 \
     < $outfname.norm \
+    # > $outfname._bpe
     > $outfname._bpe
 
 # not needed for joint training
@@ -57,7 +58,11 @@ fairseq-interactive  $data_bin_dir \
 
 echo "Extracting translations, script conversion and detokenization"
 python postprocess_translate.py $tgt_output_fname.log $tgt_output_fname $input_size $tgt_lang
-# indic to en models
-sacrebleu $ref_fname < $tgt_output_fname
+if [ $src_lang == 'en' ]; then
+    sacrebleu --tokenize none $ref_fname < $tgt_output_fname
+else
+    # indic to en models
+    sacrebleu $ref_fname < $tgt_output_fname
+fi
 echo `date`
 echo "Translation completed"
