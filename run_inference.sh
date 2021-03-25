@@ -38,7 +38,7 @@ elif [ $src_lang == 'or' ] || [ $tgt_lang == 'or' ]; then
 elif [ $src_lang == 'pa' ] || [ $tgt_lang == 'pa' ]; then
 	TEST_SETS=( all )
 elif [ $src_lang == 'te' ] || [ $tgt_lang == 'te' ]; then
-	TEST_SETS=( anuvaad-legal wat2020-devtest wat2021-devtest all )
+	TEST_SETS=( wat2021-devtest wat2020-devtest  anuvaad-legal all )
 fi
 
 if [ $src_lang == 'en' ]; then
