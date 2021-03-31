@@ -2,6 +2,8 @@ INDIC_NLP_LIB_HOME = "indic_nlp_library"
 INDIC_NLP_RESOURCES = "indic_nlp_resources"
 import sys
 
+from indicnlp import transliterate
+
 sys.path.append(r"{}".format(INDIC_NLP_LIB_HOME))
 from indicnlp import common
 
@@ -91,5 +93,17 @@ if __name__ == "__main__":
     outfname = sys.argv[2]
     input_size = int(sys.argv[3])
     lang = sys.argv[4]
+    transliterate = sys.argv[5]
+    if len(sys.argv) == 5:
+        transliterate = False
+    elif len(sys.argv) == 6:
+        transliterate = sys.argv[5]
+        if transliterate.lower() == "true":
+            transliterate = True
+        else:
+            transliterate = False
+    else:
+        print(f"Invalid arguments: {sys.argv}")
+        exit()
 
-    postprocess(infname, outfname, input_size, lang)
+    postprocess(infname, outfname, input_size, lang, transliterate)
