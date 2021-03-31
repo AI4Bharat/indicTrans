@@ -5,6 +5,7 @@ src_lang=$2
 tgt_lang=$3
 
 #`dirname $0`/env.sh
+num_workers=`python -c "import multiprocessing; print(multiprocessing.cpu_count())"`
 
 data_dir=$exp_dir/final
 out_data_dir=$exp_dir/final_bin
@@ -17,4 +18,4 @@ fairseq-preprocess \
     --validpref $data_dir/dev \
     --testpref $data_dir/test \
     --destdir $out_data_dir \
-    --workers 64
+    --workers $num_workers

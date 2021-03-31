@@ -34,9 +34,9 @@ if __name__ == '__main__':
     expdir = sys.argv[1]
     dset = sys.argv[2]
 
-    src_fname = '{expdir}/bpe/train/{dset}.SRC'.format(
+    src_fname = '{expdir}/bpe/{dset}.SRC'.format(
         expdir=expdir, dset=dset)
-    tgt_fname = '{expdir}/bpe/train/{dset}.TGT'.format(
+    tgt_fname = '{expdir}/bpe/{dset}.TGT'.format(
         expdir=expdir, dset=dset)
     meta_fname = '{expdir}/data/{dset}_lang_pairs.txt'.format(
         expdir=expdir, dset=dset)
