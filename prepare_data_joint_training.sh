@@ -1,8 +1,8 @@
 exp_dir=$1
 src_lang=$2
 tgt_lang=$3
-train_data_dir=${4:-"$exp_dir/$src_lang-$tgt_lang"}
-devtest_data_dir=${5:-"$exp_dir/devtest/all/$src_lang-$tgt_lang"}
+train_data_dir=${4:-"$exp_dir"}
+devtest_data_dir=${5:-"$exp_dir/devtest/all"}
 
 echo "Running experiment ${exp_dir} on ${src_lang} to ${tgt_lang}"
 
@@ -15,9 +15,9 @@ out_data_dir=$exp_dir/final_bin
 mkdir -p $train_processed_dir
 mkdir -p $devtest_processed_dir
 mkdir -p $out_data_dir
-langs=( as bn hi gu kn ml mr or pa ta te )
+langs=(as apply_bpe_traindevtest_notag hi gu kn ml mr or pa ta te)
 
-for lang in ${lang[@]};do
+for lang in ${langs[@]};do
 	if [ $src_lang == 'en' ]; then
 		tgt_lang=$lang
 	else
@@ -30,8 +30,8 @@ for lang in ${lang[@]};do
 	mkdir -p $devtest_norm_dir
 
 	# train preprocessing
-	train_infname_src=$train_data_dir/train.$src_lang
-	train_infname_tgt=$train_data_dir/train.$tgt_lang
+	train_infname_src=$train_data_dir/en-${lang}/train.$src_lang
+	train_infname_tgt=$train_data_dir/en-${lang}/train.$tgt_lang
 	train_outfname_src=$train_norm_dir/train.$src_lang
 	train_outfname_tgt=$train_norm_dir/train.$tgt_lang
 	echo "Applying normalization and script conversion for train"
@@ -40,8 +40,8 @@ for lang in ${lang[@]};do
 	echo "Number of sentences in train: $input_size"
 
 	# dev preprocessing
-	dev_infname_src=$devtest_data_dir/dev.$src_lang
-	dev_infname_tgt=$devtest_data_dir/dev.$tgt_lang
+	dev_infname_src=$devtest_data_dir/en-${lang}/dev.$src_lang
+	dev_infname_tgt=$devtest_data_dir/en-${lang}/dev.$tgt_lang
 	dev_outfname_src=$devtest_norm_dir/dev.$src_lang
 	dev_outfname_tgt=$devtest_norm_dir/dev.$tgt_lang
 	echo "Applying normalization and script conversion for dev"
@@ -50,8 +50,8 @@ for lang in ${lang[@]};do
 	echo "Number of sentences in dev: $input_size"
 
 	# test preprocessing
-	test_infname_src=$devtest_data_dir/test.$src_lang
-	test_infname_tgt=$devtest_data_dir/test.$tgt_lang
+	test_infname_src=$devtest_data_dir/en-${lang}/test.$src_lang
+	test_infname_tgt=$devtest_data_dir/en-${lang}/test.$tgt_lang
 	test_outfname_src=$devtest_norm_dir/test.$src_lang
 	test_outfname_tgt=$devtest_norm_dir/test.$tgt_lang
 	echo "Applying normalization and script conversion for test"

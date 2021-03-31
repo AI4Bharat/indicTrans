@@ -3,7 +3,7 @@ from tqdm import tqdm
 import sys
 
 LANGS = [
-    "as"
+    "as",
     "bn",
     "gu",
     "hi",
