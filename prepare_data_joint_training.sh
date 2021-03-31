@@ -15,10 +15,10 @@ out_data_dir=$exp_dir/final_bin
 mkdir -p $train_processed_dir
 mkdir -p $devtest_processed_dir
 mkdir -p $out_data_dir
-langs=(as apply_bpe_traindevtest_notag hi gu kn ml mr or pa ta te)
+langs=(as bn hi gu kn ml mr or pa ta te)
 
 for lang in ${langs[@]};do
-	if [ $src_lang == 'en' ]; then
+	if [ $src_lang == en ]; then
 		tgt_lang=$lang
 	else
 		src_lang=$lang

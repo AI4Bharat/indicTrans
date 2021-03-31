@@ -119,4 +119,4 @@ if __name__ == '__main__':
         for lang in LANGS:
             lang_pair_list.append([lang, 'en'])
 
-    concat_data(in_dir, out_dir, lang_pair_list, split)
+    concat_data(in_dir, out_dir, lang_pair_list, split=split)
