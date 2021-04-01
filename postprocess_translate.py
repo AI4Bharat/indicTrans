@@ -93,7 +93,6 @@ if __name__ == "__main__":
     outfname = sys.argv[2]
     input_size = int(sys.argv[3])
     lang = sys.argv[4]
-    transliterate = sys.argv[5]
     if len(sys.argv) == 5:
         transliterate = False
     elif len(sys.argv) == 6:
