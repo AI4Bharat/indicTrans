@@ -1,6 +1,11 @@
 from tqdm import tqdm
 from collections import defaultdict
 
+def read_file(fname):
+    with open(fname,'r',encoding='utf-8') as infile:
+        for line in infile:
+            yield line.strip()
+
 def extract_non_english_pairs(indir,outdir,LANGS):
     """
         Extracts non-english pair parallel corpora
