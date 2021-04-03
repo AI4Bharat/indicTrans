@@ -105,4 +105,6 @@ if __name__ == "__main__":
         print(f"Invalid arguments: {sys.argv}")
         exit()
 
-    postprocess(infname, outfname, input_size, lang, transliterate)
+    postprocess(
+        infname, outfname, input_size, lang, common_lang="hi", transliterate=False
+    )
