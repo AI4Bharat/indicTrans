@@ -67,7 +67,7 @@ python concat_joint_data.py $exp_dir/norm $exp_dir/data $src_lang $tgt_lang 'tes
 # echo "Learning bpe. This will take a very long time depending on the size of the dataset"
 echo `date`
 # # learn bpe for preprocessed_train files
-bash learn_bpe.sh $exp_dir
+# bash learn_bpe.sh $exp_dir
 echo `date`
 
 # echo "Applying bpe"
