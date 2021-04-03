@@ -10,7 +10,7 @@ def extract_non_english_pairs(indir,outdir,LANGS):
                 - each directory contains a train.en and train.xx
         outdir: output directory to store mined data for each pair. 
                 One directory is created for each pair.
-        LANGS: list of languages in the corpus (other than languages). 
+        LANGS: list of languages in the corpus (other than English). 
                 The language codes must correspond to the ones used in the 
                 files and directories in indir. Prefarably, sort the languages
                 in this list in alphabetic order. outdir will contain data for xx-yy, 
