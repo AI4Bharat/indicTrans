@@ -106,5 +106,5 @@ if __name__ == "__main__":
         exit()
 
     postprocess(
-        infname, outfname, input_size, lang, common_lang="hi", transliterate=False
+        infname, outfname, input_size, lang, common_lang="hi", transliterate=transliterate
     )
