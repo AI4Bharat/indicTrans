@@ -2,7 +2,7 @@
 export SRC=''
 
 ## Python env directory where fairseq is installed 
-export PYTHON_ENV=/data/t-ankunc/envs/pytorch1.2
+export PYTHON_ENV=''
 
 export SUBWORD_NMT_DIR=''
 export INDIC_RESOURCES_PATH=''
