@@ -121,3 +121,17 @@ fairseq-train   {expdir}/exp2_m2o_baseline/final_bin \
 **Note** While training, we noticed that the training was slower on tpus, compared to using multiple GPUs, we have documented some issues and [filed an issue](https://github.com/pytorch/fairseq/issues/3317) at fairseq repo for advice. We'll update this section as we learn more about efficient training on TPUs. Also feel free to open an issue/pull request if you find a bug or know an efficient method to make code train faster on tpus.
 
 </details>
+
+## Citing
+
+If you are using any of the resources, please cite the following article:
+```
+@misc{ramesh2021samanantar,
+      title={Samanantar: The Largest Publicly Available Parallel Corpora Collection for 11 Indic Languages}, 
+      author={Gowtham Ramesh and Sumanth Doddapaneni and Aravinth Bheemaraj and Mayank Jobanputra and Raghavan AK and Ajitesh Sharma and Sujit Sahoo and Harshita Diddee and Mahalakshmi J and Divyanshu Kakwani and Navneet Kumar and Aswin Pradeep and Kumar Deepak and Vivek Raghavan and Anoop Kunchukuttan and Pratyush Kumar and Mitesh Shantadevi Khapra},
+      year={2021},
+      eprint={2104.05596},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+```
