@@ -3,9 +3,21 @@
 
 ## Needed
 
-- IndicNLP Library
-- IndicNLP Resources
+ Clone these repositories and keep them under the mentioned folder_names:
 
+indic_nlp_library    - clone this [repo](https://github.com/anoopkunchukuttan/indic_nlp_library)
+
+indic_nlp_resources  - clone this [repo](https://github.com/anoopkunchukuttan/indic_nlp_resources)
+
+subword-nmt          - clone this [repo](https://github.com/rsennrich/subword-nmt.git)
+
+(or)
+
+```bash
+git clone https://github.com/anoopkunchukuttan/indic_nlp_library.git
+git clone https://github.com/anoopkunchukuttan/indic_nlp_resources.git
+git clone https://github.com/rsennrich/subword-nmt.git
+```
 
 
 ## Model 
@@ -22,7 +34,7 @@ Before starting these steps, make sure to prepare the dataset (normalization -> 
 ### Creating TPU instance
 
 - Create a cpu instance on gcp with `torch-xla` image like:
-```
+```bash
 gcloud compute --project=${PROJECT_ID} instances create <name for your instance> \
   --zone=<zone>  \
   --machine-type=n1-standard-16  \
@@ -32,7 +44,7 @@ gcloud compute --project=${PROJECT_ID} instances create <name for your instance>
   --scopes=https://www.googleapis.com/auth/cloud-platform
 ```
 - Once the instance is created, Launch a Cloud TPU (from your cpu vm instance) using the following command (you can change the `accelerator_type` according to your needs):
-```
+```bash
 gcloud compute tpus create <name for your TPU> \
 --zone=<zone> \
 --network=default \
@@ -43,7 +55,7 @@ gcloud compute tpus create <name for your TPU> \
 Create a new tpu using the GUI in https://console.cloud.google.com/compute/tpus and make sure to select `version` as  `pytorch 1.7`. 
 
 - Once the tpu is launched, identify its ip address:
-```
+```bash
 # you can run this inside cpu instance and note down the IP address which is located under the NETWORK_ENDPOINTS column
 gcloud compute tpus list --zone=us-central1-a
 ```
@@ -53,12 +65,12 @@ Go to https://console.cloud.google.com/compute/tpus and note down ip address for
 ### Installing Fairseq, getting data on the cpu instance
 
 - Activate the `torch xla 1.7` conda environment and install necessary libs for IndicTrans (**Excluding FairSeq**):
-```
+```bash
 conda activate torch-xla-1.7
 pip install sacremoses pandas mock sacrebleu tensorboardX pyarrow
 ```
 - Configure environment variables for TPU:
-```
+```bash
 export TPU_IP_ADDRESS=ip-address; \
 export XRT_TPU_CONFIG="tpu_worker;0;$TPU_IP_ADDRESS:8470"
 ```

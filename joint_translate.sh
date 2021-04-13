@@ -7,13 +7,15 @@ tgt_lang=$4
 exp_dir=$5
 ref_fname=$6
 
-if [ $src_lang == 'en' ]; then
-	SRC_PREFIX='TGT'
-	TGT_PREFIX='SRC'
-else
-    SRC_PREFIX='SRC'
-	TGT_PREFIX='TGT'
-fi
+# if [ $src_lang == 'en' ]; then
+# 	SRC_PREFIX='TGT'
+# 	TGT_PREFIX='SRC'
+# else
+#     SRC_PREFIX='SRC'
+# 	TGT_PREFIX='TGT'
+# fi
+SRC_PREFIX='SRC'
+TGT_PREFIX='TGT'
 
 #`dirname $0`/env.sh
 SUBWORD_NMT_DIR='subword-nmt'
@@ -23,7 +25,7 @@ data_bin_dir=$exp_dir/final_bin
 ### normalization and script conversion
 
 echo "Applying normalization and script conversion"
-input_size=`python preprocess_translate.py $infname $outfname.norm $src_lang`
+input_size=`python preprocess_translate.py $infname $outfname.norm $src_lang true`
 echo "Number of sentences in input: $input_size"
 
 ### apply BPE to input file
@@ -34,11 +36,11 @@ python $SUBWORD_NMT_DIR/subword_nmt/apply_bpe.py \
     --vocabulary $exp_dir/vocab/vocab.$SRC_PREFIX \
     --vocabulary-threshold 5 \
     < $outfname.norm \
-    > $outfname.bpe
+    > $outfname._bpe
 
 # not needed for joint training
 # echo "Adding language tags"
-# python add_tags_translate.py $outfname._bpe $outfname.bpe $src_lang $tgt_lang
+python add_tags_translate.py $outfname._bpe $outfname.bpe $src_lang $tgt_lang
 
 ### run decoder
 
@@ -56,7 +58,7 @@ fairseq-interactive  $data_bin_dir \
 
 
 echo "Extracting translations, script conversion and detokenization"
-python postprocess_translate.py $tgt_output_fname.log $tgt_output_fname $input_size $tgt_lang
+python postprocess_translate.py $tgt_output_fname.log $tgt_output_fname $input_size $tgt_lang true
 if [ $src_lang == 'en' ]; then
     # indicnlp tokenize the output files before evaluation
     input_size=`python preprocess_translate.py $ref_fname $ref_fname.tok $tgt_lang`
