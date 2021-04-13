@@ -1,6 +1,6 @@
 <div align="center">
 	<h1><b><i>IndicTrans</i></b></h1>
-	<a href="http://indicnlp.ai4bharat.org">Website</a> |
+	<a href="http://indicnlp.ai4bharat.org">Website</a> | 
 	<a href="https://arxiv.org/abs/2104.05596">Paper</a><br><br>
 </div>
 
@@ -8,18 +8,11 @@
 
 It is a single script model i.e we convert all the Indic data to the Devanagari script which allows for ***better lexical sharing between languages for transfer learning, prevents fragmentation of the subword vocabulary between Indic languages and allows using a smaller subword vocabulary***. We currently release two models - Indic to English and English to Indic and support these 11 indic languages: 
 
-- Assamese
-- Bengali
-- Gujarati
-- Hindi
-- Kannada
-- Malayalam
-- Marathi
-- Oriya
-- Punjabi
-- Tamil
-- Telugu
-
+| <!-- -->  | <!-- --> | <!-- --> | <!-- --> |
+| ------------- | ------------- | ------------- | ------------- |
+| Assamese (as)  | Hindi (hi) | Marathi (mr) | Tamil (ta)|
+| Bengali (bn) | Kannada (kn)| Oriya (or) | Telugu (te)|
+| Gujarati (gu) | Malayalam (ml) | Punjabi (pa) |
 
 ## Needed
 
