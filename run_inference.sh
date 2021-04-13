@@ -1,17 +1,19 @@
 src_lang=${1:-hi}
 tgt_lang=${2:-en}
+bucket_path=${3:-gs://ai4b-anuvaad-nmt/baselines/transformer-base/baselines-${src_lang}-${tgt_lang}}
 
 expdir=../baselines/baselines-${src_lang}-${tgt_lang}
-mkdir -p $expdir
 
 if [[ -d $expdir ]]
 then
-    echo "$expdir exists on your filesystem."
+    echo "$expdir exists on your filesystem. Please delete this if you have made some changes to the bucket files and trying to redownload"
 else
+	mkdir -p $expdir
+	mkdir -p $expdir/model
     cd ../baselines
-	gsutil -m cp -r gs://ai4b-anuvaad-nmt/baselines/transformer-base/baselines-${src_lang}-${tgt_lang}/vocab $expdir
-	gsutil -m cp -r gs://ai4b-anuvaad-nmt/baselines/transformer-base/baselines-${src_lang}-${tgt_lang}/final_bin $expdir
-	gsutil -m cp gs://ai4b-anuvaad-nmt/baselines/transformer-base/baselines-${src_lang}-${tgt_lang}/model/checkpoint_best.pt $expdir/model
+	gsutil -m cp -r $bucket_path/vocab $expdir
+	gsutil -m cp -r $bucket_path/final_bin $expdir
+	gsutil -m cp $bucket_path/model/checkpoint_best.pt $expdir/model
 	cd ../indicTrans
 fi
 
@@ -72,6 +74,7 @@ for tset in ${TEST_SETS[@]};do
 	# for newline between different outputs
 	echo
 done
-
-gsutil -m cp -r $expdir/results gs://ai4b-anuvaad-nmt/baselines/transformer-base/baselines-${src_lang}-${tgt_lang}
-rm -r $expdir
+# send the results to the bucket
+gsutil -m cp -r $expdir/results $bucket_path
+# clear up the space in the instance
+# rm -r $expdir

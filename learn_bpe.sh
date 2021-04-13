@@ -28,7 +28,7 @@ python $SUBWORD_NMT_DIR/subword_nmt/apply_bpe.py \
     -i $train_file.SRC  | \
 python $SUBWORD_NMT_DIR/subword_nmt/get_vocab.py \
     > $expdir/vocab/vocab.tmp.SRC
-python clean_vocab.py $expdir/vocab/vocab.tmp.SRC $expdir/vocab/vocab.SRC
+python scripts/clean_vocab.py $expdir/vocab/vocab.tmp.SRC $expdir/vocab/vocab.SRC
 #rm $expdir/vocab/vocab.tmp.SRC
 
 echo "computing TGT vocab"
@@ -38,7 +38,7 @@ python $SUBWORD_NMT_DIR/subword_nmt/apply_bpe.py \
     -i $train_file.TGT  | \
 python $SUBWORD_NMT_DIR/subword_nmt/get_vocab.py \
     > $expdir/vocab/vocab.tmp.TGT
-python clean_vocab.py $expdir/vocab/vocab.tmp.TGT $expdir/vocab/vocab.TGT
+python scripts/clean_vocab.py $expdir/vocab/vocab.tmp.TGT $expdir/vocab/vocab.TGT
 #rm $expdir/vocab/vocab.tmp.TGT
 
 rm $train_file.ALL

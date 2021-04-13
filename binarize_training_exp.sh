@@ -4,7 +4,8 @@ exp_dir=$1
 src_lang=$2
 tgt_lang=$3
 
-#`dirname $0`/env.sh
+# use cpu_count to get num_workers instead of setting it manually when running in different
+# instances
 num_workers=`python -c "import multiprocessing; print(multiprocessing.cpu_count())"`
 
 data_dir=$exp_dir/final

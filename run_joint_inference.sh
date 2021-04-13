@@ -1,5 +1,6 @@
 src_lang=${1:-en}
 tgt_lang=${2:-indic}
+bucket_path=${3:-gs://ai4b-anuvaad-nmt/models/transformer-4x/indictrans-${src_lang}-${tgt_lang}}
 
 mkdir -p ../baselines
 expdir=../baselines/baselines-${src_lang}-${tgt_lang}
@@ -12,10 +13,10 @@ else
     mkdir -p baselines-${src_lang}-${tgt_lang}/model
     mkdir -p baselines-${src_lang}-${tgt_lang}/final_bin
     cd baselines-${src_lang}-${tgt_lang}/model
-	gsutil -m cp gs://mt-datasets/baselines-${src_lang}-${tgt_lang}-4x/model/checkpoint_best.pt .
+	gsutil -m cp $bucket_path/model/checkpoint_best.pt .
     cd ..
-    gsutil -m cp gs://mt-datasets/baselines-${src_lang}-${tgt_lang}-4x/vocab .
-    gsutil -m cp gs://mt-datasets/baselines-${src_lang}-${tgt_lang}-4x/final_bin/dict.* final_bin
+    gsutil -m cp $bucket_path/vocab .
+    gsutil -m cp $bucket_path/final_bin/dict.* final_bin
 	cd ../indicTrans
 fi
 
