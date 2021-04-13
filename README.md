@@ -20,15 +20,13 @@ git clone https://github.com/rsennrich/subword-nmt.git
 ```
 
 
-## Model 
+## Model
 
-- transformer base 
+- transformer base
 - 32k vocab (src as well as target)
 - BPE (subword-nmt)
 - 95m params
-
-## Instructions to run on Google cloud TPUs:
-
+<details><summary>## Instructions to run on Google cloud TPUs(click to expand): </summary>
 Before starting these steps, make sure to prepare the dataset (normalization -> bpe -> .. -> binarization) following the steps in indicTrans workflow or do these steps on a cpu instance before launching the tpu instance (to save time and costs)
 
 ### Creating TPU instance
@@ -52,7 +50,7 @@ gcloud compute tpus create <name for your TPU> \
 --accelerator-type=v3-8
 ```
                                           (or)
-Create a new tpu using the GUI in https://console.cloud.google.com/compute/tpus and make sure to select `version` as  `pytorch 1.7`. 
+Create a new tpu using the GUI in https://console.cloud.google.com/compute/tpus and make sure to select `version` as  `pytorch 1.7`.
 
 - Once the tpu is launched, identify its ip address:
 ```bash
@@ -60,7 +58,7 @@ Create a new tpu using the GUI in https://console.cloud.google.com/compute/tpus 
 gcloud compute tpus list --zone=us-central1-a
 ```
                                           (or)
-Go to https://console.cloud.google.com/compute/tpus and note down ip address for the created TPU from the `interal ip` column 
+Go to https://console.cloud.google.com/compute/tpus and note down ip address for the created TPU from the `interal ip` column
 
 ### Installing Fairseq, getting data on the cpu instance
 
@@ -76,7 +74,7 @@ export XRT_TPU_CONFIG="tpu_worker;0;$TPU_IP_ADDRESS:8470"
 ```
 - Download the prepared binarized data for FairSeq
 
-- Clone the latest version of Fairseq (this supports tpu) and install from source. There is an [issue](https://github.com/pytorch/fairseq/issues/3259) with the latest commit and hence we use a different commit to install from source
+- Clone the latest version of Fairseq (this supports tpu) and install from source. There is an [issue](https://github.com/pytorch/fairseq/issues/3259) with the latest commit and hence we use a different commit to install from source (This may have been fixed in the latest master but we have not tested it.)
 ```bash
 git clone https://github.com/pytorch/fairseq.git
 git checkout da9eaba12d82b9bfc1442f0e2c6fc1b895f4d35d
@@ -118,3 +116,7 @@ fairseq-train   {expdir}/exp2_m2o_baseline/final_bin \
 --keep-last-epochs 5 \
 --patience 5
 ```
+
+**Note** While training, we noticed that the training was slower on tpus, compared to using multiple GPUs, we have documented some issues and [filed an issue](https://github.com/pytorch/fairseq/issues/3317) at fairseq repo for advice. We'll update this section as we learn more about efficient training on TPUs. Also feel free to open an issue/pull request if you find a bug or know an efficient method to make code train faster on tpus.
+
+</details>
