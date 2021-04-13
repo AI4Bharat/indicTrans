@@ -1,4 +1,23 @@
-# indicTrans
+<div align="center">
+	<h1><b><i>IndicTrans</i></b></h1>
+	<a href="http://indicnlp.ai4bharat.org">Website</a> |
+	<a href="#downloads">Downloads</a> |
+	<a href="https://arxiv.org/abs/2104.05596">Paper</a><br><br>
+</div>
+
+**IndicTrans** is a Transformer-4x ( 4 times the parameter size of transformer base ) model trained on [Samanantar](https://indicnlp.ai4bharat.org/samanantar) dataset which is the largest publicly available parallel corpora collection for Indic languages at the time of writing ( 14 April 2021 ). We currently release two models - Indic to English and English to Indic. We currently support these 11 indic languages: 
+
+- Assamese
+- Bengali
+- Gujarati
+- Hindi
+- Kannada
+- Malayalam
+- Marathi
+- Oriya
+- Punjabi
+- Tamil
+- Telugu
 
 
 ## Needed
