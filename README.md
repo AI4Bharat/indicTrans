@@ -148,3 +148,27 @@ If you are using any of the resources, please cite the following article:
       primaryClass={cs.CL}
 }
 ```
+
+We would like to hear from you if:
+
+- You are using our resources. Please let us know how you are putting these resources to use.
+- You have any feedback on these resources.
+
+
+
+### License
+
+The IndicBERT code (and models) are released under the MIT License.
+
+### Contributors
+
+<update this>
+
+
+
+
+### Contact
+
+- Anoop Kunchukuttan ([anoop.kunchukuttan@gmail.com](mailto:anoop.kunchukuttan@gmail.com))
+- Mitesh Khapra ([miteshk@cse.iitm.ac.in](mailto:miteshk@cse.iitm.ac.in))
+- Pratyush Kumar ([pratyush@cse.iitm.ac.in](mailto:pratyush@cse.iitm.ac.in))
