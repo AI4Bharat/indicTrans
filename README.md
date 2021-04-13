@@ -158,7 +158,7 @@ We would like to hear from you if:
 
 ### License
 
-The IndicBERT code (and models) are released under the MIT License.
+The IndicTrans code (and models) are released under the MIT License.
 
 ### Contributors
 
