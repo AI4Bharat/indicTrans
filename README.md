@@ -26,7 +26,8 @@ git clone https://github.com/rsennrich/subword-nmt.git
 - 32k vocab (src as well as target)
 - BPE (subword-nmt)
 - 95m params
-<details><summary>## Instructions to run on Google cloud TPUs(click to expand): </summary>
+## Instructions to run on Google cloud TPUs
+<details><summary>Click to expand </summary>
 Before starting these steps, make sure to prepare the dataset (normalization -> bpe -> .. -> binarization) following the steps in indicTrans workflow or do these steps on a cpu instance before launching the tpu instance (to save time and costs)
 
 ### Creating TPU instance
