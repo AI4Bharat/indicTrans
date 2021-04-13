@@ -1,8 +1,7 @@
 <div align="center">
 	<h1><b><i>IndicTrans</i></b></h1>
 	<a href="http://indicnlp.ai4bharat.org">Website</a> |
-	<a href="https://arxiv.org/abs/2104.05596">Paper</a><br><br> |
-	<a href="#downloads">Downloads</a>
+	<a href="https://arxiv.org/abs/2104.05596">Paper</a><br><br>
 </div>
 
 **IndicTrans** is a Transformer-4x ( 4 times the parameter size of transformer base ) multilingual NMT model trained on [Samanantar](https://indicnlp.ai4bharat.org/samanantar) dataset which is the largest publicly available parallel corpora collection for Indic languages at the time of writing ( 14 April 2021 ). It outperforms commercial translation systems and existing models on a wide variety of benchmarks (See the result section for more details)
