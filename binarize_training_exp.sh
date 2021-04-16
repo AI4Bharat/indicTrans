@@ -18,4 +18,6 @@ fairseq-preprocess \
     --validpref $data_dir/dev \
     --testpref $data_dir/test \
     --destdir $out_data_dir \
-    --workers $num_workers
+    --workers $num_workers \
+    --thresholdtgt 5 \
+    --thresholdsrc 5
