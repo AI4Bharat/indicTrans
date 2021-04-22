@@ -4,9 +4,9 @@
 	<a href="https://arxiv.org/abs/2104.05596">Paper</a><br><br>
 </div>
 
-**IndicTrans** is a Transformer-4x ( 4 times the parameter size of transformer base ) multilingual NMT model trained on [Samanantar](https://indicnlp.ai4bharat.org/samanantar) dataset which is the largest publicly available parallel corpora collection for Indic languages at the time of writing ( 14 April 2021 ). It outperforms commercial translation systems and existing models on a wide variety of benchmarks (See the result section for more details)
+**IndicTrans** is a Transformer-4x ( ~490M ) multilingual NMT model trained on [Samanantar](https://indicnlp.ai4bharat.org/samanantar) dataset which is the largest publicly available parallel corpora collection for Indic languages at the time of writing ( 14 April 2021 ). It outperforms commercial translation systems and existing open source models on a wide variety of benchmarks (See the result section for more details)
 
-It is a single script model i.e we convert all the Indic data to the Devanagari script which allows for ***better lexical sharing between languages for transfer learning, prevents fragmentation of the subword vocabulary between Indic languages and allows using a smaller subword vocabulary***. We currently release two models - Indic to English and English to Indic and support these 11 indic languages: 
+It is a single script model i.e we convert all the Indic data to the Devanagari script which allows for ***better lexical sharing between languages for transfer learning, prevents fragmentation of the subword vocabulary between Indic languages and allows using a smaller subword vocabulary***. We currently release two models - Indic to English and English to Indic and support the following 11 indic languages: 
 
 | <!-- -->  | <!-- --> | <!-- --> | <!-- --> |
 | ------------- | ------------- | ------------- | ------------- |
@@ -15,14 +15,15 @@ It is a single script model i.e we convert all the Indic data to the Devanagari 
 | Gujarati (gu) | Malayalam (ml) | Punjabi (pa) |
 
 
-## Using the model for inference
+## Using the model for Inference
+
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indictrans_fairseq_inference.ipynb)
 
-^ follow the instructions here to setup the environment with required libraries, download the pretrained models and run inference
+The colab notebook can be used to setup the environment, download the fine-tuned models and run inference.
 
 
-## Needed
-
+## Installation
+<details><summary>Click to expand </summary>
  Clone these repositories and keep them under the mentioned folder_names:
 
 indic_nlp_library    - clone this [repo](https://github.com/anoopkunchukuttan/indic_nlp_library)
@@ -38,18 +39,11 @@ git clone https://github.com/anoopkunchukuttan/indic_nlp_library.git
 git clone https://github.com/anoopkunchukuttan/indic_nlp_resources.git
 git clone https://github.com/rsennrich/subword-nmt.git
 ```
-
-
-## Model
-
-- transformer base
-- 32k vocab (src as well as target)
-- BPE (subword-nmt)
-- 95m params
+</details>
 
 ## How to train the indictrans model on custom training data?
 
-We will update this section soon.
+Will be updated soon.
 
 ## Instructions to run on Google cloud TPUs
 <details><summary>Click to expand </summary>
@@ -177,6 +171,18 @@ The IndicTrans code (and models) are released under the MIT License.
 
 - Gowtham Ramesh, <sub>([RBCDSAI](https://rbcdsai.iitm.ac.in), [IITM](https://www.iitm.ac.in))</sub>
 - Sumanth Doddapaneni, <sub>([RBCDSAI](https://rbcdsai.iitm.ac.in), [IITM](https://www.iitm.ac.in))</sub>
+- Aravinth Bheemaraj, <sub>([Tarento](https://www.linkedin.com/company/tarento-group/), [EkStep](https://ekstep.in))</sub>
+- Mayank Jobanputra, <sub>([IITM](https://www.iitm.ac.in))</sub>
+- Raghavan AK, <sub>([AI4Bharat](https://ai4bharat.org))</sub>
+- Ajitesh Sharma, <sub>([Tarento](https://www.linkedin.com/company/tarento-group/), [EkStep](https://ekstep.in))</sub>
+- Sujit Sahoo, <sub>([Tarento](https://www.linkedin.com/company/tarento-group/), [EkStep](https://ekstep.in))</sub>
+- Harshita Diddee, <sub>([AI4Bharat](https://ai4bharat.org))</sub>
+- Mahalakshmi J, <sub>([AI4Bharat](https://ai4bharat.org))</sub>
+- Divyanshu Kakwani, <sub>([IITM](https://www.iitm.ac.in), [AI4Bharat](https://ai4bharat.org))</sub>
+- Navneet Kumar, <sub>([Tarento](https://www.linkedin.com/company/tarento-group/), [EkStep](https://ekstep.in))</sub>
+- Aswin Pradeep, <sub>([Tarento](https://www.linkedin.com/company/tarento-group/), [EkStep](https://ekstep.in))</sub>
+- Kumar Deepak, <sub>([Tarento](https://www.linkedin.com/company/tarento-group/), [EkStep](https://ekstep.in))</sub>
+- Vivek Raghavan, <sub>([EkStep](https://ekstep.in))</sub>
 - Anoop Kunchukuttan, <sub>([Microsoft](https://www.microsoft.com/en-in/), [AI4Bharat](https://ai4bharat.org))</sub>
 - Pratyush Kumar, <sub>([RBCDSAI](https://rbcdsai.iitm.ac.in), [AI4Bharat](https://ai4bharat.org), [IITM](https://www.iitm.ac.in))</sub>
 - Mitesh Shantadevi Khapra, <sub>([RBCDSAI](https://rbcdsai.iitm.ac.in), [AI4Bharat](https://ai4bharat.org), [IITM](https://www.iitm.ac.in))</sub>
