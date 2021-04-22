@@ -6,7 +6,7 @@
 
 **IndicTrans** is a Transformer-4x ( ~434M ) multilingual NMT model trained on [Samanantar](https://indicnlp.ai4bharat.org/samanantar) dataset which is the largest publicly available parallel corpora collection for Indic languages at the time of writing ( 14 April 2021 ). It outperforms commercial translation systems and existing open source models on a variety of benchmarks.
 
-It is a single script model i.e we convert all the Indic data to the Devanagari script which allows for ***better lexical sharing between languages for transfer learning, prevents fragmentation of the subword vocabulary between Indic languages and allows using a smaller subword vocabulary***. We currently release two models - Indic to English and English to Indic and support the following 11 indic languages: 
+It is a single script model i.e we convert all the Indic data to the Devanagari script which allows for ***better lexical sharing between languages for transfer learning, prevents fragmentation of the subword vocabulary between Indic languages and allows using a smaller subword vocabulary***. We currently release two models - [Indic to English](https://storage.googleapis.com/samanantar-public/models/indictrans-indic-en-v0.1.zip) and [English to Indic](https://storage.googleapis.com/samanantar-public/models/indictrans-en-indic-v0.1.zip) and support the following 11 indic languages: 
 
 | <!-- -->  | <!-- --> | <!-- --> | <!-- --> |
 | ------------- | ------------- | ------------- | ------------- |
@@ -24,20 +24,21 @@ The colab notebook can be used to setup the environment, download the fine-tuned
 
 ## Installation
 <details><summary>Click to expand </summary>
- Clone these repositories and keep them under the mentioned folder_names:
-
-indic_nlp_library    - clone this [repo](https://github.com/anoopkunchukuttan/indic_nlp_library)
-
-indic_nlp_resources  - clone this [repo](https://github.com/anoopkunchukuttan/indic_nlp_resources)
-
-subword-nmt          - clone this [repo](https://github.com/rsennrich/subword-nmt.git)
-
-(or)
 
 ```bash
+cd indicTrans
 git clone https://github.com/anoopkunchukuttan/indic_nlp_library.git
 git clone https://github.com/anoopkunchukuttan/indic_nlp_resources.git
 git clone https://github.com/rsennrich/subword-nmt.git
+# install required libraries
+pip install sacremoses pandas mock sacrebleu tensorboardX pyarrow indic-nlp-library
+
+# Install fairseq from source
+!git clone https://github.com/pytorch/fairseq.git
+%cd fairseq
+# !git checkout da9eaba12d82b9bfc1442f0e2c6fc1b895f4d35d
+!pip install --editable ./
+
 ```
 </details>
 
