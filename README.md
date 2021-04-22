@@ -14,6 +14,11 @@ It is a single script model i.e we convert all the Indic data to the Devanagari 
 | Bengali (bn) | Kannada (kn)| Oriya (or) | Telugu (te)|
 | Gujarati (gu) | Malayalam (ml) | Punjabi (pa) |
 
+
+## Using the model for inference
+
+
+
 ## Needed
 
  Clone these repositories and keep them under the mentioned folder_names:
@@ -39,6 +44,15 @@ git clone https://github.com/rsennrich/subword-nmt.git
 - 32k vocab (src as well as target)
 - BPE (subword-nmt)
 - 95m params
+
+## How to train the indictrans model on custom training data?
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gowtham1997/indicTrans/blob/main/indictrans_fairseq_inference.ipynb)
+
+^ follow the instructions here to setup the environment with required libraries, download the pretrained models and run inference
+
+We will update this section soon.
+
 ## Instructions to run on Google cloud TPUs
 <details><summary>Click to expand </summary>
 Before starting these steps, make sure to prepare the dataset (normalization -> bpe -> .. -> binarization) following the steps in indicTrans workflow or do these steps on a cpu instance before launching the tpu instance (to save time and costs)
