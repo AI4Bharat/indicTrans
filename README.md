@@ -6,13 +6,19 @@
 
 **IndicTrans** is a Transformer-4x ( ~434M ) multilingual NMT model trained on [Samanantar](https://indicnlp.ai4bharat.org/samanantar) dataset which is the largest publicly available parallel corpora collection for Indic languages at the time of writing ( 14 April 2021 ). It outperforms commercial translation systems and existing open source models on a variety of benchmarks.
 
-It is a single script model i.e we convert all the Indic data to the Devanagari script which allows for ***better lexical sharing between languages for transfer learning, prevents fragmentation of the subword vocabulary between Indic languages and allows using a smaller subword vocabulary***. We currently release two models - [Indic to English](https://storage.googleapis.com/samanantar-public/models/indictrans-indic-en-v0.1.zip) and [English to Indic](https://storage.googleapis.com/samanantar-public/models/indictrans-en-indic-v0.1.zip) and support the following 11 indic languages: 
+It is a single script model i.e we convert all the Indic data to the Devanagari script which allows for ***better lexical sharing between languages for transfer learning, prevents fragmentation of the subword vocabulary between Indic languages and allows using a smaller subword vocabulary***. We currently release two models - Indic to English and English to Indic and support the following 11 indic languages: 
 
 | <!-- -->  | <!-- --> | <!-- --> | <!-- --> |
 | ------------- | ------------- | ------------- | ------------- |
 | Assamese (as)  | Hindi (hi) | Marathi (mr) | Tamil (ta)|
 | Bengali (bn) | Kannada (kn)| Oriya (or) | Telugu (te)|
 | Gujarati (gu) | Malayalam (ml) | Punjabi (pa) |
+
+## Download IndicTrans models:
+
+Indic to English: [V0.1](https://storage.googleapis.com/samanantar-public/models/indictrans-indic-en-v0.1.zip)
+
+English to Indic: [V0.1](https://storage.googleapis.com/samanantar-public/models/indictrans-en-indic-v0.1.zip)
 
 
 ## Using the model for Inference
