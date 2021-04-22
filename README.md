@@ -16,7 +16,7 @@ It is a single script model i.e we convert all the Indic data to the Devanagari 
 
 
 ## Using the model for inference
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gowtham1997/indicTrans/blob/main/indictrans_fairseq_inference.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indictrans_fairseq_inference.ipynb)
 
 ^ follow the instructions here to setup the environment with required libraries, download the pretrained models and run inference
 
