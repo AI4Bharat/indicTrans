@@ -34,10 +34,9 @@ git clone https://github.com/rsennrich/subword-nmt.git
 pip install sacremoses pandas mock sacrebleu tensorboardX pyarrow indic-nlp-library
 
 # Install fairseq from source
-!git clone https://github.com/pytorch/fairseq.git
-%cd fairseq
-# !git checkout da9eaba12d82b9bfc1442f0e2c6fc1b895f4d35d
-!pip install --editable ./
+git clone https://github.com/pytorch/fairseq.git
+cd fairseq
+pip install --editable ./
 
 ```
 </details>
