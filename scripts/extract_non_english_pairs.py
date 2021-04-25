@@ -41,18 +41,18 @@ def extract_non_english_pairs(indir, outdir, LANGS):
             common_en_set = enset_l1.intersection(read_file(fname2))
 
             ## this block should be used if you want to consider multiple translations.
-            il_fname1 = "{}/en-{}/train.{}".format(indir, lang1, lang1)
-            en_lang1_dict = defaultdict(list)
-            for en_line, il_line in zip(read_file(fname1), read_file(il_fname1)):
-                if en_line in common_en_set:
-                    en_lang1_dict[en_line].append(il_line)
+            # il_fname1 = "{}/en-{}/train.{}".format(indir, lang1, lang1)
+            # en_lang1_dict = defaultdict(list)
+            # for en_line, il_line in zip(read_file(fname1), read_file(il_fname1)):
+            #     if en_line in common_en_set:
+            #         en_lang1_dict[en_line].append(il_line)
 
             #         # this block should be used if you DONT to consider multiple translation.
-            #         il_fname1='{}/en-{}/train.{}'.format(indir,lang1,lang1)
-            #         en_lang1_dict={}
-            #         for en_line,il_line in zip(read_file(fname1),read_file(il_fname1)):
-            #             if en_line in common_en_set:
-            #                 en_lang1_dict[en_line]=il_line
+            il_fname1='{}/en-{}/train.{}'.format(indir,lang1,lang1)
+            en_lang1_dict={}
+            for en_line,il_line in zip(read_file(fname1),read_file(il_fname1)):
+                if en_line in common_en_set:
+                    en_lang1_dict[en_line]=il_line
 
             os.makedirs("{}/{}-{}".format(outdir, lang1, lang2), exist_ok=True)
             out_l1_fname = "{o}/{l1}-{l2}/train.{l1}".format(
@@ -71,14 +71,14 @@ def extract_non_english_pairs(indir, outdir, LANGS):
 
                         # this block should be used if you want to consider multiple tranlations.
                         for il_line_lang1 in en_lang1_dict[en_line]:
-                            lang1_line, lang2_line = il_line_lang1, il_line
-                            out_l1_file.write(lang1_line + "\n")
-                            out_l2_file.write(lang2_line + "\n")
+                        #     lang1_line, lang2_line = il_line_lang1, il_line
+                        #     out_l1_file.write(lang1_line + "\n")
+                        #     out_l2_file.write(lang2_line + "\n")
 
                     # this block should be used if you DONT to consider multiple translation.
-    #                     lang1_line, lang2_line = en_lang1_dict[en_line], il_line
-    #                     out_l1_file.write(lang1_line+'\n')
-    #                     out_l2_file.write(lang2_line+'\n')
+	                        lang1_line, lang2_line = en_lang1_dict[en_line], il_line
+	                        out_l1_file.write(lang1_line+'\n')
+	                        out_l2_file.write(lang2_line+'\n')
 
 
 def get_extracted_stats(outdir, LANGS):
