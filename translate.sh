@@ -48,9 +48,9 @@ src_input_bpe_fname=$outfname.bpe
 tgt_output_fname=$outfname
 fairseq-interactive  $data_bin_dir \
     -s $SRC_PREFIX -t $TGT_PREFIX \
-    --tpu --distributed-world-size 1  \
+    --distributed-world-size 1  \
     --path $model_dir/checkpoint_best.pt \
-    --batch-size 512  --buffer-size 5000 --beam 5  --remove-bpe \
+    --batch-size 64  --buffer-size 2500 --beam 5  --remove-bpe \
     --skip-invalid-size-inputs-valid-test \
     --input $src_input_bpe_fname  >  $tgt_output_fname.log 2>&1
 
