@@ -79,12 +79,12 @@ if __name__ == "__main__":
     #     # The path to the local git repo for Indic NLP library
     # INDIC_NLP_LIB_HOME="indic_nlp_library"
     # INDIC_NLP_RESOURCES = "indic_nlp_resources"
-    # sys.path.append(r'{}'.format(INDIC_NLP_LIB_HOME))
+    # sys.path.append('{}'.format(INDIC_NLP_LIB_HOME))
     # common.set_resources_path(INDIC_NLP_RESOURCES)
     #     # The path to the local git repo for Indic NLP Resources
-    #     INDIC_NLP_RESOURCES=r"/data/t-ankunc/installs/indic_nlp_resources"
+    #     INDIC_NLP_RESOURCES=""
 
-    #     sys.path.append(r'{}'.format(INDIC_NLP_LIB_HOME))
+    #     sys.path.append('{}'.format(INDIC_NLP_LIB_HOME))
     #     common.set_resources_path(INDIC_NLP_RESOURCES)
 
     # loader.load()

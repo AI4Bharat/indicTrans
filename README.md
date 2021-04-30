@@ -1,6 +1,6 @@
 <div align="center">
 	<h1><b><i>IndicTrans</i></b></h1>
-	<a href="http://indicnlp.ai4bharat.org">Website</a> | 
+	<a href="http://indicnlp.ai4bharat.org/samanantar">Website</a> | 
 	<a href="https://arxiv.org/abs/2104.05596">Paper</a><br><br>
 </div>
 
@@ -19,11 +19,11 @@ Indic to English: [V0.1](https://storage.googleapis.com/samanantar-public/models
 English to Indic: [V0.1](https://storage.googleapis.com/samanantar-public/models/indictrans-en-indic-v0.1.zip)
 
 
-## Using the model for Inference
+## Using the model for translating any input
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indictrans_fairseq_inference.ipynb)
 
-The colab notebook can be used to setup the environment, download the fine-tuned models and run inference.
+The colab notebook can be used to setup the environment, download the trained _IndicTrans_ models and translating your own text.
 
 
 ## Installation
