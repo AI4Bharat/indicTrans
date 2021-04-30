@@ -14,9 +14,9 @@
 
 ## Download IndicTrans models:
 
-Indic to English: [V0.1](https://storage.googleapis.com/samanantar-public/models/indictrans-indic-en-v0.1.zip)
+Indic to English: [V0.2](https://akpublicdata.blob.core.windows.net/indicnlp/indictrans/indictrans-indic-en-v0.2.zip)
 
-English to Indic: [V0.1](https://storage.googleapis.com/samanantar-public/models/indictrans-en-indic-v0.1.zip)
+English to Indic: [V0.2](https://akpublicdata.blob.core.windows.net/indicnlp/indictrans/inidctrans-en-indic-v0.2.zip)
 
 
 ## Using the model for translating any input
