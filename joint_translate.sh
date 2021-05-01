@@ -25,7 +25,7 @@ echo "Number of sentences in input: $input_size"
 
 echo "Applying BPE"
 python $SUBWORD_NMT_DIR/subword_nmt/apply_bpe.py \
-    -c $exp_dir/vocab/bpe_codes.32k.${SRC_PREFIX}_${TGT_PREFIX} \
+    -c $exp_dir/vocab/bpe_codes.32k.${SRC_PREFIX} \
     --vocabulary $exp_dir/vocab/vocab.$SRC_PREFIX \
     --vocabulary-threshold 5 \
     < $outfname.norm \
@@ -47,6 +47,7 @@ fairseq-interactive  $data_bin_dir \
     --path $model_dir/checkpoint_best.pt \
     --batch-size 64  --buffer-size 2500 --beam 5  --remove-bpe \
     --skip-invalid-size-inputs-valid-test \
+    --user-dir model_configs \
     --input $src_input_bpe_fname  >  $tgt_output_fname.log 2>&1
 
 
