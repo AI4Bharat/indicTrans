@@ -12,6 +12,16 @@
 | Bengali (bn) | Kannada (kn)| Oriya (or) | Telugu (te)|
 | Gujarati (gu) | Malayalam (ml) | Punjabi (pa) |
 
+
+## Updates
+
+09 May 2021
+```
+- Added fix for finetuning on datasets where some lang pairs are not present. Previously the script assumed the finetuning dataset will have data for all 11 indic lang pairs
+- Added colab notebook for finetuning instructions
+```
+
+
 ## Download IndicTrans models:
 
 Indic to English: [V0.2](https://akpublicdata.blob.core.windows.net/indicnlp/indictrans/indictrans-indic-en-v0.2.zip)
@@ -24,6 +34,14 @@ English to Indic: [V0.2](https://akpublicdata.blob.core.windows.net/indicnlp/ind
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indictrans_fairseq_inference.ipynb)
 
 The colab notebook can be used to setup the environment, download the trained _IndicTrans_ models and translating your own text.
+
+## Finetuning the model on your input dataset
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indicTrans_Finetuning.ipynb)
+
+The colab notebook can be used to setup the environment, download the trained _IndicTrans_ models and prepare your custom dataset for funetuning the indictrans model.
+
+**Note**: Since this is a big model (400M params), you might be able to train with reasonable batch sizes in the free google Colab account. We are planning to release smaller models (after pruning / distallation) soon.
 
 
 ## Installation
