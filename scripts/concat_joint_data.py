@@ -66,6 +66,11 @@ def concat_data(data_dir, outdir, lang_pair_list,
             data_dir, src_lang, trg_lang, split, src_lang)
         in_trg_fname = '{}/{}-{}/{}.{}'.format(
             data_dir, src_lang, trg_lang, split, trg_lang)
+        
+        if not os.path.exists(in_src_fname):
+            continue
+        if not os.path.exists(in_trg_fname):
+            continue
 
         print(in_src_fname)
         os.system('cat {} >> {}'.format(in_src_fname, out_src_fname))
@@ -93,6 +98,8 @@ def corpus_stats(data_dir, outdir, lang_pair_list, split):
             in_src_fname = '{}/{}-{}/{}.{}'.format(
                 data_dir, src_lang, trg_lang, split, src_lang)
     #         in_trg_fname='{}/{}-{}/train.{}'.format(data_dir,src_lang,trg_lang,trg_lang)
+            if not os.path.exists(in_src_fname):
+                continue
 
             print(in_src_fname)
             corpus_size = 0
@@ -120,3 +127,4 @@ if __name__ == '__main__':
             lang_pair_list.append([lang, 'en'])
 
     concat_data(in_dir, out_dir, lang_pair_list, split=split)
+
