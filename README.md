@@ -51,6 +51,28 @@ The colab notebook can be used to setup the environment, download the trained _I
 
 **Note**: Since this is a big model (400M params), you might not be able to train with reasonable batch sizes in the free google Colab account. We are planning to release smaller models (after pruning / distallation) soon.
 
+## Mining Indic to Indic pairs from english centric corpus
+
+The `extract_non_english_pairs` in `scripts/extract_non_english_pairs.py` can be used to mine indic to indic pairs from english centric corpus.
+
+As described in the [paper](https://arxiv.org/pdf/2104.05596.pdf) (section 2.5) , we use a very strict deduplication criterion to avoid the creation of very similar parallel sentences. For example, if an en sentence is aligned to *M* hi sentences and *N* ta sentences, then we would get *MN* hi-ta pairs. However, these pairs would be very similar and not contribute much to the training process. Hence, we retain only 1 randomly chosen pair out of these *MN* pairs.
+
+```bash
+extract_non_english_pairs(indir, outdir, LANGS):
+    """
+    Extracts non-english pair parallel corpora
+    indir: contains english centric data in the following form:
+            - directory named en-xx for language xx
+            - each directory contains a train.en and train.xx
+    outdir: output directory to store mined data for each pair.
+            One directory is created for each pair.
+    LANGS: list of languages in the corpus (other than English).
+            The language codes must correspond to the ones used in the
+            files and directories in indir. Prefarably, sort the languages
+            in this list in alphabetic order. outdir will contain data for xx-yy,
+            but not for yy-xx, so it will be convenient to have this list in sorted order.
+    """
+```
 
 ## Installation
 <details><summary>Click to expand </summary>
