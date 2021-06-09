@@ -47,7 +47,7 @@ The colab notebook can be used to setup the environment, download the trained _I
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indicTrans_Finetuning.ipynb)
 
-The colab notebook can be used to setup the environment, download the trained _IndicTrans_ models and prepare your custom dataset for funetuning the indictrans model.
+The colab notebook can be used to setup the environment, download the trained _IndicTrans_ models and prepare your custom dataset for funetuning the indictrans model. There is also a section on mining indic to indic data from english centric corpus for finetuning indic to indic model.
 
 **Note**: Since this is a big model (400M params), you might not be able to train with reasonable batch sizes in the free google Colab account. We are planning to release smaller models (after pruning / distallation) soon.
 
