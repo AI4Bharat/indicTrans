@@ -39,9 +39,45 @@ Indic to Indic:   [V0.1](https://storage.googleapis.com/samanantar-public/models
 
 ## Using the model for translating any input
 
+The model is trained on single sentences and hence, users need to split parapgraphs to sentences before running the translation. Here is an example snippet to split paragraphs into sentences for English and Indic languages supported by our model:
+```python
+# install these libraries
+# pip install mosestokenizer
+# pip install indic-nlp-library
+
+from mosestokenizer import *
+from indicnlp.tokenize import sentence_tokenize
+
+def split_sentences(paragraph, language):
+    if language == "en":
+        with MosesSentenceSplitter(language) as splitter:
+            return splitter([paragraph])
+    elif language in INDIC:
+        return sentence_tokenize.sentence_split(paragraph, lang=language)
+
+split_sentences("""COVID-19 is caused by infection with the severe acute respiratory 
+syndrome coronavirus 2 (SARS-CoV-2) virus strain. The disease is mainly transmitted via the respiratory 
+route when people inhale droplets and particles that infected people release as they breathe, talk, cough, sneeze, or sing. """, language='en')
+
+>> ['COVID-19 is caused by infection with the severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) virus strain.',
+ 'The disease is mainly transmitted via the respiratory route when people inhale droplets and particles that infected people release as they breathe, talk, cough, sneeze, or sing.']
+
+split_sentences("""இத்தொற்றுநோய் உலகளாவிய சமூக மற்றும் பொருளாதார சீர்குலைவை ஏற்படுத்தியுள்ளது.இதனால் பெரும் பொருளாதார மந்தநிலைக்குப் பின்னர் உலகளவில் மிகப்பெரிய மந்தநிலை ஏற்பட்டுள்ளது. இது விளையாட்டு,மத, அரசியல் மற்றும் கலாச்சார நிகழ்வுகளை ஒத்திவைக்க அல்லது ரத்து செய்ய வழிவகுத்தது. 
+அச்சம் காரணமாக முகக்கவசம், கிருமிநாசினி உள்ளிட்ட பொருட்களை அதிக நபர்கள் வாங்கியதால் விநியோகப் பற்றாக்குறை ஏற்பட்டது.""",
+ language='ta')
+
+>> ['இத்தொற்றுநோய் உலகளாவிய சமூக மற்றும் பொருளாதார சீர்குலைவை ஏற்படுத்தியுள்ளது.',
+ 'இதனால் பெரும் பொருளாதார மந்தநிலைக்குப் பின்னர் உலகளவில் மிகப்பெரிய மந்தநிலை ஏற்பட்டுள்ளது.',
+ 'இது விளையாட்டு,மத, அரசியல் மற்றும் கலாச்சார நிகழ்வுகளை ஒத்திவைக்க அல்லது ரத்து செய்ய வழிவகுத்தது.',
+ 'அச்சம் காரணமாக முகக்கவசம், கிருமிநாசினி உள்ளிட்ட பொருட்களை அதிக நபர்கள் வாங்கியதால் விநியோகப் பற்றாக்குறை ஏற்பட்டது.']
+
+
+```
+
+Follow the colab notebook to setup the environment, download the trained _IndicTrans_ models and translating your own text.
+
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indictrans_fairseq_inference.ipynb)
 
-The colab notebook can be used to setup the environment, download the trained _IndicTrans_ models and translating your own text.
 
 ## Finetuning the model on your input dataset
 
