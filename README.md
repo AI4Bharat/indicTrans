@@ -2,6 +2,7 @@
 	<h1><b><i>IndicTrans</i></b></h1>
 	<a href="http://indicnlp.ai4bharat.org/samanantar">Website</a> |
 	<a href="https://arxiv.org/abs/2104.05596">Paper</a><br><br>
+        <a href="https://youtu.be/QwYPOd1eBtQ?t=383">Video</a><br><br>
 </div>
 
 **IndicTrans** is a Transformer-4x ( ~434M ) multilingual NMT model trained on [Samanantar](https://indicnlp.ai4bharat.org/samanantar) dataset which is the largest publicly available parallel corpora collection for Indic languages at the time of writing ( 14 April 2021 ). It is a single script model i.e we convert all the Indic data to the Devanagari script which allows for ***better lexical sharing between languages for transfer learning, prevents fragmentation of the subword vocabulary between Indic languages and allows using a smaller subword vocabulary***. We currently release two models - Indic to English and English to Indic and support the following 11 indic languages:
@@ -14,6 +15,14 @@
 
 
 ## Updates
+
+27 June 2021
+```
+- Updated links for indic to indic model
+- Add more comments to training scripts
+- Add link to [Samanantar Video](https://youtu.be/QwYPOd1eBtQ?t=383)
+- Add folder structure in readme
+```
 
 09 June 2021
 ```
@@ -134,6 +143,50 @@ pip install --editable ./
 ## How to train the indictrans model on custom training data?
 
 Will be updated soon.
+
+## Folder Structure
+```
+
+IndicTrans
+│   .gitignore
+│   apply_bpe_traindevtest_notag.sh         # apply bpe for joint vocab (Train, dev and test)
+│   apply_single_bpe_traindevtest_notag.sh  # apply bpe for seperate vocab   (Train, dev and test)
+│   binarize_training_exp.sh                # binarize the training data after preprocessing for fairseq-training
+│   compute_bleu.sh                         # Compute blue scores with postprocessing after translating with `joint_translate.sh`
+│   extract_nonenglish.py                   # Mining Indic to Indic pairs from english centric corpus
+│   indictrans_fairseq_inference.ipynb      # colab example to show how to use model for inference
+│   indicTrans_Finetuning.ipynb             # colab example to show how to use model for finetuning on custom domain data
+│   joint_translate.sh                      # used for inference (see colab inference notebook for more details on usage)
+│   learn_bpe.sh                            # learning joint bpe on preprocessed text
+│   learn_single_bpe.sh                     # learning seperate bpe on preprocessed text
+│   LICENSE
+│   prepare_data.sh                         # prepare data given an experiment dir (this does preprocessing,
+│                                           # building vocab, binarization ) for bilingual training
+│   prepare_data_joint_training.sh          # prepare data given an experiment dir (this does preprocessing,
+│                                           # building vocab, binarization ) for joint training
+│   README.md
+│
+├───legacy                                  # old unused scripts
+├───model_configs                           # custom model configrations are stored here
+│       custom_transformer.py               # contains custom 4x transformer models
+│       __init__.py
+│
+└───scripts                                 # stores python scripts that are used by other bash scripts
+    │   add_joint_tags_translate.py         # add lang tags to the processed training data for bilingual training
+    │   add_tags_translate.py               # add lang tags to the processed training data for joint training
+    │   clean_vocab.py                      # clean vocabulary after building with subword_nmt
+    │   concat_joint_data.py                # concatenates lang pair data and creates text files to keep track
+    │                                       # of number of lines in each lang pair.
+    │   extract_non_english_pairs.py        # Mining Indic to Indic pairs from english centric corpus
+    │   postprocess_translate.py            # Postprocesses translations
+    │   preprocess_translate.py             # Preprocess translations and for script conversion (from indic to devnagiri)
+    │   remove_large_sentences.py           # to remove large sentences from training data
+    │   remove_train_devtest_overlaps.py    # Finds and removes overlaped data of train with dev and test sets
+    │
+    └───inference
+            custom_interactive.py           # for python wrapper around fairseq-interactive
+            inference.py
+```
 
 
 ## Citing

@@ -60,7 +60,7 @@ for lang in ${langs[@]};do
 	input_size=`python scripts/preprocess_translate.py $test_infname_tgt $test_outfname_tgt $tgt_lang true`
 	echo "Number of sentences in test: $input_size"
 done
-# this creates text files to keep track of number of lines in each lang pair.
+# this concatenates lang pair data and creates text files to keep track of number of lines in each lang pair.
 # this is imp as for joint training, we will merge all the lang pairs and the indivitual lang lines info
 # would be required for adding specific lang tags later.
 
