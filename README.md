@@ -1,7 +1,7 @@
 <div align="center">
 	<h1><b><i>IndicTrans</i></b></h1>
 	<a href="http://indicnlp.ai4bharat.org/samanantar">Website</a> |
-	<a href="https://arxiv.org/abs/2104.05596">Paper</a><br><br>
+	<a href="https://arxiv.org/abs/2104.05596">Paper</a> |
         <a href="https://youtu.be/QwYPOd1eBtQ?t=383">Video</a><br><br>
 </div>
 
@@ -153,7 +153,6 @@ IndicTrans
 │   apply_single_bpe_traindevtest_notag.sh  # apply bpe for seperate vocab   (Train, dev and test)
 │   binarize_training_exp.sh                # binarize the training data after preprocessing for fairseq-training
 │   compute_bleu.sh                         # Compute blue scores with postprocessing after translating with `joint_translate.sh`
-│   extract_nonenglish.py                   # Mining Indic to Indic pairs from english centric corpus
 │   indictrans_fairseq_inference.ipynb      # colab example to show how to use model for inference
 │   indicTrans_Finetuning.ipynb             # colab example to show how to use model for finetuning on custom domain data
 │   joint_translate.sh                      # used for inference (see colab inference notebook for more details on usage)
