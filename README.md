@@ -1,10 +1,10 @@
 <div align="center">
 	<h1><b><i>IndicTrans</i></b></h1>
-	<a href="http://indicnlp.ai4bharat.org/samanantar">Website</a> | 
+	<a href="http://indicnlp.ai4bharat.org/samanantar">Website</a> |
 	<a href="https://arxiv.org/abs/2104.05596">Paper</a><br><br>
 </div>
 
-**IndicTrans** is a Transformer-4x ( ~434M ) multilingual NMT model trained on [Samanantar](https://indicnlp.ai4bharat.org/samanantar) dataset which is the largest publicly available parallel corpora collection for Indic languages at the time of writing ( 14 April 2021 ). It is a single script model i.e we convert all the Indic data to the Devanagari script which allows for ***better lexical sharing between languages for transfer learning, prevents fragmentation of the subword vocabulary between Indic languages and allows using a smaller subword vocabulary***. We currently release two models - Indic to English and English to Indic and support the following 11 indic languages: 
+**IndicTrans** is a Transformer-4x ( ~434M ) multilingual NMT model trained on [Samanantar](https://indicnlp.ai4bharat.org/samanantar) dataset which is the largest publicly available parallel corpora collection for Indic languages at the time of writing ( 14 April 2021 ). It is a single script model i.e we convert all the Indic data to the Devanagari script which allows for ***better lexical sharing between languages for transfer learning, prevents fragmentation of the subword vocabulary between Indic languages and allows using a smaller subword vocabulary***. We currently release two models - Indic to English and English to Indic and support the following 11 indic languages:
 
 | <!-- -->  | <!-- --> | <!-- --> | <!-- --> |
 | ------------- | ------------- | ------------- | ------------- |
@@ -34,7 +34,7 @@ Indic to English: [V0.2](https://storage.googleapis.com/samanantar-public/V0.2/m
 
 English to Indic: [V0.2](https://storage.googleapis.com/samanantar-public/V0.2/models/en-indic.zip)
 
-Indic to Indic:   [V0.1](https://storage.googleapis.com/samanantar-public/models/m2m.zip)
+Indic to Indic:   [V0.3](https://storage.googleapis.com/samanantar-public/V0.3/models/m2m.zip)
 
 
 ## Using the model for translating any input
@@ -57,14 +57,14 @@ def split_sentences(paragraph, language):
     elif language in INDIC:
         return sentence_tokenize.sentence_split(paragraph, lang=language)
 
-split_sentences("""COVID-19 is caused by infection with the severe acute respiratory 
-syndrome coronavirus 2 (SARS-CoV-2) virus strain. The disease is mainly transmitted via the respiratory 
+split_sentences("""COVID-19 is caused by infection with the severe acute respiratory
+syndrome coronavirus 2 (SARS-CoV-2) virus strain. The disease is mainly transmitted via the respiratory
 route when people inhale droplets and particles that infected people release as they breathe, talk, cough, sneeze, or sing. """, language='en')
 
 >> ['COVID-19 is caused by infection with the severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) virus strain.',
  'The disease is mainly transmitted via the respiratory route when people inhale droplets and particles that infected people release as they breathe, talk, cough, sneeze, or sing.']
 
-split_sentences("""இத்தொற்றுநோய் உலகளாவிய சமூக மற்றும் பொருளாதார சீர்குலைவை ஏற்படுத்தியுள்ளது.இதனால் பெரும் பொருளாதார மந்தநிலைக்குப் பின்னர் உலகளவில் மிகப்பெரிய மந்தநிலை ஏற்பட்டுள்ளது. இது விளையாட்டு,மத, அரசியல் மற்றும் கலாச்சார நிகழ்வுகளை ஒத்திவைக்க அல்லது ரத்து செய்ய வழிவகுத்தது. 
+split_sentences("""இத்தொற்றுநோய் உலகளாவிய சமூக மற்றும் பொருளாதார சீர்குலைவை ஏற்படுத்தியுள்ளது.இதனால் பெரும் பொருளாதார மந்தநிலைக்குப் பின்னர் உலகளவில் மிகப்பெரிய மந்தநிலை ஏற்பட்டுள்ளது. இது விளையாட்டு,மத, அரசியல் மற்றும் கலாச்சார நிகழ்வுகளை ஒத்திவைக்க அல்லது ரத்து செய்ய வழிவகுத்தது.
 அச்சம் காரணமாக முகக்கவசம், கிருமிநாசினி உள்ளிட்ட பொருட்களை அதிக நபர்கள் வாங்கியதால் விநியோகப் பற்றாக்குறை ஏற்பட்டது.""",
  language='ta')
 
@@ -141,7 +141,7 @@ Will be updated soon.
 If you are using any of the resources, please cite the following article:
 ```
 @misc{ramesh2021samanantar,
-      title={Samanantar: The Largest Publicly Available Parallel Corpora Collection for 11 Indic Languages}, 
+      title={Samanantar: The Largest Publicly Available Parallel Corpora Collection for 11 Indic Languages},
       author={Gowtham Ramesh and Sumanth Doddapaneni and Aravinth Bheemaraj and Mayank Jobanputra and Raghavan AK and Ajitesh Sharma and Sujit Sahoo and Harshita Diddee and Mahalakshmi J and Divyanshu Kakwani and Navneet Kumar and Aswin Pradeep and Kumar Deepak and Vivek Raghavan and Anoop Kunchukuttan and Pratyush Kumar and Mitesh Shantadevi Khapra},
       year={2021},
       eprint={2104.05596},

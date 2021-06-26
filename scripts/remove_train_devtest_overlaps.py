@@ -4,6 +4,7 @@ import shutil
 from itertools import permutations, chain
 from collections import defaultdict
 from tqdm import tqdm
+import sys
 
 INDIC_LANGS = ["as", "bn", "gu", "hi", "kn", "ml", "mr", "or", "pa", "ta", "te"]
 # we will be testing the overlaps of training data with all these benchmarks
@@ -58,7 +59,7 @@ def strip_and_normalize(line):
     # one of the fastest way to add an exclusion list and remove that
     # list of characters from a string
     # https://towardsdatascience.com/how-to-efficiently-remove-punctuations-from-a-string-899ad4a059fb
-    exclist = string.punctuation + '\u0964'
+    exclist = string.punctuation + "\u0964"
     table_ = str.maketrans("", "", exclist)
 
     line = line.replace(" ", "").lower()
@@ -82,9 +83,9 @@ def get_src_tgt_lang_lists(many2many=False):
         TGT_LANGS = INDIC_LANGS
     else:
         all_languages = INDIC_LANGS + ["en"]
-        lang_pairs = list(permutations(all_languages, 2))
+        # lang_pairs = list(permutations(all_languages, 2))
 
-        SRC_LANGS, TGT_LANGS = expand_tupled_list(lang_pairs)
+        SRC_LANGS, TGT_LANGS = all_languages, all_languages
 
     return SRC_LANGS, TGT_LANGS
 
@@ -102,6 +103,8 @@ def normalize_and_gather_all_benchmarks(devtest_dir, many2many=False):
     for dataset in benchmarks:
         for src_lang in SRC_LANGS:
             for tgt_lang in TGT_LANGS:
+                if src_lang == tgt_lang:
+                    continue
                 if dataset == "wat2021-devtest":
                     # wat2021 dev and test sets have differnet folder structure
                     src_dev = read_lines(f"{devtest_dir}/{dataset}/dev.{src_lang}")
@@ -124,7 +127,7 @@ def normalize_and_gather_all_benchmarks(devtest_dir, many2many=False):
 
                 # if the tgt_pair data doesnt exist for a particular test set,
                 # it will be an empty list
-                if tgt_test == []:
+                if tgt_test == [] or tgt_dev == []:
                     # print(f'{dataset} does not have {src_lang}-{tgt_lang} data')
                     continue
 
@@ -145,10 +148,15 @@ def normalize_and_gather_all_benchmarks(devtest_dir, many2many=False):
     # dedup merged benchmark datasets
     for src_lang in SRC_LANGS:
         for tgt_lang in TGT_LANGS:
+            if src_lang == tgt_lang:
+                continue
             src_devtest, tgt_devtest = (
                 devtest_pairs_normalized[f"{src_lang}-{tgt_lang}"]["src"],
                 devtest_pairs_normalized[f"{src_lang}-{tgt_lang}"]["tgt"],
             )
+            # if the devtest data doesnt exist for the src-tgt pair then continue
+            if src_devtest == [] or tgt_devtest == []:
+                continue
             src_devtest, tgt_devtest = pair_dedup_lists(src_devtest, tgt_devtest)
             (
                 devtest_pairs_normalized[f"{src_lang}-{tgt_lang}"]["src"],
@@ -183,6 +191,8 @@ def remove_train_devtest_overlaps(train_dir, devtest_dir, many2many=False):
     tgt_overlaps = []
     for src_lang in SRC_LANGS:
         for tgt_lang in TGT_LANGS:
+            if src_lang == tgt_lang:
+                continue
             new_src_train = []
             new_tgt_train = []
 
@@ -191,6 +201,8 @@ def remove_train_devtest_overlaps(train_dir, devtest_dir, many2many=False):
             tgt_train = read_lines(f"{train_dir}/{pair}/train.{tgt_lang}")
 
             len_before = len(src_train)
+            if len_before == 0:
+                continue
 
             src_train_normalized = [strip_and_normalize(line) for line in src_train]
             tgt_train_normalized = [strip_and_normalize(line) for line in tgt_train]
@@ -239,4 +251,15 @@ def remove_train_devtest_overlaps(train_dir, devtest_dir, many2many=False):
 
 
 if __name__ == "__main__":
-    remove_train_devtest_overlaps("train", "devtest")
+    train_data_dir = sys.argv[1]
+    # benchmarks directory should contains all the test sets
+    devtest_data_dir = sys.argv[2]
+    if len(sys.argv) == 3:
+        many2many = False
+    elif len(sys.argv) == 4:
+        many2many = sys.argv[4]
+        if many2many.lower() == "true":
+            many2many = True
+        else:
+            many2many = False
+    remove_train_devtest_overlaps(train_data_dir, devtest_data_dir, many2many)
