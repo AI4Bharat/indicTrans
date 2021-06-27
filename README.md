@@ -88,7 +88,12 @@ split_sentences("""இத்தொற்றுநோய் உலகளாவி
 
 Follow the colab notebook to setup the environment, download the trained _IndicTrans_ models and translating your own text.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indictrans_fairseq_inference.ipynb)
+Command line interface --> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indictrans_fairseq_inference.ipynb)
+
+
+Python interface       --> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indicTrans_python_interface)
+
+ The python interface is useful in case you want to reuse the model for multiple translations and do not want to reinitialize the model each time
 
 
 ## Finetuning the model on your input dataset
