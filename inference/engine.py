@@ -12,7 +12,7 @@ from indicnlp.transliterate import unicode_transliterate
 from mosestokenizer import MosesSentenceSplitter
 from indicnlp.tokenize import sentence_tokenize
 
-from .custom_interactive import Translator
+from inference.custom_interactive import Translator
 
 
 INDIC = ["as", "bn", "gu", "hi", "kn", "ml", "mr", "or", "pa", "ta", "te"]

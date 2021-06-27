@@ -22,6 +22,7 @@
 - Add more comments to training scripts
 - Add link to [Samanantar Video](https://youtu.be/QwYPOd1eBtQ?t=383)
 - Add folder structure in readme
+- Add python wrapper for model inference
 ```
 
 09 June 2021
@@ -170,7 +171,9 @@ IndicTrans
 ├───model_configs                           # custom model configrations are stored here
 │       custom_transformer.py               # contains custom 4x transformer models
 │       __init__.py
-│
+├───inference
+│       custom_interactive.py               # for python wrapper around fairseq-interactive
+│       engine.py                           # python interface for model inference
 └───scripts                                 # stores python scripts that are used by other bash scripts
     │   add_joint_tags_translate.py         # add lang tags to the processed training data for bilingual training
     │   add_tags_translate.py               # add lang tags to the processed training data for joint training
@@ -181,11 +184,7 @@ IndicTrans
     │   postprocess_translate.py            # Postprocesses translations
     │   preprocess_translate.py             # Preprocess translations and for script conversion (from indic to devnagiri)
     │   remove_large_sentences.py           # to remove large sentences from training data
-    │   remove_train_devtest_overlaps.py    # Finds and removes overlaped data of train with dev and test sets
-    │
-    └───inference
-            custom_interactive.py           # for python wrapper around fairseq-interactive
-            engine.py                       # python interface for model inference
+    └───remove_train_devtest_overlaps.py    # Finds and removes overlaped data of train with dev and test sets
 ```
 
 
