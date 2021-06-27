@@ -109,12 +109,12 @@ class Model:
         return postprocessed_sents
 
     # translate a paragraph from src_lang to tgt_lang
-    def translate_paragraph(paragraph, src_lang, tgt_lang):
+    def translate_paragraph(self, paragraph, src_lang, tgt_lang):
 
         assert isinstance(paragraph, str)
         sents = split_sentences(paragraph, src_lang)
 
-        postprocessed_sents = batch_translate(sents, src_lang, tgt_lang)
+        postprocessed_sents = self.batch_translate(sents, src_lang, tgt_lang)
 
         translated_paragraph = " ".join(postprocessed_sents)
 
