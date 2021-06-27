@@ -184,7 +184,7 @@ IndicTrans
     │
     └───inference
             custom_interactive.py           # for python wrapper around fairseq-interactive
-            inference.py
+            engine.py                       # python interface for model inference
 ```
 
 

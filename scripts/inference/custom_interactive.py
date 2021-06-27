@@ -1,3 +1,5 @@
+# python wrapper for fairseq-interactive command line tool
+
 #!/usr/bin/env python3 -u
 # Copyright (c) Facebook, Inc. and its affiliates.
 #
@@ -8,22 +10,15 @@ Translate raw text with a trained model. Batches data on-the-fly.
 """
 
 import ast
-import fileinput
-import logging
-import math
-import os
-import sys
-import time
-from argparse import Namespace
 from collections import namedtuple
 
-import numpy as np
 import torch
-from fairseq import checkpoint_utils, distributed_utils, options, tasks, utils
-from fairseq.dataclass.configs import FairseqConfig
+from fairseq import checkpoint_utils, options, tasks, utils
 from fairseq.dataclass.utils import convert_namespace_to_omegaconf
 from fairseq.token_generation_constraints import pack_constraints, unpack_constraints
 from fairseq_cli.generate import get_symbols_to_strip_from_output
+
+import codecs
 
 
 Batch = namedtuple("Batch", "ids src_tokens src_lengths constraints")
@@ -86,14 +81,31 @@ def make_batches(
 
 
 class Translator:
-    def __init__(self, data_dir, checkpoint_path):
+    def __init__(
+        self, data_dir, checkpoint_path, batch_size=25, constrained_decoding=False
+    ):
 
+        self.constrained_decoding = constrained_decoding
         self.parser = options.get_generation_parser(interactive=True)
-        self.parser.set_defaults(
-            path=checkpoint_path,
-            remove_bpe="subword_nmt",
-            num_wokers=-1,
-        )
+        # buffer_size is currently not used but we just initialize it to batch
+        # size + 1 to avoid any assertion errors.
+        if self.constrained_decoding:
+            self.parser.set_defaults(
+                path=checkpoint_path,
+                remove_bpe="subword_nmt",
+                num_wokers=-1,
+                constraints="ordered",
+                batch_size=batch_size,
+                buffer_size=batch_size + 1,
+            )
+        else:
+            self.parser.set_defaults(
+                path=checkpoint_path,
+                remove_bpe="subword_nmt",
+                num_wokers=-1,
+                batch_size=batch_size,
+                buffer_size=batch_size + 1,
+            )
         args = options.parse_args_and_arch(self.parser, input_args=[data_dir])
         # we are explictly setting src_lang and tgt_lang here
         # generally the data_dir we pass contains {split}-{src_lang}-{tgt_lang}.*.idx files from
@@ -101,6 +113,12 @@ class Translator:
         # use any idx files and only store the SRC and TGT dictionaries.
         args.source_lang = "SRC"
         args.target_lang = "TGT"
+        # since we are truncating sentences to max_seq_len in engine, we can set it to False here
+        args.skip_invalid_size_inputs_valid_test = False
+
+        # we have custom architechtures in this folder and we will let fairseq
+        # import this
+        args.user_dir = "model_configs"
         self.cfg = convert_namespace_to_omegaconf(args)
 
         utils.import_user_module(self.cfg.common)
@@ -123,6 +141,11 @@ class Translator:
         # if self.cfg.common.seed is not None and not self.cfg.generation.no_seed_provided:
         #     np.random.seed(self.cfg.common.seed)
         #     utils.set_torch_seed(self.cfg.common.seed)
+
+        # if not self.constrained_decoding:
+        #     self.use_cuda = torch.cuda.is_available() and not self.cfg.common.cpu
+        # else:
+        #     self.use_cuda = False
 
         self.use_cuda = torch.cuda.is_available() and not self.cfg.common.cpu
 
@@ -187,6 +210,10 @@ class Translator:
         return x
 
     def translate(self, inputs, constraints=None):
+        if self.constrained_decoding and constraints is None:
+            raise ValueError("Constraints cant be None in constrained decoding mode")
+        if not self.constrained_decoding and constraints is not None:
+            raise ValueError("Cannot pass constraints during normal translation")
         if constraints:
             constrained_decoding = True
             modified_inputs = []
@@ -223,6 +250,7 @@ class Translator:
                     "src_lengths": src_lengths,
                 },
             }
+
             translations = self.task.inference_step(
                 self.generator, self.models, sample, constraints=constraints
             )
@@ -260,7 +288,7 @@ class Translator:
                     alignment=hypo["alignment"],
                     align_dict=self.align_dict,
                     tgt_dict=self.tgt_dict,
-                    remove_bpe=self.cfg.common_eval.post_process,
+                    remove_bpe="subword_nmt",
                     extra_symbols_to_ignore=get_symbols_to_strip_from_output(
                         self.generator
                     ),
