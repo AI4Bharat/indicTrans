@@ -14,6 +14,10 @@ do
     out_dset_dir="$expdir/bpe/$dset"
     # out_dset_dir="$expdir/final/$dset"
     echo "Apply to SRC corpus"
+    # for very large datasets, use gnu-parallel to speed up applying bpe
+    # uncomment the below line if the apply bpe is slow
+
+    # parallel --pipe --keep-order \
     python $SUBWORD_NMT_DIR/subword_nmt/apply_bpe.py \
         -c $expdir/vocab/bpe_codes.32k.SRC \
         --vocabulary $expdir/vocab/vocab.SRC \
@@ -22,6 +26,10 @@ do
         < $in_dset_dir.SRC \
         > $out_dset_dir.SRC
     echo "Apply to TGT corpus"
+    # for very large datasets, use gnu-parallel to speed up applying bpe
+    # uncomment the below line if the apply bpe is slow
+
+    # parallel --pipe --keep-order \
     python $SUBWORD_NMT_DIR/subword_nmt/apply_bpe.py \
         -c $expdir/vocab/bpe_codes.32k.TGT \
         --vocabulary $expdir/vocab/vocab.TGT \
