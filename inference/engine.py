@@ -57,10 +57,11 @@ def truncate_long_sentences(sents):
     new_sents = []
 
     for sent in sents:
-        num_words = len(sent.split())
+        words = sent.split()
+        num_words = len(words)
         if num_words > MAX_SEQ_LEN:
-            print_str = " ".join(num_words[:5]) + " .... " + " ".join(num_words[-5:])
-            sent = " ".join(num_words[:MAX_SEQ_LEN])
+            print_str = " ".join(words[:5]) + " .... " + " ".join(words[-5:])
+            sent = " ".join(words[:MAX_SEQ_LEN])
             print(
                 f"WARNING: Sentence {print_str} truncated to 200 tokens as it exceeds maximum length limit"
             )
