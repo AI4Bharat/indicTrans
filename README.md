@@ -147,7 +147,8 @@ pip install --editable ./
 </details>
 
 ## How to train the indictrans model on your training data?
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indicTrans_training.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/IndicTrans_training.ipynb)
+
 
 Follow the colab notebook to setup the environment, download the dataset and train the indicTrans model
 
