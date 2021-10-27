@@ -49,7 +49,11 @@ Indic to Indic:   [V0.3](https://storage.googleapis.com/samanantar-public/V0.3/m
 
 ## Using the model for translating any input
 
-The model is trained on single sentences and hence, users need to split parapgraphs to sentences before running the translation. Here is an example snippet to split paragraphs into sentences for English and Indic languages supported by our model:
+The model is trained on single sentences and hence, users need to split parapgraphs to sentences before running the translation when using our command line interface (The python interface has `translate_paragraph` method to handle multi sentence translations). 
+
+Note: IndicTrans is trained with a max sequence length of **200** tokens (subwords). If your sentence is too long (> 200 tokens), the sentence will be truncated to 200 tokens before translation.
+
+Here is an example snippet to split paragraphs into sentences for English and Indic languages supported by our model:
 ```python
 # install these libraries
 # pip install mosestokenizer
