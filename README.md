@@ -16,6 +16,11 @@
 
 ## Updates
 
+26 November 2021
+```
+ - v0.3 models are now available for download
+```
+
 27 June 2021
 ```
 - Updated links for indic to indic model
@@ -40,11 +45,11 @@
 
 ## Download IndicTrans models:
 
-Indic to English: [V0.2](https://storage.googleapis.com/samanantar-public/V0.2/models/indic-en.zip)
+Indic to English: [v0.3](https://storage.googleapis.com/samanantar-public/V0.3/models/indic-en.zip)
 
-English to Indic: [V0.2](https://storage.googleapis.com/samanantar-public/V0.2/models/en-indic.zip)
+English to Indic: [v0.3](https://storage.googleapis.com/samanantar-public/V0.3/models/en-indic.zip)
 
-Indic to Indic:   [V0.3](https://storage.googleapis.com/samanantar-public/V0.3/models/m2m.zip)
+Indic to Indic:   [v0.3](https://storage.googleapis.com/samanantar-public/V0.3/models/m2m.zip)
 
 
 ## Using the model for translating any input
