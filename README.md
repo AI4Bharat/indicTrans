@@ -16,6 +16,13 @@
 
 ## Updates
 
+18 December 2021
+
+```
+Tutorials updated with latest model links
+```
+
+
 26 November 2021
 ```
  - v0.3 models are now available for download
@@ -52,9 +59,10 @@ English to Indic: [v0.3](https://storage.googleapis.com/samanantar-public/V0.3/m
 Indic to Indic:   [v0.3](https://storage.googleapis.com/samanantar-public/V0.3/models/m2m.zip)
 
 
+
 ## Using the model for translating any input
 
-The model is trained on single sentences and hence, users need to split parapgraphs to sentences before running the translation when using our command line interface (The python interface has `translate_paragraph` method to handle multi sentence translations). 
+The model is trained on single sentences and hence, users need to split parapgraphs to sentences before running the translation when using our command line interface (The python interface has `translate_paragraph` method to handle multi sentence translations).
 
 Note: IndicTrans is trained with a max sequence length of **200** tokens (subwords). If your sentence is too long (> 200 tokens), the sentence will be truncated to 200 tokens before translation.
 
