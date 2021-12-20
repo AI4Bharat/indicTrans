@@ -93,7 +93,7 @@ class Translator:
             self.parser.set_defaults(
                 path=checkpoint_path,
                 remove_bpe="subword_nmt",
-                num_wokers=-1,
+                num_workers=-1,
                 constraints="ordered",
                 batch_size=batch_size,
                 buffer_size=batch_size + 1,
@@ -102,7 +102,7 @@ class Translator:
             self.parser.set_defaults(
                 path=checkpoint_path,
                 remove_bpe="subword_nmt",
-                num_wokers=-1,
+                num_workers=-1,
                 batch_size=batch_size,
                 buffer_size=batch_size + 1,
             )
