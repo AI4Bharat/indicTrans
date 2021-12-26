@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>AI4B Translation API</title>
+	<!-- production version, optimized for size and speed -->
+	<script defer src="https://use.fontawesome.com/6da64fcf5b.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+<body>
+	<section class="section container has-text-centered" id="app">
+		<figure class="image is-64x64 is-centered">
+			<img src="logo.png">
+		</figure>
+		<p class="title is-1" style="color: #E78A28">
+			IndicTrans API
+		</p>
+		<p class="subtitle">
+			Real-time Indian Language Text Translation with IndicTrans! 
+		</p>
+
+		<hr>
+
+		<div class="">	
+			<!-- <p>
+				Select Model:
+			</p> -->
+			<div class="buttons has-addons is-centered">
+				<button class="button" v-on:click="load_indic_en" v-bind:class="indicEnClass">Indic → English</button>
+				<button class="button" v-on:click="load_en_indic" v-bind:class="enIndicClass">English → Indic</button>
+				<button class="button" v-on:click="load_m2m" v-bind:class="m2mClass">Indic → Indic</button>
+			</div>
+			
+			<div class="field is-horizontal is-grouped is-grouped-centered">
+				<p class="control">
+					<span class="tag is-rounded">From</span>
+					<div class="select is-rounded">
+						<select v-model="source_language">
+							<option v-for="option in source_options" v-bind:value="option">
+							{{ option }}
+							</option>
+						</select>
+					</div>
+				</p>
+				<p class="control">
+					&nbsp;
+					<span class="tag is-rounded">To</span>
+					<div class="select is-rounded">
+						<select class="select is-rounded" v-model="target_language">
+							<option v-for="option in target_options" v-bind:value="option">
+							{{ option }}
+							</option>
+						</select>
+					</div>
+				</p>
+			  </div>
+			  
+			  <br><br>
+			  <div class="field is-horizontal is-grouped">
+				<p class="control is-expanded">
+					<textarea v-model="source_text" class="textarea is-link is-medium" placeholder="Enter Source Text"></textarea>
+				</p>
+				<p class="control is-expanded">
+					<textarea v-model="target_text" class="textarea is-link is-medium" placeholder="Target Text will appear here" readonly></textarea>
+				</p>
+			  </div>
+
+			  <div class="field is-grouped is-grouped-centered">
+				<div class="control">
+				  <button class="button is-link" v-on:click="translate">Translate</button>
+				</div>
+				<div class="control">
+				  <button class="button is-link is-light" v-on:click="clear">Clear</button>
+				</div>
+			  </div>
+
+			<div v-if="process">
+				<progress class="progress is-small is-warning" max="100">15%</progress>
+			</div>
+
+			<br><br>
+
+			<div>{{ transcription_time }}</div>
+
+
+		</div>
+		
+	</section>
+</body>
+
+<!-- inserting these scripts at the end to be able to use all the elements in the DOM --> 
+<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+
+<script>
+	var app = new Vue({
+		el: '#app',
+		data: {
+			message: 'Hello Vue!',
+			source_language: 'English',
+			target_language: 'Hindi',
+			source_options: ['English'],
+			model_type: 'en-indic',
+			target_options: ['Assamese', 'Hindi', 'Marathi', 'Tamil', 'Bengali', 'Kannada', 'Oriya', 'Telugu', 'Gujarati', 'Malayalam', 'Punjabi'],
+			indicEnClass: {
+				'is-link': false,
+				'is-selected': false
+			},
+			enIndicClass: {
+				'is-link': true,
+				'is-selected': true
+			},
+			m2mClass: {
+				'is-link': false,
+				'is-selected': false
+			},
+			source_text: '',
+			target_text: '',
+			process: false,
+			transcription_time: '',
+		},
+		methods: {
+			load_indic_en: function(){
+				this.indicEnClass['is-link']=true;
+				this.indicEnClass['is-selected']=true;
+				this.enIndicClass['is-link']=false;
+				this.enIndicClass['is-selected']=false;
+				this.m2mClass['is-link']=false;
+				this.m2mClass['is-selected']=false;
+				this.source_options=['Assamese', 'Hindi', 'Marathi', 'Tamil', 'Bengali', 'Kannada', 'Oriya', 'Telugu', 'Gujarati', 'Malayalam', 'Punjabi'];
+				this.target_options=['English'];
+				this.source_language='Hindi';
+				this.target_language='English';
+				this.model_type='indic-en';
+				this.target_text='';
+			},
+			load_en_indic: function(){
+				this.indicEnClass['is-link']=false;
+				this.indicEnClass['is-selected']=false;
+				this.enIndicClass['is-link']=true;
+				this.enIndicClass['is-selected']=true;
+				this.m2mClass['is-link']=false;
+				this.m2mClass['is-selected']=false;
+				this.source_options=['English'];
+				this.target_options=['Assamese', 'Hindi', 'Marathi', 'Tamil', 'Bengali', 'Kannada', 'Oriya', 'Telugu', 'Gujarati', 'Malayalam', 'Punjabi'];
+				this.source_language='English';
+				this.target_language='Hindi';
+				this.model_type='en-indic';
+				this.target_text='';
+			},
+			load_m2m: function(){
+				this.indicEnClass['is-link']=false;
+				this.indicEnClass['is-selected']=false;
+				this.enIndicClass['is-link']=false;
+				this.enIndicClass['is-selected']=false;
+				this.m2mClass['is-link']=true;
+				this.m2mClass['is-selected']=true;
+				this.source_options=['Assamese', 'Hindi', 'Marathi', 'Tamil', 'Bengali', 'Kannada', 'Oriya', 'Telugu', 'Gujarati', 'Malayalam', 'Punjabi'];
+				this.target_options=['Assamese', 'Hindi', 'Marathi', 'Tamil', 'Bengali', 'Kannada', 'Oriya', 'Telugu', 'Gujarati', 'Malayalam', 'Punjabi'];
+				this.source_language='Hindi';
+				this.target_language='Tamil';
+				this.model_type='m2m';
+				this.target_text='';
+			},
+			translate: function(){
+				let formData = new FormData();
+				this.process=true;
+				formData.append('model_type', this.model_type);
+				formData.append('source_language', this.source_language);
+				formData.append('target_language', this.target_language);
+				formData.append('text', this.source_text);
+				console.log(this.source_text);
+				axios.post('http://164.52.218.27:5050/translate',
+						formData, {
+						headers: {
+							'Content-Type': 'multipart/form-data'
+						}
+				})
+				.then(response => {
+					console.log(response.data.text)
+					this.target_text=response.data.text
+					this.transcription_time = 'The inference took '+response.data.duration+' seconds.'
+					this.process=false
+				})
+				.catch(error =>  {
+					console.log(error);
+					this.target_text='Please check console'
+					this.process=false
+				});
+			},
+			clear: function(){
+				this.source_text='';
+				this.target_text='';
+			}
+		}
+	})
+</script>
+
+</html>
