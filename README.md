@@ -7,15 +7,32 @@
 
 **IndicTrans** is a Transformer-4x ( ~434M ) multilingual NMT model trained on [Samanantar](https://indicnlp.ai4bharat.org/samanantar) dataset which is the largest publicly available parallel corpora collection for Indic languages at the time of writing ( 14 April 2021 ). It is a single script model i.e we convert all the Indic data to the Devanagari script which allows for ***better lexical sharing between languages for transfer learning, prevents fragmentation of the subword vocabulary between Indic languages and allows using a smaller subword vocabulary***. We currently release two models - Indic to English and English to Indic and support the following 11 indic languages:
 
-| <!-- -->  | <!-- --> | <!-- --> | <!-- --> |
-| ------------- | ------------- | ------------- | ------------- |
-| Assamese (as)  | Hindi (hi) | Marathi (mr) | Tamil (ta)|
-| Bengali (bn) | Kannada (kn)| Oriya (or) | Telugu (te)|
+| <!-- -->      | <!-- -->       | <!-- -->     | <!-- -->    |
+| ------------- | -------------- | ------------ | ----------- |
+| Assamese (as) | Hindi (hi)     | Marathi (mr) | Tamil (ta)  |
+| Bengali (bn)  | Kannada (kn)   | Oriya (or)   | Telugu (te) |
 | Gujarati (gu) | Malayalam (ml) | Punjabi (pa) |
 
 
-## Updates
 
+
+- [Updates](#updates)
+- [Download IndicTrans models:](#download-indictrans-models)
+- [Using the model for translating any input](#using-the-model-for-translating-any-input)
+- [Finetuning the model on your input dataset](#finetuning-the-model-on-your-input-dataset)
+- [Mining Indic to Indic pairs from english centric corpus](#mining-indic-to-indic-pairs-from-english-centric-corpus)
+- [Installation](#installation)
+- [How to train the indictrans model on your training data?](#how-to-train-the-indictrans-model-on-your-training-data)
+- [Network & Training Details](#network--training-details)
+- [Folder Structure](#folder-structure)
+- [Citing](#citing)
+  - [License](#license)
+  - [Contributors](#contributors)
+  - [Contact](#contact)
+
+
+## Updates
+<details><summary>Click to expand </summary>
 18 December 2021
 
 ```
@@ -48,7 +65,7 @@ Tutorials updated with latest model links
 - Added fix for finetuning on datasets where some lang pairs are not present. Previously the script assumed the finetuning dataset will have data for all 11 indic lang pairs
 - Added colab notebook for finetuning instructions
 ```
-
+</details>
 
 ## Download IndicTrans models:
 
@@ -168,6 +185,19 @@ pip install --editable ./
 
 
 Follow the colab notebook to setup the environment, download the dataset and train the indicTrans model
+
+## Network & Training Details
+
+- Architechture: IndicTrans uses 6 encoder and decoder layers, input embeddings of size 1536 with 16 attention heads and
+feedforward dimension of 4096 with total number of parameters of 434M
+- Loss: Cross entropy loss
+- Optimizer: Adam
+- Label Smoothing: 0.1
+- Gradient clipping: 1.0
+- Learning rate: 5e-4
+- Warmup_steps: 4000
+
+Please refer to section 4, 5 of our [paper](https://arxiv.org/ftp/arxiv/papers/2104/2104.05596.pdf) for more details on training/experimental setup.
 
 ## Folder Structure
 ```
