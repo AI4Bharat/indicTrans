@@ -73,7 +73,7 @@ fairseq-generate  $inputproc_data_dir \
     --distributed-world-size 1  \
     --path $model_dir/checkpoint_best.pt \
     --gen-subset test \
-    --batch-size 64  --remove-bpe \
+    --batch-size 256  --remove-bpe \
     --skip-invalid-size-inputs-valid-test \
     --user-dir model_configs \
     --score-reference >  $tgt_output_fname.log 2>&1
