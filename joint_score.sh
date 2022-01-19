@@ -82,4 +82,4 @@ echo "Extracting translations, script conversion and detokenization"
 # this part reverses the transliteration from devnagiri script to target lang and then detokenizes it.
 python scripts/postprocess_score.py $tgt_output_fname.log $tgt_output_fname $input_size 
 
-echo "Scoring completed"
+echo "Scoring completed. Generated output file: $outfname"
