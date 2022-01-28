@@ -2,8 +2,8 @@ exp_dir=$1
 src_lang=$2
 tgt_lang=$3
 vocab_type=${4:-"sep"} # sep or joint
-train_data_dir=${4:-"$exp_dir"}
-devtest_data_dir=${5:-"$exp_dir/devtest/all"}
+train_data_dir=${5:-"$exp_dir"}
+devtest_data_dir=${6:-"$exp_dir/devtest/all"}
 
 echo "Running experiment ${exp_dir} on ${src_lang} to ${tgt_lang}"
 
