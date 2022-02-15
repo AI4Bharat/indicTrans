@@ -75,6 +75,7 @@ English to Indic: [v0.3](https://storage.googleapis.com/samanantar-public/V0.3/m
 
 Indic to Indic:   [v0.3](https://storage.googleapis.com/samanantar-public/V0.3/models/m2m.zip)
 
+[Mirror links](https://indicnlp.ai4bharat.org/indic-trans/#mirror-links) for the IndicTrans models
 
 
 ## Using the model for translating any input
