@@ -512,8 +512,6 @@ The above steps are further documented in our colab notebook
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/IndicTrans_training.ipynb)
 
 
-Follow the colab notebook to setup the environment, download the Samanantar dataset and train the indicTrans model.
-
 Please refer to this [issue](https://github.com/AI4Bharat/indicTrans/issues/23) to see discussion of our training hyperparameters.
 
 ### WandB plots
@@ -696,10 +694,8 @@ fairseq-train <exp_dir>/final_bin \
 ```
 
 
-The above steps are further documented in our colab notebook
+The above steps (setup the environment, download the trained _IndicTrans_ models and prepare your custom dataset for funetuning) are further documented in our colab notebook
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indicTrans_Finetuning.ipynb)
-
-The colab notebook can be used to setup the environment, download the trained _IndicTrans_ models and prepare your custom dataset for funetuning the indictrans model. There is also a section on mining indic to indic data from english centric corpus for finetuning indic to indic model.
 
 
 Please refer to this [issue](https://github.com/AI4Bharat/indicTrans/issues/9) for some tips on finetuning.
