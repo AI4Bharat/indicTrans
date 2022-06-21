@@ -423,7 +423,7 @@ Organize the developement set and test set of multiple benchmarks as follows:
 ```
 
 Removing dev and test set overlaps from training data
-Refer to "Training Data" subsection in section 4 of our [paper](https://arxiv.org/ftp/arxiv/papers/2104/2104.05596.pdf)for more details on how we use a strict overlap removal method.
+Refer to "Training Data" subsection in section 4 of our [paper](https://arxiv.org/ftp/arxiv/papers/2104/2104.05596.pdf) for more details on how we use a strict overlap removal method.
 
 ```bash
 python3 remove_train_devtest_overlaps.py <train_data_dir> <all devtest dir>
