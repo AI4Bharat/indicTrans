@@ -13,26 +13,45 @@
 | Bengali (bn)  | Kannada (kn)   | Oriya (or)   | Telugu (te) |
 | Gujarati (gu) | Malayalam (ml) | Punjabi (pa) |
 
+## Network & Training Details
+
+- Architechture: IndicTrans uses 6 encoder and decoder layers, input embeddings of size 1536 with 16 attention heads and
+feedforward dimension of 4096 with total number of parameters of 434M
+- Loss: Cross entropy loss
+- Optimizer: Adam
+- Label Smoothing: 0.1
+- Gradient clipping: 1.0
+- Learning rate: 5e-4
+- Warmup_steps: 4000
+
+Please refer to section 4, 5 of our [paper](https://arxiv.org/ftp/arxiv/papers/2104/2104.05596.pdf) for more details on training/experimental setup.
 
 
-
+## Table of contents:
+- [Network & Training Details](#network--training-details)
+- [Table of contents:](#table-of-contents)
 - [Updates](#updates)
 - [Download IndicTrans models:](#download-indictrans-models)
-- [Using the model for translating any input](#using-the-model-for-translating-any-input)
+- [Trying out the model](#trying-out-the-model)
+  - [Huggingface spaces](#huggingface-spaces)
+  - [Using our hosted APIs](#using-our-hosted-apis)
+  - [Sample screenshot of translate_sentence POST request](#sample-screenshot-of-translate_sentence-post-request)
+  - [Command line interface and Python interface for translating text](#command-line-interface-and-python-interface-for-translating-text)
+- [Replicate results from our paper:](#replicate-results-from-our-paper)
+  - [Setting up your environment](#setting-up-your-environment)
+  - [Training the IndicTrans Model](#training-the-indictrans-model)
+  - [Getting predictions and computing bleu scores from the trained model](#getting-predictions-and-computing-bleu-scores-from-the-trained-model)
 - [Finetuning the model on your input dataset](#finetuning-the-model-on-your-input-dataset)
-- [Mining Indic to Indic pairs from english centric corpus](#mining-indic-to-indic-pairs-from-english-centric-corpus)
-- [Installation](#installation)
-- [How to train the indictrans model on your training data?](#how-to-train-the-indictrans-model-on-your-training-data)
-- [Network & Training Details](#network--training-details)
-- [Folder Structure](#folder-structure)
-- [Citing](#citing)
-  - [License](#license)
-  - [Contributors](#contributors)
-  - [Contact](#contact)
 
 
 ## Updates
 <details><summary>Click to expand </summary>
+21 June 2022
+
+```
+Add more documentation on hosted API usage
+```
+
 18 December 2021
 
 ```
@@ -77,8 +96,61 @@ Indic to Indic:   [v0.3](https://storage.googleapis.com/samanantar-public/V0.3/m
 
 [Mirror links](https://indicnlp.ai4bharat.org/indic-trans/#mirror-links) for the IndicTrans models
 
+## Trying out the model
 
-## Using the model for translating any input
+### Huggingface spaces
+
+- [IndicTrans Indic2English](https://huggingface.co/spaces/ai4bharat/IndicTrans-Indic2English)
+- [IndicTrans English2Indic](https://huggingface.co/spaces/ai4bharat/IndicTrans-English2Indic)
+
+
+### Using our hosted APIs
+<details><summary>Click to expand </summary>
+Please visit [API documentation](http://216.48.182.174:5050/docs#) to read more about the available API endpoints/methods you can use.
+
+### Sample screenshot of translate_sentence POST request
+
+Go to [API documentation](http://216.48.182.174:5050/docs#), scroll to translate_sentence POST request endpoint and click "Try it out" button.
+
+<br>
+
+<p align="left">
+<img src="./sample_images/translate_try_it_out.png" width=50% height=50% />
+</p>
+
+<br>
+
+To try english to tamil translation, set the source language to "en" and target language to "ta" and enter your sentence in the "text" field:
+
+<br>
+
+<p align="left">
+<img src="./sample_images/translate_en-ta.png" width=50% height=50% />
+</p>
+
+<br>
+
+Check the translation result in response:
+
+<p align="left">
+<img src="./sample_images/response_en-ta.png" width=50% height=50% />
+</p>
+
+<br>
+
+Visit the [API documentation](http://216.48.182.174:5050/docs#)to check other supported methods:
+
+<p align="left">
+<img src="./sample_images/api_methods.png" width=50% height=50% />
+</p>
+</details>
+
+<br>
+
+Refer to this colab notebook on how to use python to hit the API endpoints--> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indicTrans_hosted_api_inference.ipynb)
+
+
+### Command line interface and Python interface for translating text
 
 The model is trained on single sentences and hence, users need to split parapgraphs to sentences before running the translation when using our command line interface (The python interface has `translate_paragraph` method to handle multi sentence translations).
 
@@ -131,7 +203,70 @@ Python interface       --> [![Open In Colab](https://colab.research.google.com/a
  The python interface is useful in case you want to reuse the model for multiple translations and do not want to reinitialize the model each time
 
 
-## Finetuning the model on your input dataset
+ ## Replicate results from our paper:
+ ###  Setting up your environment
+<details><summary>Click to expand </summary>
+
+```bash
+cd indicTrans
+git clone https://github.com/anoopkunchukuttan/indic_nlp_library.git
+git clone https://github.com/anoopkunchukuttan/indic_nlp_resources.git
+git clone https://github.com/rsennrich/subword-nmt.git
+# install required libraries
+pip install sacremoses pandas mock sacrebleu tensorboardX pyarrow indic-nlp-library
+
+# Install fairseq from source
+git clone https://github.com/pytorch/fairseq.git
+cd fairseq
+pip install --editable ./
+
+```
+</details>
+
+### Training the IndicTrans Model
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/IndicTrans_training.ipynb)
+
+
+Follow the colab notebook to setup the environment, download the Samanantar dataset and train the indicTrans model.
+
+Please refer to this [issue](https://github.com/AI4Bharat/indicTrans/issues/23) to see discussion of our training hyperparameters.
+
+### Getting predictions and computing bleu scores from the trained model
+
+```bash
+# To test the models after training, you can use joint_translate.sh
+
+
+
+# joint_translate takes src_file, output_fname, src_lang, tgt_lang, model_folder as inputs
+# src_file -> input text file to be translated
+# output_fname -> name of the output file (will get created) containing the model predictions
+# src_lang -> source lang code of the input text ( in this case we are using en-indic model and hence src_lang would be 'en')
+# tgt_lang -> target lang code of the input text ( tgt lang for en-indic model would be any of the 11 indic langs we trained on:
+#              as, bn, hi, gu, kn, ml, mr, or, pa, ta, te)
+# supported languages are:
+#              as - assamese, bn - bengali, gu - gujarathi, hi - hindi, kn - kannada,
+#              ml - malayalam, mr - marathi, or - oriya, pa - punjabi, ta - tamil, te - telugu
+
+# model_folder -> the directory containing the model and the vocab files
+
+
+
+# here we are translating the english sentences to hindi and model_folder contains the model checkpoint
+bash joint_translate.sh <path to test.en> en_hi_outputs.txt 'en' 'hi' model_folder
+
+# to compute bleu scores for the predicitions with a reference file, use the following command
+# arguments:
+# pred_fname: file that contains model predictions
+# ref_fname: file that contains references
+# src_lang and tgt_lang : the source and target language
+
+bash compute_bleu.sh en_hi_outputs.txt <path to test.hi reference file> 'en' 'hi'
+
+```
+
+
+ ## Finetuning the model on your input dataset
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indicTrans_Finetuning.ipynb)
 
@@ -139,7 +274,7 @@ The colab notebook can be used to setup the environment, download the trained _I
 
 **Note**: Since this is a big model (400M params), you might not be able to train with reasonable batch sizes in the free google Colab account. We are planning to release smaller models (after pruning / distallation) soon.
 
-## Mining Indic to Indic pairs from english centric corpus
+<!-- ## Mining Indic to Indic pairs from english centric corpus
 
 The `extract_non_english_pairs` in `scripts/extract_non_english_pairs.py` can be used to mine indic to indic pairs from english centric corpus.
 
@@ -160,138 +295,4 @@ extract_non_english_pairs(indir, outdir, LANGS):
             in this list in alphabetic order. outdir will contain data for xx-yy,
             but not for yy-xx, so it will be convenient to have this list in sorted order.
     """
-```
-
-## Installation
-<details><summary>Click to expand </summary>
-
-```bash
-cd indicTrans
-git clone https://github.com/anoopkunchukuttan/indic_nlp_library.git
-git clone https://github.com/anoopkunchukuttan/indic_nlp_resources.git
-git clone https://github.com/rsennrich/subword-nmt.git
-# install required libraries
-pip install sacremoses pandas mock sacrebleu tensorboardX pyarrow indic-nlp-library
-
-# Install fairseq from source
-git clone https://github.com/pytorch/fairseq.git
-cd fairseq
-pip install --editable ./
-
-```
-</details>
-
-## How to train the indictrans model on your training data?
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/IndicTrans_training.ipynb)
-
-
-Follow the colab notebook to setup the environment, download the dataset and train the indicTrans model
-
-## Network & Training Details
-
-- Architechture: IndicTrans uses 6 encoder and decoder layers, input embeddings of size 1536 with 16 attention heads and
-feedforward dimension of 4096 with total number of parameters of 434M
-- Loss: Cross entropy loss
-- Optimizer: Adam
-- Label Smoothing: 0.1
-- Gradient clipping: 1.0
-- Learning rate: 5e-4
-- Warmup_steps: 4000
-
-Please refer to section 4, 5 of our [paper](https://arxiv.org/ftp/arxiv/papers/2104/2104.05596.pdf) for more details on training/experimental setup.
-
-## Folder Structure
-```
-
-IndicTrans
-│   .gitignore
-│   apply_bpe_traindevtest_notag.sh         # apply bpe for joint vocab (Train, dev and test)
-│   apply_single_bpe_traindevtest_notag.sh  # apply bpe for seperate vocab   (Train, dev and test)
-│   binarize_training_exp.sh                # binarize the training data after preprocessing for fairseq-training
-│   compute_bleu.sh                         # Compute blue scores with postprocessing after translating with `joint_translate.sh`
-│   indictrans_fairseq_inference.ipynb      # colab example to show how to use model for inference
-│   indicTrans_Finetuning.ipynb             # colab example to show how to use model for finetuning on custom domain data
-│   joint_translate.sh                      # used for inference (see colab inference notebook for more details on usage)
-│   learn_bpe.sh                            # learning joint bpe on preprocessed text
-│   learn_single_bpe.sh                     # learning seperate bpe on preprocessed text
-│   LICENSE
-│   prepare_data.sh                         # prepare data given an experiment dir (this does preprocessing,
-│                                           # building vocab, binarization ) for bilingual training
-│   prepare_data_joint_training.sh          # prepare data given an experiment dir (this does preprocessing,
-│                                           # building vocab, binarization ) for joint training
-│   README.md
-│
-├───legacy                                  # old unused scripts
-├───model_configs                           # custom model configrations are stored here
-│       custom_transformer.py               # contains custom 4x transformer models
-│       __init__.py
-├───inference
-│       custom_interactive.py               # for python wrapper around fairseq-interactive
-│       engine.py                           # python interface for model inference
-└───scripts                                 # stores python scripts that are used by other bash scripts
-    │   add_joint_tags_translate.py         # add lang tags to the processed training data for bilingual training
-    │   add_tags_translate.py               # add lang tags to the processed training data for joint training
-    │   clean_vocab.py                      # clean vocabulary after building with subword_nmt
-    │   concat_joint_data.py                # concatenates lang pair data and creates text files to keep track
-    │                                       # of number of lines in each lang pair.
-    │   extract_non_english_pairs.py        # Mining Indic to Indic pairs from english centric corpus
-    │   postprocess_translate.py            # Postprocesses translations
-    │   preprocess_translate.py             # Preprocess translations and for script conversion (from indic to devnagiri)
-    │   remove_large_sentences.py           # to remove large sentences from training data
-    └───remove_train_devtest_overlaps.py    # Finds and removes overlaped data of train with dev and test sets
-```
-
-
-## Citing
-
-If you are using any of the resources, please cite the following article:
-```
-@misc{ramesh2021samanantar,
-      title={Samanantar: The Largest Publicly Available Parallel Corpora Collection for 11 Indic Languages},
-      author={Gowtham Ramesh and Sumanth Doddapaneni and Aravinth Bheemaraj and Mayank Jobanputra and Raghavan AK and Ajitesh Sharma and Sujit Sahoo and Harshita Diddee and Mahalakshmi J and Divyanshu Kakwani and Navneet Kumar and Aswin Pradeep and Kumar Deepak and Vivek Raghavan and Anoop Kunchukuttan and Pratyush Kumar and Mitesh Shantadevi Khapra},
-      year={2021},
-      eprint={2104.05596},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
-}
-```
-
-We would like to hear from you if:
-
-- You are using our resources. Please let us know how you are putting these resources to use.
-- You have any feedback on these resources.
-
-
-
-### License
-
-The IndicTrans code (and models) are released under the MIT License.
-
-
-### Contributors
-
-- Gowtham Ramesh, <sub>([RBCDSAI](https://rbcdsai.iitm.ac.in), [IITM](https://www.iitm.ac.in))</sub>
-- Sumanth Doddapaneni, <sub>([RBCDSAI](https://rbcdsai.iitm.ac.in), [IITM](https://www.iitm.ac.in))</sub>
-- Aravinth Bheemaraj, <sub>([Tarento](https://www.linkedin.com/company/tarento-group/), [EkStep](https://ekstep.in))</sub>
-- Mayank Jobanputra, <sub>([IITM](https://www.iitm.ac.in))</sub>
-- Raghavan AK, <sub>([AI4Bharat](https://ai4bharat.org))</sub>
-- Ajitesh Sharma, <sub>([Tarento](https://www.linkedin.com/company/tarento-group/), [EkStep](https://ekstep.in))</sub>
-- Sujit Sahoo, <sub>([Tarento](https://www.linkedin.com/company/tarento-group/), [EkStep](https://ekstep.in))</sub>
-- Harshita Diddee, <sub>([AI4Bharat](https://ai4bharat.org))</sub>
-- Mahalakshmi J, <sub>([AI4Bharat](https://ai4bharat.org))</sub>
-- Divyanshu Kakwani, <sub>([IITM](https://www.iitm.ac.in), [AI4Bharat](https://ai4bharat.org))</sub>
-- Navneet Kumar, <sub>([Tarento](https://www.linkedin.com/company/tarento-group/), [EkStep](https://ekstep.in))</sub>
-- Aswin Pradeep, <sub>([Tarento](https://www.linkedin.com/company/tarento-group/), [EkStep](https://ekstep.in))</sub>
-- Kumar Deepak, <sub>([Tarento](https://www.linkedin.com/company/tarento-group/), [EkStep](https://ekstep.in))</sub>
-- Vivek Raghavan, <sub>([EkStep](https://ekstep.in))</sub>
-- Anoop Kunchukuttan, <sub>([Microsoft](https://www.microsoft.com/en-in/), [AI4Bharat](https://ai4bharat.org))</sub>
-- Pratyush Kumar, <sub>([RBCDSAI](https://rbcdsai.iitm.ac.in), [AI4Bharat](https://ai4bharat.org), [IITM](https://www.iitm.ac.in))</sub>
-- Mitesh Shantadevi Khapra, <sub>([RBCDSAI](https://rbcdsai.iitm.ac.in), [AI4Bharat](https://ai4bharat.org), [IITM](https://www.iitm.ac.in))</sub>
-
-
-
-### Contact
-
-- Anoop Kunchukuttan ([anoop.kunchukuttan@gmail.com](mailto:anoop.kunchukuttan@gmail.com))
-- Mitesh Khapra ([miteshk@cse.iitm.ac.in](mailto:miteshk@cse.iitm.ac.in))
-- Pratyush Kumar ([pratyush@cse.iitm.ac.in](mailto:pratyush@cse.iitm.ac.in))
+``` -->
