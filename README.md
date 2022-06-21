@@ -105,7 +105,9 @@ Indic to Indic:   [v0.3](https://storage.googleapis.com/samanantar-public/V0.3/m
 
 
 ### Using our hosted APIs
+
 <details><summary>Click to expand </summary>
+
 Please visit [API documentation](http://216.48.182.174:5050/docs#) to read more about the available API endpoints/methods you can use.
 
 ### Sample screenshot of translate_sentence POST request
