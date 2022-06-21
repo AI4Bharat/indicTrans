@@ -16,7 +16,7 @@
 
 ### Benchmarks
 
-We evaluate IndicTrans model on a [WAT2021](http://lotus.kuee.kyoto-u.ac.jp/WAT/WAT2021/), [WAT2020](https://lotus.kuee.kyoto-u.ac.jp/WAT/WAT2020/), WMT (2014, 2019, 2020), [UFAL](https://ufal.mff.cuni.cz/~ramasamy/parallel/html), PMI (created by us for Assamese) and [FLORES](https://github.com/facebookresearch/flores) benchmarks. It outperforms
+We evaluate IndicTrans model on a [WAT2021](http://lotus.kuee.kyoto-u.ac.jp/WAT/WAT2021/), [WAT2020](https://lotus.kuee.kyoto-u.ac.jp/WAT/WAT2020/), WMT (2014, 2019, 2020), [UFAL](https://ufal.mff.cuni.cz/~ramasamy/parallel/html), [PMI](https://data.statmt.org/pmindia) (subset of the PMIndia dataest created by us for Assamese) and [FLORES](https://github.com/facebookresearch/flores) benchmarks. It outperforms
 all publicly available open source models. It also outperforms
 commercial systems like Google, Bing translate on most datasets and performs competitively on Flores. Here are the results that we obtain:
 
@@ -153,40 +153,6 @@ commercial systems like Google, Bing translate on most datasets and performs com
 </tbody>
 </table>
 
-## Table of contents:
-- [Table of contents:](#table-of-contents)
-- [Network & Training Details](#network--training-details)
-- [Updates](#updates)
-- [Download IndicTrans models:](#download-indictrans-models)
-- [Trying out the model](#trying-out-the-model)
-  - [Huggingface spaces](#huggingface-spaces)
-  - [Using our hosted APIs](#using-our-hosted-apis)
-  - [Sample screenshot of translate_sentence POST request](#sample-screenshot-of-translate_sentence-post-request)
-  - [Command line interface and Python interface for translating text](#command-line-interface-and-python-interface-for-translating-text)
-- [Replicate results from our paper:](#replicate-results-from-our-paper)
-  - [Setting up your environment](#setting-up-your-environment)
-  - [Training the IndicTrans Model](#training-the-indictrans-model)
-  - [Wandb links for tracking plots and logs for IndicTrans training on Samanantar dataset:](#wandb-links-for-tracking-plots-and-logs-for-indictrans-training-on-samanantar-dataset)
-  - [Getting predictions and computing bleu scores from the trained model](#getting-predictions-and-computing-bleu-scores-from-the-trained-model)
-- [Finetuning the model on your input dataset](#finetuning-the-model-on-your-input-dataset)
-- [License](#license)
-- [Contributors](#contributors)
-- [Contact](#contact)
-
-
-
-## Network & Training Details
-
-- Architechture: IndicTrans uses 6 encoder and decoder layers, input embeddings of size 1536 with 16 attention heads and
-feedforward dimension of 4096 with total number of parameters of 434M
-- Loss: Cross entropy loss
-- Optimizer: Adam
-- Label Smoothing: 0.1
-- Gradient clipping: 1.0
-- Learning rate: 5e-4
-- Warmup_steps: 4000
-
-Please refer to section 4, 5 of our [paper](https://arxiv.org/ftp/arxiv/papers/2104/2104.05596.pdf) for more details on training/experimental setup.
 
 ## Updates
 <details><summary>Click to expand </summary>
@@ -230,7 +196,38 @@ Tutorials updated with latest model links
 ```
 </details>
 
-## Download IndicTrans models:
+## Table of contents
+- [Updates](#updates)
+- [Table of contents](#table-of-contents)
+- [Resources](#resources)
+  - [Try out model online (Huggingface spaces)](#try-out-model-online-huggingface-spaces)
+  - [Download model](#download-model)
+  - [Using hosted APIs](#using-hosted-apis)
+    - [Sample screenshot of translate_sentence POST request](#sample-screenshot-of-translate_sentence-post-request)
+  - [Accessing on ULCA](#accessing-on-ulca)
+- [Running Inference](#running-inference)
+  - [Command line interface](#command-line-interface)
+  - [Python Inference](#python-inference)
+- [Training model](#training-model)
+  - [Setting up your environment](#setting-up-your-environment)
+  - [Details of models and hyperparameters](#details-of-models-and-hyperparameters)
+  - [Training procedure and code](#training-procedure-and-code)
+  - [WandB plots](#wandb-plots)
+  - [Evaluating trained model](#evaluating-trained-model)
+  - [Detailed benchmarking results](#detailed-benchmarking-results)
+- [Finetuning model on your data](#finetuning-model-on-your-data)
+- [License](#license)
+- [Contributors](#contributors)
+- [Contact](#contact)
+
+## Resources
+
+### Try out model online (Huggingface spaces)
+
+- [IndicTrans Indic2English](https://huggingface.co/spaces/ai4bharat/IndicTrans-Indic2English)
+- [IndicTrans English2Indic](https://huggingface.co/spaces/ai4bharat/IndicTrans-English2Indic)
+
+### Download model
 
 Indic to English: [v0.3](https://storage.googleapis.com/samanantar-public/V0.3/models/indic-en.zip)
 
@@ -240,21 +237,13 @@ Indic to Indic:   [v0.3](https://storage.googleapis.com/samanantar-public/V0.3/m
 
 [Mirror links](https://indicnlp.ai4bharat.org/indic-trans/#mirror-links) for the IndicTrans models
 
-## Trying out the model
-
-### Huggingface spaces
-
-- [IndicTrans Indic2English](https://huggingface.co/spaces/ai4bharat/IndicTrans-Indic2English)
-- [IndicTrans English2Indic](https://huggingface.co/spaces/ai4bharat/IndicTrans-English2Indic)
-
-
-### Using our hosted APIs
+### Using hosted APIs
 
 <details><summary>Click to expand </summary>
 
 Please visit [API documentation](http://216.48.182.174:5050/docs#) to read more about the available API endpoints/methods you can use.
 
-### Sample screenshot of translate_sentence POST request
+#### Sample screenshot of translate_sentence POST request
 
 Go to [API documentation](http://216.48.182.174:5050/docs#), scroll to translate_sentence POST request endpoint and click "Try it out" button.
 
@@ -295,8 +284,11 @@ Visit the [API documentation](http://216.48.182.174:5050/docs#)to check other su
 
 Refer to this colab notebook on how to use python to hit the API endpoints--> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indicTrans_hosted_api_inference.ipynb)
 
+### Accessing on ULCA
+You can try out our models at [ULCA](https://bhashini.gov.in/ulca/model/explore-models) and filtering for IndicTrans models.
 
-### Command line interface and Python interface for translating text
+## Running Inference
+### Command line interface
 
 The model is trained on single sentences and hence, users need to split parapgraphs to sentences before running the translation when using our command line interface (The python interface has `translate_paragraph` method to handle multi sentence translations).
 
@@ -341,15 +333,17 @@ split_sentences("""இத்தொற்றுநோய் உலகளாவி
 
 Follow the colab notebook to setup the environment, download the trained _IndicTrans_ models and translating your own text.
 
-Command line interface --> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indictrans_fairseq_inference.ipynb)
+Colab notebook for command line inference  --> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indictrans_fairseq_inference.ipynb)
+
+### Python Inference
 
 
-Python interface       --> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indicTrans_python_interface.ipynb)
+Colab notebook for python inference       --> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indicTrans_python_interface.ipynb)
 
  The python interface is useful in case you want to reuse the model for multiple translations and do not want to reinitialize the model each time
 
 
- ## Replicate results from our paper:
+ ## Training model
  ###  Setting up your environment
 <details><summary>Click to expand </summary>
 
@@ -369,7 +363,20 @@ pip install --editable ./
 ```
 </details>
 
-### Training the IndicTrans Model
+### Details of models and hyperparameters
+
+- Architechture: IndicTrans uses 6 encoder and decoder layers, input embeddings of size 1536 with 16 attention heads and
+feedforward dimension of 4096 with total number of parameters of 434M
+- Loss: Cross entropy loss
+- Optimizer: Adam
+- Label Smoothing: 0.1
+- Gradient clipping: 1.0
+- Learning rate: 5e-4
+- Warmup_steps: 4000
+
+Please refer to section 4, 5 of our [paper](https://arxiv.org/ftp/arxiv/papers/2104/2104.05596.pdf) for more details on training/experimental setup.
+
+### Training procedure and code
 
 The high level steps we follow for training are as follows:
 
@@ -412,7 +419,7 @@ The high level steps we follow for training are as follows:
 
 # Removing dev and test set overlaps from training data
 
-# Refer to "Training Data" subsection in section 4 of our paper https://arxiv.org/pdf/2104.05596v2.pdf
+# Refer to "Training Data" subsection in section 4 of our paper https://arxiv.org/ftp/arxiv/papers/2104/2104.05596.pdf
 # for more details on how we use a strict overlap removal method.
 
 python3 remove_train_devtest_overlaps.py <train_data_dir> <all devtest dir>
@@ -502,13 +509,13 @@ Follow the colab notebook to setup the environment, download the Samanantar data
 
 Please refer to this [issue](https://github.com/AI4Bharat/indicTrans/issues/23) to see discussion of our training hyperparameters.
 
-### Wandb links for tracking plots and logs for IndicTrans training on Samanantar dataset:
+### WandB plots
 
 [IndicTrans en-indic model](https://wandb.ai/ai4b-anuvaad/indictrans4x-en-indic)
 
 [IndicTrans indic-en model](https://wandb.ai/ai4b-anuvaad/indictrans4x-indic-en)
 
-### Getting predictions and computing bleu scores from the trained model
+### Evaluating trained model
 
 The trained model will get saved in the experiment directory. It will have the following files:
 
@@ -560,8 +567,13 @@ bash compute_bleu.sh en_hi_outputs.txt <path to test.hi reference file> 'en' 'hi
 
 ```
 
+### Detailed benchmarking results
 
- ## Finetuning the model on your input dataset
+Refer to [Benchmarks](#benchmarks) for results of IndicTrans model on various benchmarks.
+Please refer to table 6,7 of our [paper](https://arxiv.org/ftp/arxiv/papers/2104/2104.05596.pdf) for comparison with other open source and commercial models and section 6 for detailed discussion of the results
+
+
+ ## Finetuning model on your data
 
 The high level steps for finetuning on your own dataset are:
 
@@ -604,7 +616,7 @@ The high level steps for finetuning on your own dataset are:
 
 # Removing dev and test set overlaps from training data
 
-# Refer to "Training Data" subsection in section 4 of our paper https://arxiv.org/pdf/2104.05596v2.pdf
+# Refer to "Training Data" subsection in section 4 of our paper https://arxiv.org/ftp/arxiv/papers/2104/2104.05596.pdf
 # for more details on how we use a strict overlap removal method.
 
 python3 remove_train_devtest_overlaps.py <train_data_dir> <all devtest dir>
@@ -690,7 +702,7 @@ Please refer to this [issue](https://github.com/AI4Bharat/indicTrans/issues/9) f
 
 The `extract_non_english_pairs` in `scripts/extract_non_english_pairs.py` can be used to mine indic to indic pairs from english centric corpus.
 
-As described in the [paper](https://arxiv.org/pdf/2104.05596.pdf) (section 2.5) , we use a very strict deduplication criterion to avoid the creation of very similar parallel sentences. For example, if an en sentence is aligned to *M* hi sentences and *N* ta sentences, then we would get *MN* hi-ta pairs. However, these pairs would be very similar and not contribute much to the training process. Hence, we retain only 1 randomly chosen pair out of these *MN* pairs.
+As described in the [paper](https://arxiv.org/ftp/arxiv/papers/2104/2104.05596.pdf) (section 2.5) , we use a very strict deduplication criterion to avoid the creation of very similar parallel sentences. For example, if an en sentence is aligned to *M* hi sentences and *N* ta sentences, then we would get *MN* hi-ta pairs. However, these pairs would be very similar and not contribute much to the training process. Hence, we retain only 1 randomly chosen pair out of these *MN* pairs.
 
 ```bash
 extract_non_english_pairs(indir, outdir, LANGS):
@@ -751,7 +763,7 @@ IndicTrans
 ```
 
 
-## Citing
+## Citing our work
 
 If you are using any of the resources, please cite the following article:
 ```
