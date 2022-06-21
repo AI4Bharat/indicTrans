@@ -233,6 +233,12 @@ Follow the colab notebook to setup the environment, download the Samanantar data
 
 Please refer to this [issue](https://github.com/AI4Bharat/indicTrans/issues/23) to see discussion of our training hyperparameters.
 
+### Wandb links for tracking plots and logs for IndicTrans training on Samanantar dataset:
+
+[IndicTrans en-indic model](https://wandb.ai/ai4b-anuvaad/indictrans4x-en-indic)
+
+[IndicTrans indic-en model](https://wandb.ai/ai4b-anuvaad/indictrans4x-indic-en)
+
 ### Getting predictions and computing bleu scores from the trained model
 
 ```bash
