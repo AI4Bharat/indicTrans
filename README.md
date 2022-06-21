@@ -285,7 +285,7 @@ Visit the [API documentation](http://216.48.182.174:5050/docs#)to check other su
 Refer to this colab notebook on how to use python to hit the API endpoints--> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indicTrans_hosted_api_inference.ipynb)
 
 ### Accessing on ULCA
-You can try out our models at [ULCA](https://bhashini.gov.in/ulca/model/explore-models) and filtering for IndicTrans models.
+You can try out our models at [ULCA](https://bhashini.gov.in/ulca/model/explore-models) and filter for IndicTrans models.
 
 ## Running Inference
 ### Command line interface
