@@ -13,6 +13,28 @@
 | Bengali (bn)  | Kannada (kn)   | Oriya (or)   | Telugu (te) |
 | Gujarati (gu) | Malayalam (ml) | Punjabi (pa) |
 
+## Table of contents:
+- [Table of contents:](#table-of-contents)
+- [Network & Training Details](#network--training-details)
+- [Updates](#updates)
+- [Download IndicTrans models:](#download-indictrans-models)
+- [Trying out the model](#trying-out-the-model)
+  - [Huggingface spaces](#huggingface-spaces)
+  - [Using our hosted APIs](#using-our-hosted-apis)
+  - [Sample screenshot of translate_sentence POST request](#sample-screenshot-of-translate_sentence-post-request)
+  - [Command line interface and Python interface for translating text](#command-line-interface-and-python-interface-for-translating-text)
+- [Replicate results from our paper:](#replicate-results-from-our-paper)
+  - [Setting up your environment](#setting-up-your-environment)
+  - [Training the IndicTrans Model](#training-the-indictrans-model)
+  - [Wandb links for tracking plots and logs for IndicTrans training on Samanantar dataset:](#wandb-links-for-tracking-plots-and-logs-for-indictrans-training-on-samanantar-dataset)
+  - [Getting predictions and computing bleu scores from the trained model](#getting-predictions-and-computing-bleu-scores-from-the-trained-model)
+- [Finetuning the model on your input dataset](#finetuning-the-model-on-your-input-dataset)
+  - [License](#license)
+  - [Contributors](#contributors)
+  - [Contact](#contact)
+
+
+
 ## Network & Training Details
 
 - Architechture: IndicTrans uses 6 encoder and decoder layers, input embeddings of size 1536 with 16 attention heads and
@@ -25,24 +47,6 @@ feedforward dimension of 4096 with total number of parameters of 434M
 - Warmup_steps: 4000
 
 Please refer to section 4, 5 of our [paper](https://arxiv.org/ftp/arxiv/papers/2104/2104.05596.pdf) for more details on training/experimental setup.
-
-
-## Table of contents:
-- [Network & Training Details](#network--training-details)
-- [Table of contents:](#table-of-contents)
-- [Updates](#updates)
-- [Download IndicTrans models:](#download-indictrans-models)
-- [Trying out the model](#trying-out-the-model)
-  - [Huggingface spaces](#huggingface-spaces)
-  - [Using our hosted APIs](#using-our-hosted-apis)
-  - [Sample screenshot of translate_sentence POST request](#sample-screenshot-of-translate_sentence-post-request)
-  - [Command line interface and Python interface for translating text](#command-line-interface-and-python-interface-for-translating-text)
-- [Replicate results from our paper:](#replicate-results-from-our-paper)
-  - [Setting up your environment](#setting-up-your-environment)
-  - [Training the IndicTrans Model](#training-the-indictrans-model)
-  - [Getting predictions and computing bleu scores from the trained model](#getting-predictions-and-computing-bleu-scores-from-the-trained-model)
-- [Finetuning the model on your input dataset](#finetuning-the-model-on-your-input-dataset)
-
 
 ## Updates
 <details><summary>Click to expand </summary>
@@ -351,13 +355,20 @@ IndicTrans
 
 If you are using any of the resources, please cite the following article:
 ```
-@misc{ramesh2021samanantar,
-      title={Samanantar: The Largest Publicly Available Parallel Corpora Collection for 11 Indic Languages},
-      author={Gowtham Ramesh and Sumanth Doddapaneni and Aravinth Bheemaraj and Mayank Jobanputra and Raghavan AK and Ajitesh Sharma and Sujit Sahoo and Harshita Diddee and Mahalakshmi J and Divyanshu Kakwani and Navneet Kumar and Aswin Pradeep and Kumar Deepak and Vivek Raghavan and Anoop Kunchukuttan and Pratyush Kumar and Mitesh Shantadevi Khapra},
-      year={2021},
-      eprint={2104.05596},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
+@article{10.1162/tacl_a_00452,
+    author = {Ramesh, Gowtham and Doddapaneni, Sumanth and Bheemaraj, Aravinth and Jobanputra, Mayank and AK, Raghavan and Sharma, Ajitesh and Sahoo, Sujit and Diddee, Harshita and J, Mahalakshmi and Kakwani, Divyanshu and Kumar, Navneet and Pradeep, Aswin and Nagaraj, Srihari and Deepak, Kumar and Raghavan, Vivek and Kunchukuttan, Anoop and Kumar, Pratyush and Khapra, Mitesh Shantadevi},
+    title = "{Samanantar: The Largest Publicly Available Parallel Corpora Collection for 11 Indic Languages}",
+    journal = {Transactions of the Association for Computational Linguistics},
+    volume = {10},
+    pages = {145-162},
+    year = {2022},
+    month = {02},
+    abstract = "{We present Samanantar, the largest publicly available parallel corpora collection for Indic languages. The collection contains a total of 49.7 million sentence pairs between English and 11 Indic languages (from two language families). Specifically, we compile 12.4 million sentence pairs from existing, publicly available parallel corpora, and additionally mine 37.4 million sentence pairs from the Web, resulting in a 4× increase. We mine the parallel sentences from the Web by combining many corpora, tools, and methods: (a) Web-crawled monolingual corpora, (b) document OCR for extracting sentences from scanned documents, (c) multilingual representation models for aligning sentences, and (d) approximate nearest neighbor search for searching in a large collection of sentences. Human evaluation of samples from the newly mined corpora validate the high quality of the parallel sentences across 11 languages. Further, we extract 83.4 million sentence
+                    pairs between all 55 Indic language pairs from the English-centric parallel corpus using English as the pivot language. We trained multilingual NMT models spanning all these languages on Samanantar which outperform existing models and baselines on publicly available benchmarks, such as FLORES, establishing the utility of Samanantar. Our data and models are available publicly at Samanantar and we hope they will help advance research in NMT and multilingual NLP for Indic languages.}",
+    issn = {2307-387X},
+    doi = {10.1162/tacl_a_00452},
+    url = {https://doi.org/10.1162/tacl\_a\_00452},
+    eprint = {https://direct.mit.edu/tacl/article-pdf/doi/10.1162/tacl\_a\_00452/1987010/tacl\_a\_00452.pdf},
 }
 ```
 
@@ -400,4 +411,3 @@ The IndicTrans code (and models) are released under the MIT License.
 - Anoop Kunchukuttan ([anoop.kunchukuttan@gmail.com](mailto:anoop.kunchukuttan@gmail.com))
 - Mitesh Khapra ([miteshk@cse.iitm.ac.in](mailto:miteshk@cse.iitm.ac.in))
 - Pratyush Kumar ([pratyush@cse.iitm.ac.in](mailto:pratyush@cse.iitm.ac.in))
-
