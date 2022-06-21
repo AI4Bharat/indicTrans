@@ -298,3 +298,100 @@ extract_non_english_pairs(indir, outdir, LANGS):
             but not for yy-xx, so it will be convenient to have this list in sorted order.
     """
 ``` -->
+
+## Folder Structure
+```
+
+IndicTrans
+│   .gitignore
+│   apply_bpe_traindevtest_notag.sh         # apply bpe for joint vocab (Train, dev and test)
+│   apply_single_bpe_traindevtest_notag.sh  # apply bpe for seperate vocab   (Train, dev and test)
+│   binarize_training_exp.sh                # binarize the training data after preprocessing for fairseq-training
+│   compute_bleu.sh                         # Compute blue scores with postprocessing after translating with `joint_translate.sh`
+│   indictrans_fairseq_inference.ipynb      # colab example to show how to use model for inference
+│   indicTrans_Finetuning.ipynb             # colab example to show how to use model for finetuning on custom domain data
+│   joint_translate.sh                      # used for inference (see colab inference notebook for more details on usage)
+│   learn_bpe.sh                            # learning joint bpe on preprocessed text
+│   learn_single_bpe.sh                     # learning seperate bpe on preprocessed text
+│   LICENSE
+│   prepare_data.sh                         # prepare data given an experiment dir (this does preprocessing,
+│                                           # building vocab, binarization ) for bilingual training
+│   prepare_data_joint_training.sh          # prepare data given an experiment dir (this does preprocessing,
+│                                           # building vocab, binarization ) for joint training
+│   README.md
+│
+├───legacy                                  # old unused scripts
+├───model_configs                           # custom model configrations are stored here
+│       custom_transformer.py               # contains custom 4x transformer models
+│       __init__.py
+├───inference
+│       custom_interactive.py               # for python wrapper around fairseq-interactive
+│       engine.py                           # python interface for model inference
+└───scripts                                 # stores python scripts that are used by other bash scripts
+    │   add_joint_tags_translate.py         # add lang tags to the processed training data for bilingual training
+    │   add_tags_translate.py               # add lang tags to the processed training data for joint training
+    │   clean_vocab.py                      # clean vocabulary after building with subword_nmt
+    │   concat_joint_data.py                # concatenates lang pair data and creates text files to keep track
+    │                                       # of number of lines in each lang pair.
+    │   extract_non_english_pairs.py        # Mining Indic to Indic pairs from english centric corpus
+    │   postprocess_translate.py            # Postprocesses translations
+    │   preprocess_translate.py             # Preprocess translations and for script conversion (from indic to devnagiri)
+    │   remove_large_sentences.py           # to remove large sentences from training data
+    └───remove_train_devtest_overlaps.py    # Finds and removes overlaped data of train with dev and test sets
+```
+
+
+## Citing
+
+If you are using any of the resources, please cite the following article:
+```
+@misc{ramesh2021samanantar,
+      title={Samanantar: The Largest Publicly Available Parallel Corpora Collection for 11 Indic Languages},
+      author={Gowtham Ramesh and Sumanth Doddapaneni and Aravinth Bheemaraj and Mayank Jobanputra and Raghavan AK and Ajitesh Sharma and Sujit Sahoo and Harshita Diddee and Mahalakshmi J and Divyanshu Kakwani and Navneet Kumar and Aswin Pradeep and Kumar Deepak and Vivek Raghavan and Anoop Kunchukuttan and Pratyush Kumar and Mitesh Shantadevi Khapra},
+      year={2021},
+      eprint={2104.05596},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+```
+
+We would like to hear from you if:
+
+- You are using our resources. Please let us know how you are putting these resources to use.
+- You have any feedback on these resources.
+
+
+
+### License
+
+The IndicTrans code (and models) are released under the MIT License.
+
+
+### Contributors
+
+- Gowtham Ramesh, <sub>([RBCDSAI](https://rbcdsai.iitm.ac.in), [IITM](https://www.iitm.ac.in))</sub>
+- Sumanth Doddapaneni, <sub>([RBCDSAI](https://rbcdsai.iitm.ac.in), [IITM](https://www.iitm.ac.in))</sub>
+- Aravinth Bheemaraj, <sub>([Tarento](https://www.linkedin.com/company/tarento-group/), [EkStep](https://ekstep.in))</sub>
+- Mayank Jobanputra, <sub>([IITM](https://www.iitm.ac.in))</sub>
+- Raghavan AK, <sub>([AI4Bharat](https://ai4bharat.org))</sub>
+- Ajitesh Sharma, <sub>([Tarento](https://www.linkedin.com/company/tarento-group/), [EkStep](https://ekstep.in))</sub>
+- Sujit Sahoo, <sub>([Tarento](https://www.linkedin.com/company/tarento-group/), [EkStep](https://ekstep.in))</sub>
+- Harshita Diddee, <sub>([AI4Bharat](https://ai4bharat.org))</sub>
+- Mahalakshmi J, <sub>([AI4Bharat](https://ai4bharat.org))</sub>
+- Divyanshu Kakwani, <sub>([IITM](https://www.iitm.ac.in), [AI4Bharat](https://ai4bharat.org))</sub>
+- Navneet Kumar, <sub>([Tarento](https://www.linkedin.com/company/tarento-group/), [EkStep](https://ekstep.in))</sub>
+- Aswin Pradeep, <sub>([Tarento](https://www.linkedin.com/company/tarento-group/), [EkStep](https://ekstep.in))</sub>
+- Kumar Deepak, <sub>([Tarento](https://www.linkedin.com/company/tarento-group/), [EkStep](https://ekstep.in))</sub>
+- Vivek Raghavan, <sub>([EkStep](https://ekstep.in))</sub>
+- Anoop Kunchukuttan, <sub>([Microsoft](https://www.microsoft.com/en-in/), [AI4Bharat](https://ai4bharat.org))</sub>
+- Pratyush Kumar, <sub>([RBCDSAI](https://rbcdsai.iitm.ac.in), [AI4Bharat](https://ai4bharat.org), [IITM](https://www.iitm.ac.in))</sub>
+- Mitesh Shantadevi Khapra, <sub>([RBCDSAI](https://rbcdsai.iitm.ac.in), [AI4Bharat](https://ai4bharat.org), [IITM](https://www.iitm.ac.in))</sub>
+
+
+
+### Contact
+
+- Anoop Kunchukuttan ([anoop.kunchukuttan@gmail.com](mailto:anoop.kunchukuttan@gmail.com))
+- Mitesh Khapra ([miteshk@cse.iitm.ac.in](mailto:miteshk@cse.iitm.ac.in))
+- Pratyush Kumar ([pratyush@cse.iitm.ac.in](mailto:pratyush@cse.iitm.ac.in))
+
