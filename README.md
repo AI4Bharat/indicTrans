@@ -285,7 +285,7 @@ Visit the [API documentation](http://216.48.182.174:5050/docs#)to check other su
 Refer to this colab notebook on how to use python to hit the API endpoints--> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indicTrans_hosted_api_inference.ipynb)
 
 ### Accessing on ULCA
-You can try out our models at [ULCA](https://bhashini.gov.in/ulca/model/explore-models) and filtering for IndicTrans models.
+You can try out our models at [ULCA](https://bhashini.gov.in/ulca/model/explore-models) and filter for IndicTrans models.
 
 ## Running Inference
 ### Command line interface
@@ -380,8 +380,10 @@ Please refer to section 4, 5 of our [paper](https://arxiv.org/ftp/arxiv/papers/2
 
 The high level steps we follow for training are as follows:
 
+
+Organize the traning data as en-X folders where each folder has two text files containing parallel data for en-X lang pair.
 ```bash
-# Organize the traning data as en-X folders where each folder has two text files containing parallel data for en-X lang pair.
+
 # final_data
 # ├── en-as
 # │   ├── train.as
@@ -399,9 +401,12 @@ The high level steps we follow for training are as follows:
 # │   ├── train.en
 # │   └── train.kn
 # ├── ....
+```
 
+Organize the developement set and test set of multiple benchmarks as follows:
 
-# Organize the developement set and test set of multiple benchmarks as follows:
+```bash
+
 <all devtest dir>
 ├──<benchmark 1>
 |    ├── en-as
@@ -415,20 +420,22 @@ The high level steps we follow for training are as follows:
 ├──<benchmark 2>
 |
 ...
+```
 
+Removing dev and test set overlaps from training data
+Refer to "Training Data" subsection in section 4 of our [paper](https://arxiv.org/ftp/arxiv/papers/2104/2104.05596.pdf)for more details on how we use a strict overlap removal method.
 
-# Removing dev and test set overlaps from training data
-
-# Refer to "Training Data" subsection in section 4 of our paper https://arxiv.org/ftp/arxiv/papers/2104/2104.05596.pdf
-# for more details on how we use a strict overlap removal method.
-
+```bash
 python3 remove_train_devtest_overlaps.py <train_data_dir> <all devtest dir>
 ^ if you are only training for en-x
 
 python3 remove_train_devtest_overlaps.py <train_data_dir> <all devtest dir> true
 ^ if you are training many2many model
+```
 
-# prepare the experiment folder
+Prepare the experiment folder and create the binarized data required for fairseq
+
+```bash
 <exp dir>             # named like indic-en-exp for indic-en training or en-indic-exp for en-indic training
 ├──<devtest>
     └── all
@@ -455,10 +462,10 @@ python3 remove_train_devtest_overlaps.py <train_data_dir> <all devtest dir> true
 
 # Creating the vocabulary will take a while if the dataset is huge. To make it faster, run it on a multicore system
 bash prepare_data_joint_training.sh '../indic-en-exp' 'indic' 'en'
+```
 
-# start training with fairseq-train command
-
-# pls refer to fairseq documentaion to know more about each of these options (https://fairseq.readthedocs.io/en/latest/command_line_tools.html)
+ Start training with fairseq-train command. Please refer to [fairseq documentaion](https://fairseq.readthedocs.io/en/latest/command_line_tools.html) to know more about each of these options
+```bash
 
 
 # some notable args:
@@ -577,8 +584,8 @@ Please refer to table 6,7 of our [paper](https://arxiv.org/ftp/arxiv/papers/2104
 
 The high level steps for finetuning on your own dataset are:
 
+Organize the traning data as en-X folders where each folder has two text files containing parallel data for en-X lang pair.
 ```bash
-# Organize the traning data as en-X folders where each folder has two text files containing parallel data for en-X lang pair.
 # final_data
 # ├── en-as
 # │   ├── train.as
@@ -597,8 +604,9 @@ The high level steps for finetuning on your own dataset are:
 # │   └── train.kn
 # ├── ....
 
-
-# Organize the developement set and test set of multiple benchmarks as follows:
+```
+Organize the developement set and test set of multiple benchmarks as follows:
+```bash
 <all devtest dir>
 ├──<benchmark 1>
 |    ├── en-as
@@ -612,21 +620,21 @@ The high level steps for finetuning on your own dataset are:
 ├──<benchmark 2>
 |
 ...
+```
 
-
-# Removing dev and test set overlaps from training data
-
-# Refer to "Training Data" subsection in section 4 of our paper https://arxiv.org/ftp/arxiv/papers/2104/2104.05596.pdf
-# for more details on how we use a strict overlap removal method.
-
+Removing dev and test set overlaps from training data
+Refer to "Training Data" subsection in section 4 of our [paper](https://arxiv.org/ftp/arxiv/papers/2104/2104.05596.pdf) for more details on how we use a strict overlap removal method.
+```bash
 python3 remove_train_devtest_overlaps.py <train_data_dir> <all devtest dir>
 ^ if you are only training for en-x
 
 python3 remove_train_devtest_overlaps.py <train_data_dir> <all devtest dir> true
 ^ if you are training many2many model
-
-# prepare the experiment folder
+```
 After removing the dev and test set overlaps, you can move the train files and benchmark files (refer to colab notebook below for more details) to the experiment directory. This will have the trained checkpoint and the following structure:
+```bash
+# prepare the experiment folder
+
  <exp dir>                              # experiment directory
  ├── final_bin                          # contains fairseq dictionaries which we will use to binarize the new finetuning data
  │   ├── dict.SRC.txt
