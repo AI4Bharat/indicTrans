@@ -16,18 +16,19 @@
 
 ### Benchmarks
 
-We evaluate IndicTrans model on a [WAT2021](http://lotus.kuee.kyoto-u.ac.jp/WAT/WAT2021/), [WAT2020](https://lotus.kuee.kyoto-u.ac.jp/WAT/WAT2020/), WMT (2014, 2019, 2020), [UFAL](https://ufal.mff.cuni.cz/~ramasamy/parallel/html), PMI (created by us for Assamese) and [Flores](https://github.com/facebookresearch/flores) benchmarks. It outperforms
+We evaluate IndicTrans model on a [WAT2021](http://lotus.kuee.kyoto-u.ac.jp/WAT/WAT2021/), [WAT2020](https://lotus.kuee.kyoto-u.ac.jp/WAT/WAT2020/), WMT (2014, 2019, 2020), [UFAL](https://ufal.mff.cuni.cz/~ramasamy/parallel/html), PMI (created by us for Assamese) and [FLORES](https://github.com/facebookresearch/flores) benchmarks. It outperforms
 all publicly available open source models. It also outperforms
 commercial systems like Google, Bing translate on most datasets and performs competitively on Flores. Here are the results that we obtain:
 
-<style type="text/css">
+<!-- <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
   overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
   font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
-</style>
+</style> -->
+
 <table class="tg">
 <thead>
   <tr>
@@ -36,8 +37,8 @@ commercial systems like Google, Bing translate on most datasets and performs com
     <th class="tg-9wq8" colspan="7">WAT2020</th>
     <th class="tg-9wq8" colspan="3">WMT</th>
     <th class="tg-9wq8">UFAL</th>
-    <th class="tg-9wq8">pmi</th>
-    <th class="tg-9wq8"  colspan="11">Flores</th>
+    <th class="tg-9wq8">PMI</th>
+    <th class="tg-9wq8"  colspan="11">FLORES-101</th>
   </tr>
 </thead>
 <tbody>
