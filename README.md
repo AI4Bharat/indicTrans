@@ -13,6 +13,145 @@
 | Bengali (bn)  | Kannada (kn)   | Oriya (or)   | Telugu (te) |
 | Gujarati (gu) | Malayalam (ml) | Punjabi (pa) |
 
+
+### Benchmarks
+
+We evaluate IndicTrans model on a [WAT2021](http://lotus.kuee.kyoto-u.ac.jp/WAT/WAT2021/), [WAT2020](https://lotus.kuee.kyoto-u.ac.jp/WAT/WAT2020/), WMT (2014, 2019, 2020), [UFAL](https://ufal.mff.cuni.cz/~ramasamy/parallel/html), PMI (created by us for Assamese) and [Flores](https://github.com/facebookresearch/flores) benchmarks. It outperforms
+all publicly available open source models. It also outperforms
+commercial systems like Google, Bing translate on most datasets and performs competitively on Flores. Here are the results that we obtain:
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-9wq8"></th>
+    <th class="tg-9wq8" colspan="10">WAT2021</th>
+    <th class="tg-9wq8" colspan="7">WAT2020</th>
+    <th class="tg-9wq8" colspan="3">WMT</th>
+    <th class="tg-9wq8">UFAL</th>
+    <th class="tg-9wq8">pmi</th>
+    <th class="tg-9wq8"  colspan="11">Flores</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-9wq8"></td>
+    <td class="tg-9wq8">bn</td>
+    <td class="tg-9wq8">gu</td>
+    <td class="tg-9wq8">hi</td>
+    <td class="tg-9wq8">kn</td>
+    <td class="tg-9wq8">ml</td>
+    <td class="tg-9wq8">mr</td>
+    <td class="tg-9wq8">or</td>
+    <td class="tg-9wq8">pa</td>
+    <td class="tg-9wq8">ta</td>
+    <td class="tg-9wq8">te</td>
+    <td class="tg-9wq8">bn</td>
+    <td class="tg-9wq8">gu</td>
+    <td class="tg-9wq8">hi</td>
+    <td class="tg-9wq8">ml</td>
+    <td class="tg-9wq8">mr</td>
+    <td class="tg-9wq8">ta</td>
+    <td class="tg-9wq8">te</td>
+    <td class="tg-9wq8">hi</td>
+    <td class="tg-9wq8">gu</td>
+    <td class="tg-9wq8">ta</td>
+    <td class="tg-9wq8">ta</td>
+    <td class="tg-9wq8">as</td>
+    <td class="tg-9wq8">as</td>
+    <td class="tg-9wq8">bn</td>
+    <td class="tg-9wq8">gu</td>
+    <td class="tg-9wq8">hi</td>
+    <td class="tg-9wq8">kn</td>
+    <td class="tg-9wq8">ml</td>
+    <td class="tg-9wq8">mr</td>
+    <td class="tg-9wq8">or</td>
+    <td class="tg-9wq8">pa</td>
+    <td class="tg-9wq8">ta</td>
+    <td class="tg-9wq8">te</td>
+  </tr>
+  <tr>
+    <td class="tg-9wq8">IN-EN</td>
+    <td class="tg-9wq8">29.6</td>
+    <td class="tg-9wq8">40.3</td>
+    <td class="tg-9wq8">43.9</td>
+    <td class="tg-9wq8">36.4</td>
+    <td class="tg-9wq8">34.6</td>
+    <td class="tg-9wq8">33.5</td>
+    <td class="tg-9wq8">34.4</td>
+    <td class="tg-9wq8">43.2</td>
+    <td class="tg-9wq8">33.2</td>
+    <td class="tg-9wq8">36.2</td>
+    <td class="tg-9wq8">20.0</td>
+    <td class="tg-9wq8">24.1</td>
+    <td class="tg-9wq8">23.6</td>
+    <td class="tg-9wq8">20.4</td>
+    <td class="tg-9wq8">20.4</td>
+    <td class="tg-9wq8">18.3</td>
+    <td class="tg-9wq8">18.5</td>
+    <td class="tg-9wq8">29.7</td>
+    <td class="tg-9wq8">25.1</td>
+    <td class="tg-9wq8">24.1</td>
+    <td class="tg-9wq8">30.2</td>
+    <td class="tg-9wq8">29.9</td>
+    <td class="tg-9wq8">23.3</td>
+    <td class="tg-9wq8">32.2</td>
+    <td class="tg-9wq8">34.3</td>
+    <td class="tg-9wq8">37.9</td>
+    <td class="tg-9wq8">28.8</td>
+    <td class="tg-9wq8">31.7</td>
+    <td class="tg-9wq8">30.8</td>
+    <td class="tg-9wq8">30.1</td>
+    <td class="tg-9wq8">35.8</td>
+    <td class="tg-9wq8">28.6</td>
+    <td class="tg-9wq8">33.5</td>
+  </tr>
+  <tr>
+    <td class="tg-9wq8">EN-IN</td>
+    <td class="tg-9wq8">15.3</td>
+    <td class="tg-9wq8">25.6</td>
+    <td class="tg-9wq8">38.6</td>
+    <td class="tg-9wq8">19.1</td>
+    <td class="tg-9wq8">14.7</td>
+    <td class="tg-9wq8">20.1</td>
+    <td class="tg-9wq8">18.9</td>
+    <td class="tg-9wq8">33.1</td>
+    <td class="tg-9wq8">13.5</td>
+    <td class="tg-9wq8">14.1</td>
+    <td class="tg-9wq8">11.4</td>
+    <td class="tg-9wq8">15.3</td>
+    <td class="tg-9wq8">20.0</td>
+    <td class="tg-9wq8">7.2</td>
+    <td class="tg-9wq8">12.7</td>
+    <td class="tg-9wq8">6.2</td>
+    <td class="tg-9wq8">7.6</td>
+    <td class="tg-9wq8">25.5</td>
+    <td class="tg-9wq8">17.2</td>
+    <td class="tg-9wq8">9.9</td>
+    <td class="tg-9wq8">10.9</td>
+    <td class="tg-9wq8">11.6</td>
+    <td class="tg-9wq8">6.9</td>
+    <td class="tg-9wq8">20.3</td>
+    <td class="tg-9wq8">22.6</td>
+    <td class="tg-9wq8">34.5</td>
+    <td class="tg-9wq8">18.9</td>
+    <td class="tg-9wq8">16.3</td>
+    <td class="tg-9wq8">16.1</td>
+    <td class="tg-9wq8">13.9</td>
+    <td class="tg-9wq8">26.9</td>
+    <td class="tg-9wq8">16.3</td>
+    <td class="tg-9wq8">22.0</td>
+  </tr>
+</tbody>
+</table>
+
 ## Table of contents:
 - [Table of contents:](#table-of-contents)
 - [Network & Training Details](#network--training-details)
@@ -230,6 +369,131 @@ pip install --editable ./
 </details>
 
 ### Training the IndicTrans Model
+
+The high level steps we follow for training are as follows:
+
+```bash
+# Organize the traning data as en-X folders where each folder has two text files containing parallel data for en-X lang pair.
+# final_data
+# ├── en-as
+# │   ├── train.as
+# │   └── train.en
+# ├── en-bn
+# │   ├── train.bn
+# │   └── train.en
+# ├── en-gu
+# │   ├── train.en
+# │   └── train.gu
+# ├── en-hi
+# │   ├── train.en
+# │   └── train.hi
+# ├── en-kn
+# │   ├── train.en
+# │   └── train.kn
+# ├── ....
+
+
+# Organize the developement set and test set of multiple benchmarks as follows:
+<all devtest dir>
+├──<benchmark 1>
+|    ├── en-as
+|    ├── en-bn
+|    ├── en-gu
+|    └── en-hi
+|        ├── test.en
+|        ├── test.en
+|        ├── dev.en
+|        └── dev.hi
+├──<benchmark 2>
+|
+...
+
+
+# Removing dev and test set overlaps from training data
+
+# Refer to "Training Data" subsection in section 4 of our paper https://arxiv.org/pdf/2104.05596v2.pdf
+# for more details on how we use a strict overlap removal method.
+
+python3 remove_train_devtest_overlaps.py <train_data_dir> <all devtest dir>
+^ if you are only training for en-x
+
+python3 remove_train_devtest_overlaps.py <train_data_dir> <all devtest dir> true
+^ if you are training many2many model
+
+# prepare the experiment folder
+<exp dir>             # named like indic-en-exp for indic-en training or en-indic-exp for en-indic training
+├──<devtest>
+    └── all
+        ├── en-as
+            ├── dev.en      # merge all en files for en-as dev sets
+            ├── dev.as      # merge all as files for en-as dev sets
+            ├── test.en     # merge all en files for en-as test sets
+            └── test.as     # merge all as files for en-as test sets
+        ├── en-bn
+        ├── en-gu
+        ├── ...
+        └── en-hi
+   ├── en-as
+   ├── en-bn
+   ├── ...
+   └── en-te
+        ├── train.en      # merged en train set for en-te with all devtest overlaps removed
+        └── train.te      # merged te train set for en-te with all devtest overlaps removed
+
+# Using exp dir, prepare the training data as required for Fairseq using prepare_data_joint_training.sh
+
+# prepare_data_joint_training.sh takes exp dir, src_lang, tgt_lang as input
+# This does preprocessing, building vocab, binarization for joint training
+
+# Creating the vocabulary will take a while if the dataset is huge. To make it faster, run it on a multicore system
+bash prepare_data_joint_training.sh '../indic-en-exp' 'indic' 'en'
+
+# start training with fairseq-train command
+
+# pls refer to fairseq documentaion to know more about each of these options (https://fairseq.readthedocs.io/en/latest/command_line_tools.html)
+
+
+# some notable args:
+# --max-updates         -> maximum update steps the model will be trained for
+# --arch=transformer_4x -> we use a custom transformer model and name it transformer_4x (4 times the parameter size of transformer  base)
+# --user_dir            -> we define the custom transformer arch in model_configs folder and pass it as an argument to user_dir for fairseq to register this architechture
+# --lr                  -> learning rate. From our limited experiments, we find that lower learning rates like 3e-5 works best for finetuning.
+# --max_tokens          -> this is max tokens per batch. You should limit to lower values if you get oom errors.
+# --update-freq         -> gradient accumulation steps
+
+fairseq-train ../indic-en-exp/final_bin \
+--max-source-positions=210 \
+--max-target-positions=210 \
+--max-update=<max_updates> \
+--save-interval=1 \
+--arch=transformer_4x \
+--criterion=label_smoothed_cross_entropy \
+--source-lang=SRC \
+--lr-scheduler=inverse_sqrt \
+--target-lang=TGT \
+--label-smoothing=0.1 \
+--optimizer adam \
+--adam-betas "(0.9, 0.98)" \
+--clip-norm 1.0 \
+--warmup-init-lr 1e-07 \
+--lr 0.0005 \
+--warmup-updates 4000 \
+--dropout 0.2 \
+--save-dir ../indic-en-exp/model \
+--keep-last-epochs 5 \
+--patience 5 \
+--skip-invalid-size-inputs-valid-test \
+--fp16 \
+--user-dir model_configs \
+--wandb-project <wandb_project_name> \
+--update-freq=<grad_accumulation_steps> \
+--distributed-world-size <num_gpus> \
+--max-tokens <max_tokens_in_a_batch>
+
+```
+
+The above steps are further documented in our colab notebook
+
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/IndicTrans_training.ipynb)
 
 
@@ -245,8 +509,26 @@ Please refer to this [issue](https://github.com/AI4Bharat/indicTrans/issues/23) 
 
 ### Getting predictions and computing bleu scores from the trained model
 
+The trained model will get saved in the experiment directory. It will have the following files:
+
 ```bash
-# To test the models after training, you can use joint_translate.sh
+
+ en-indic/                              # en to indic experiment directory
+ ├── final_bin                          # contains fairseq dictionaries
+ │   ├── dict.SRC.txt
+ │   └── dict.TGT.txt
+ ├── model                              # contains model checkpoint(s)
+ │   └── checkpoint_best.pt
+ └── vocab                              # contains bpes for src and tgt (since we train seperate vocabularies) generated with subword_nmt
+     ├── bpe_codes.32k.SRC
+     ├── bpe_codes.32k.TGT
+     ├── vocab.SRC
+     └── vocab.TGT
+```
+
+To test the models after training, you can use `joint_translate.sh` to get output predictions and `compute_bleu.sh` to compute bleu scores.
+
+```bash
 
 
 
@@ -260,7 +542,7 @@ Please refer to this [issue](https://github.com/AI4Bharat/indicTrans/issues/23) 
 #              as - assamese, bn - bengali, gu - gujarathi, hi - hindi, kn - kannada,
 #              ml - malayalam, mr - marathi, or - oriya, pa - punjabi, ta - tamil, te - telugu
 
-# model_folder -> the directory containing the model and the vocab files
+# model_folder -> the directory containing the model and the vocab files ( the model is stored in exp_dir/model)
 
 
 
@@ -280,9 +562,126 @@ bash compute_bleu.sh en_hi_outputs.txt <path to test.hi reference file> 'en' 'hi
 
  ## Finetuning the model on your input dataset
 
+The high level steps for finetuning on your own dataset are:
+
+```bash
+# Organize the traning data as en-X folders where each folder has two text files containing parallel data for en-X lang pair.
+# final_data
+# ├── en-as
+# │   ├── train.as
+# │   └── train.en
+# ├── en-bn
+# │   ├── train.bn
+# │   └── train.en
+# ├── en-gu
+# │   ├── train.en
+# │   └── train.gu
+# ├── en-hi
+# │   ├── train.en
+# │   └── train.hi
+# ├── en-kn
+# │   ├── train.en
+# │   └── train.kn
+# ├── ....
+
+
+# Organize the developement set and test set of multiple benchmarks as follows:
+<all devtest dir>
+├──<benchmark 1>
+|    ├── en-as
+|    ├── en-bn
+|    ├── en-gu
+|    └── en-hi
+|        ├── test.en
+|        ├── test.en
+|        ├── dev.en
+|        └── dev.hi
+├──<benchmark 2>
+|
+...
+
+
+# Removing dev and test set overlaps from training data
+
+# Refer to "Training Data" subsection in section 4 of our paper https://arxiv.org/pdf/2104.05596v2.pdf
+# for more details on how we use a strict overlap removal method.
+
+python3 remove_train_devtest_overlaps.py <train_data_dir> <all devtest dir>
+^ if you are only training for en-x
+
+python3 remove_train_devtest_overlaps.py <train_data_dir> <all devtest dir> true
+^ if you are training many2many model
+
+# prepare the experiment folder
+After removing the dev and test set overlaps, you can move the train files and benchmark files (refer to colab notebook below for more details) to the experiment directory. This will have the trained checkpoint and the following structure:
+ <exp dir>                              # experiment directory
+ ├── final_bin                          # contains fairseq dictionaries which we will use to binarize the new finetuning data
+ │   ├── dict.SRC.txt
+ │   └── dict.TGT.txt
+ ├── model                              # contains model checkpoint(s)
+ │   └── checkpoint_best.pt
+ └── vocab                              # contains bpes for src and tgt (since we train seperate vocabularies) generated with subword_nmt
+     ├── bpe_codes.32k.SRC
+     ├── bpe_codes.32k.TGT
+     ├── vocab.SRC
+     └── vocab.TGT
+
+# We will use fairseq-train to finetune the model:
+
+
+# some notable args:
+# --max-update=1000     -> for this example, to demonstrate how to finetune we are only training for 1000 steps. You should increase this when finetuning
+# --arch=transformer_4x -> we use a custom transformer model and name it transformer_4x (4 times the parameter size of transformer  base)
+# --user_dir            -> we define the custom transformer arch in model_configs folder and pass it as an argument to user_dir for fairseq to register this architechture
+# --lr                  -> learning rate. From our limited experiments, we find that lower learning rates like 3e-5 works best for finetuning.
+# --restore-file        -> reload the pretrained checkpoint and start training from here (change this path for indic-en. Currently its is set to en-indic)
+# --reset-*             -> reset and not use lr scheduler, dataloader, optimizer etc of the older checkpoint
+# --max_tokns           -> this is max tokens per batch
+
+
+fairseq-train <exp_dir>/final_bin \
+--max-source-positions=210 \
+--max-target-positions=210 \
+--max-update=1000 \
+--save-interval=1 \
+--arch=transformer_4x \
+--criterion=label_smoothed_cross_entropy \
+--source-lang=SRC \
+--lr-scheduler=inverse_sqrt \
+--target-lang=TGT \
+--label-smoothing=0.1 \
+--optimizer adam \
+--adam-betas "(0.9, 0.98)" \
+--clip-norm 1.0 \
+--warmup-init-lr 1e-07 \
+--warmup-updates 4000 \
+--dropout 0.2 \
+--tensorboard-logdir <exp_dir>/tensorboard-wandb \
+--save-dir <exp_dir>/model \
+--keep-last-epochs 5 \
+--patience 5 \
+--skip-invalid-size-inputs-valid-test \
+--fp16 \
+--user-dir model_configs \
+--update-freq=2 \
+--distributed-world-size 1 \
+--max-tokens 256 \
+--lr 3e-5 \
+--restore-file <checkpoint exp_dir>/model/checkpoint_best.pt \
+--reset-lr-scheduler \
+--reset-meters \
+--reset-dataloader \
+--reset-optimizer
+```
+
+
+The above steps are further documented in our colab notebook
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/indicTrans/blob/main/indicTrans_Finetuning.ipynb)
 
 The colab notebook can be used to setup the environment, download the trained _IndicTrans_ models and prepare your custom dataset for funetuning the indictrans model. There is also a section on mining indic to indic data from english centric corpus for finetuning indic to indic model.
+
+
+Please refer to this [issue](https://github.com/AI4Bharat/indicTrans/issues/9) for some tips on finetuning.
 
 **Note**: Since this is a big model (400M params), you might not be able to train with reasonable batch sizes in the free google Colab account. We are planning to release smaller models (after pruning / distallation) soon.
 
