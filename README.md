@@ -29,9 +29,9 @@
   - [Wandb links for tracking plots and logs for IndicTrans training on Samanantar dataset:](#wandb-links-for-tracking-plots-and-logs-for-indictrans-training-on-samanantar-dataset)
   - [Getting predictions and computing bleu scores from the trained model](#getting-predictions-and-computing-bleu-scores-from-the-trained-model)
 - [Finetuning the model on your input dataset](#finetuning-the-model-on-your-input-dataset)
-  - [License](#license)
-  - [Contributors](#contributors)
-  - [Contact](#contact)
+- [License](#license)
+- [Contributors](#contributors)
+- [Contact](#contact)
 
 
 
@@ -379,12 +379,12 @@ We would like to hear from you if:
 
 
 
-### License
+## License
 
 The IndicTrans code (and models) are released under the MIT License.
 
 
-### Contributors
+## Contributors
 
 - Gowtham Ramesh, <sub>([RBCDSAI](https://rbcdsai.iitm.ac.in), [IITM](https://www.iitm.ac.in))</sub>
 - Sumanth Doddapaneni, <sub>([RBCDSAI](https://rbcdsai.iitm.ac.in), [IITM](https://www.iitm.ac.in))</sub>
@@ -406,7 +406,7 @@ The IndicTrans code (and models) are released under the MIT License.
 
 
 
-### Contact
+## Contact
 
 - Anoop Kunchukuttan ([anoop.kunchukuttan@gmail.com](mailto:anoop.kunchukuttan@gmail.com))
 - Mitesh Khapra ([miteshk@cse.iitm.ac.in](mailto:miteshk@cse.iitm.ac.in))
