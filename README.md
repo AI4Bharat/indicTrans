@@ -10,7 +10,7 @@
 | <!-- -->      | <!-- -->       | <!-- -->     | <!-- -->    |
 | ------------- | -------------- | ------------ | ----------- |
 | Assamese (as) | Hindi (hi)     | Marathi (mr) | Tamil (ta)  |
-| Bengali (bn)  | Kannada (kn)   | Oriya (or)   | Telugu (te) |
+| Bengali (bn)  | Kannada (kn)   | Odia (or)    | Telugu (te) |
 | Gujarati (gu) | Malayalam (ml) | Punjabi (pa) |
 
 
