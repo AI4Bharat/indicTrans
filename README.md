@@ -242,11 +242,11 @@ Indic to Indic:   [v0.3](https://storage.googleapis.com/samanantar-public/V0.3/m
 
 <details><summary>Click to expand </summary>
 
-Please visit [API documentation](http://216.48.182.174:5050/docs#) to read more about the available API endpoints/methods you can use.
+Please visit [API documentation](http://216.48.181.177:5050/docs#) to read more about the available API endpoints/methods you can use.
 
 #### Sample screenshot of translate_sentence POST request
 
-Go to [API documentation](http://216.48.182.174:5050/docs#), scroll to translate_sentence POST request endpoint and click "Try it out" button.
+Go to [API documentation](http://216.48.181.177:5050/docs#), scroll to translate_sentence POST request endpoint and click "Try it out" button.
 
 <br>
 
@@ -274,7 +274,7 @@ Check the translation result in response:
 
 <br>
 
-Visit the [API documentation](http://216.48.182.174:5050/docs#)to check other supported methods:
+Visit the [API documentation](http://216.48.181.177:5050/docs#)to check other supported methods:
 
 <p align="left">
 <img src="./sample_images/api_methods.png" width=50% height=50% />
