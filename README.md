@@ -2,7 +2,8 @@
 	<h1><b><i>IndicTrans</i></b></h1>
 	<a href="http://indicnlp.ai4bharat.org/samanantar">Website</a> |
 	<a href="https://arxiv.org/abs/2104.05596">Paper</a> |
-        <a href="https://youtu.be/QwYPOd1eBtQ?t=383">Video</a><br><br>
+  <a href="https://youtu.be/QwYPOd1eBtQ?t=383">Video</a><br><br> | 
+  <a href="https://github.com/AI4Bharat/indicTrans/tree/main/AI4B_Demo">Demo</a>
 </div>
 <div align="center">
 	<h2><a href="https://colab.research.google.com/drive/1DxZ0d_0v_2kRffUa7JV0sUTCy73zPSUw?usp=sharing">IndicTrans Demo Notebook</a></h2>
