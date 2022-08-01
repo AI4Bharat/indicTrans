@@ -2,11 +2,9 @@
 	<h1><b><i>IndicTrans</i></b></h1>
 	<a href="http://indicnlp.ai4bharat.org/samanantar">Website</a> |
 	<a href="https://arxiv.org/abs/2104.05596">Paper</a> |
-  <a href="https://youtu.be/QwYPOd1eBtQ?t=383">Video</a><br><br> | 
-  <a href="https://github.com/AI4Bharat/indicTrans/tree/main/AI4B_Demo">Demo</a>
-</div>
-<div align="center">
-	<h2><a href="https://colab.research.google.com/drive/1DxZ0d_0v_2kRffUa7JV0sUTCy73zPSUw?usp=sharing">IndicTrans Demo Notebook</a></h2>
+  	<a href="https://youtu.be/QwYPOd1eBtQ?t=383">Video</a> |
+	<a href="https://github.com/AI4Bharat/indicTrans/tree/main/AI4B_Demo">Demo Resources</a>
+	<br><br>
 </div>
 
 **IndicTrans** is a Transformer-4x ( ~434M ) multilingual NMT model trained on [Samanantar](https://indicnlp.ai4bharat.org/samanantar) dataset which is the largest publicly available parallel corpora collection for Indic languages at the time of writing ( 14 April 2021 ). It is a single script model i.e we convert all the Indic data to the Devanagari script which allows for ***better lexical sharing between languages for transfer learning, prevents fragmentation of the subword vocabulary between Indic languages and allows using a smaller subword vocabulary***. We currently release two models - Indic to English and English to Indic and support the following 11 indic languages:
