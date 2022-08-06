@@ -1,6 +1,7 @@
 # IndicTrans Workshop 2022
 
-In this workshop, we will finetune [wav2vec2]() style model from scratch on custom asr data using [Fairseq]() library. We will also train an n-gram language model using [Kenlm]() library. Finally we will export it to Huggingface's format and deploy it as a web app using [Gradio](). 
+In this workshop, we will finetune IndicTrans model from scratch on custom data using [fairseq](https://github.com/facebookresearch/fairseq) library.
+
 The resources provided in this workshop will help you to understand 
 - How to run inference with IndicTrans model
 - How to use the model with hosted APIs
