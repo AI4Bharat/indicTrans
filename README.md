@@ -232,9 +232,9 @@ Tutorials updated with latest model links
 
 ### Download model
 
-Indic to English: [v0.3](https://storage.googleapis.com/samanantar-public/V0.3/models/indic-en.zip)
+Indic to English: [v0.3](https://ai4b-my.sharepoint.com/:u:/g/personal/sumanthdoddapaneni_ai4bharat_org/ETnq-z4aHXFAjDF1Te3AZ20BaZ59PwlKlzSemEHhrmYJ3w?e=fg3s9y&download=1)
 
-English to Indic: [v0.3](https://storage.googleapis.com/samanantar-public/V0.3/models/en-indic.zip)
+English to Indic: [v0.3](https://ai4b-my.sharepoint.com/:u:/g/personal/sumanthdoddapaneni_ai4bharat_org/EUOJ3irrwzFGnEnlPWHgaYkBugAQz25bPFgRvCPW8k7qtg?e=vvCP3u&download=1)
 
 Indic to Indic:   [v0.3](https://storage.googleapis.com/samanantar-public/V0.3/models/m2m.zip)
 
