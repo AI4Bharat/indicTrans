@@ -236,7 +236,7 @@ Indic to English: [v0.3](https://ai4b-my.sharepoint.com/:u:/g/personal/sumanthdo
 
 English to Indic: [v0.3](https://ai4b-my.sharepoint.com/:u:/g/personal/sumanthdoddapaneni_ai4bharat_org/EUOJ3irrwzFGnEnlPWHgaYkBugAQz25bPFgRvCPW8k7qtg?e=vvCP3u&download=1)
 
-Indic to Indic:   [v0.3](https://storage.googleapis.com/samanantar-public/V0.3/models/m2m.zip)
+Indic to Indic:   [v0.3](https://ai4b-my.sharepoint.com/:u:/g/personal/sumanthdoddapaneni_ai4bharat_org/Eajn_jJIp5NEqeyqZ0GW4FgBdiANlZNQiy7dlwkaNr8DHw?e=1dLIGB&download=1)
 
 [Mirror links](https://indicnlp.ai4bharat.org/indic-trans/#mirror-links) for the IndicTrans models
 
