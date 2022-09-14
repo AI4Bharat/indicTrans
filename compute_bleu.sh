@@ -1,7 +1,6 @@
 pred_fname=$1
 ref_fname=$2
-src_lang=$3
-tgt_lang=$4
+tgt_lang=$3
 
 # we compute and report tokenized bleu scores.
 # For computing BLEU scores, systems should output detokenized outputs. Your MT system might be doing it out of the box if you are using SentencePiece - nothing to do in that case.
