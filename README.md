@@ -242,7 +242,8 @@ Indic to Indic:   [v0.3](https://ai4b-my.sharepoint.com/:u:/g/personal/sumanthdo
 
 ### Using hosted APIs
 
-<details><summary>Click to expand </summary>
+Try out our models at [IndicTrans Demos](https://models.ai4bharat.org/#/nmt)
+<!-- <details><summary>Click to expand </summary>
 
 Please visit [API documentation](http://216.48.181.177:5050/docs#) to read more about the available API endpoints/methods you can use.
 
@@ -281,7 +282,7 @@ Visit the [API documentation](http://216.48.181.177:5050/docs#)to check other su
 <p align="left">
 <img src="./sample_images/api_methods.png" width=50% height=50% />
 </p>
-</details>
+</details> -->
 
 <br>
 
