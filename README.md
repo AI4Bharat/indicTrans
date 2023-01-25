@@ -236,7 +236,7 @@ Indic to English: [v0.3](https://ai4b-public-nlu-nlg.objectstore.e2enetworks.net
 
 English to Indic: [v0.3](https://ai4b-public-nlu-nlg.objectstore.e2enetworks.net/en2indic.zip)
 
-Indic to Indic:   [v0.3](https://ai4b-public-nlu-nlg.objectstore.e2enetworks.net/m2m.zip)
+Indic to Indic:   [v0.3](https://ai4b-public-nlu-nlg.objectstore.e2enetworks.net/m2m.tar)
 
 [Mirror links](https://indicnlp.ai4bharat.org/indic-trans/#mirror-links) for the IndicTrans models
 
