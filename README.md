@@ -240,6 +240,10 @@ Indic to Indic:   [v0.3](https://ai4b-public-nlu-nlg.objectstore.e2enetworks.net
 
 [Mirror links](https://indicnlp.ai4bharat.org/indic-trans/#mirror-links) for the IndicTrans models
 
+### STS Benchmark
+
+Download the human annotations for STS benchmark [here](https://objectstore.e2enetworks.net/indic-trans/sts_scores_samanantar.tsv)
+
 ### Using hosted APIs
 
 Try out our models at [IndicTrans Demos](https://models.ai4bharat.org/#/nmt)
