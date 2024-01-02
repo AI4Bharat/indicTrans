@@ -7,6 +7,8 @@
 	<br><br>
 </div>
 
+🚩**NOTE** 🚩[IndicTrans2](https://github.com/AI4Bharat/IndicTrans2) is now available. It supports 22 Indian languages and has better translation quality compared to IndicTrans1. We recommend using IndicTrans2.
+
 **IndicTrans** is a Transformer-4x ( ~434M ) multilingual NMT model trained on [Samanantar](https://indicnlp.ai4bharat.org/samanantar) dataset which is the largest publicly available parallel corpora collection for Indic languages at the time of writing ( 14 April 2021 ). It is a single script model i.e we convert all the Indic data to the Devanagari script which allows for ***better lexical sharing between languages for transfer learning, prevents fragmentation of the subword vocabulary between Indic languages and allows using a smaller subword vocabulary***. We currently release two models - Indic to English and English to Indic and support the following 11 indic languages:
 
 | <!-- -->      | <!-- -->       | <!-- -->     | <!-- -->    |
